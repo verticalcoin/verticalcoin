@@ -8,7 +8,7 @@ Prerequisites
 -------------
  - Ubuntu 16.04+
  - Libraries to build from verticalcoin source
- - Port **8168** is open
+ - Port **54111** is open
 
 Step 1. Build
 ----------------------
@@ -18,11 +18,11 @@ Step 1. Build
 
 **1.2.**  See [README.md](README.md) for instructions on building.
 
-Step 2. (Optional - only if firewall is running). Open port 8168
+Step 2. (Optional - only if firewall is running). Open port 54111
 ----------------------
 **2.1.**  Run:
 
-    sudo ufw allow 8168
+    sudo ufw allow 54111
     sudo ufw default allow outgoing
     sudo ufw enable
 
@@ -67,7 +67,7 @@ Step 4. In your VPS where you are hosting your Vnode. Update config files
     maxconnections=24
     vnode=1
     vnodeprivkey=XXXXXXXXXXXXXXXXX  ## Replace with your vnode private key
-    externalip=XXX.XXX.XXX.XXX:8168 ## Replace with your node external IP
+    externalip=XXX.XXX.XXX.XXX:54111 ## Replace with your node external IP
 
 **4.2.**  Create file **vnode.conf** (in 2 folders **~/.verticalcoin** and **~/.verticalcoin/testnet3**) contains the following info:
  - LABEL: A one word name you make up to call your node (ex. ZN1)
