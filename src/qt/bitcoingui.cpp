@@ -198,9 +198,10 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *platformStyle, const NetworkStyle *n
     frameBlocks->setContentsMargins(0,0,0,0);
     frameBlocks->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     QHBoxLayout *frameBlocksLayout = new QHBoxLayout(frameBlocks);
-    frameBlocksLayout->setContentsMargins(3,0,3,0);
-    frameBlocksLayout->setSpacing(3);
+    frameBlocksLayout->setContentsMargins(10,0,10,0);
+    frameBlocksLayout->setSpacing(10);
     unitDisplayControl = new UnitDisplayStatusBarControl(platformStyle);
+	unitDisplayControl->setStyleSheet(".QPushButton { background-color: rgba(255, 255, 255, 0);}");
     labelEncryptionIcon = new QLabel();
     labelConnectionsIcon = new QLabel();
     labelBlocksIcon = new QLabel();
@@ -274,7 +275,7 @@ void BitcoinGUI::createActions()
 	overviewAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
 	tabGroup->addAction(overviewAction);
 
-	sendCoinsAction = new QAction(platformStyle->SingleColorIcon(":/icons/send"), tr("&Send"), this);
+	sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
 	sendCoinsAction->setStatusTip(tr("Send coins to a Verticalcoin address"));
 	sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
 	sendCoinsAction->setCheckable(true);
@@ -303,7 +304,7 @@ void BitcoinGUI::createActions()
 	historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
 	tabGroup->addAction(historyAction);
 
-	zerocoinAction = new QAction(platformStyle->SingleColorIcon(":/icons/zerocoin"), tr("&Zerocoin"), this);
+	zerocoinAction = new QAction(QIcon(":/icons/zerocoin"), tr("&Verticalcoin"), this);
 	zerocoinAction->setStatusTip(tr("Show the list of public coin that have been minted"));
 	zerocoinAction->setToolTip(zerocoinAction->statusTip());
 	zerocoinAction->setCheckable(true);

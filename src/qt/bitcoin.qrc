@@ -54,7 +54,10 @@
         <file alias="prompticon">res/icons/chevron.png</file>
         <file alias="transaction_abandoned">res/icons/transaction_abandoned.png</file>
     </qresource>
-    <qresource prefix="/movies">
+    <qresource prefix="/css">
+        <file alias="default">res/css/default.css</file>
+    </qresource>
+	<qresource prefix="/movies">
         <file alias="spinner-000">res/movies/spinner-000.png</file>
         <file alias="spinner-001">res/movies/spinner-001.png</file>
         <file alias="spinner-002">res/movies/spinner-002.png</file>
@@ -96,5 +99,6 @@
         <file alias="about">res/images/about.png</file>
         <file alias="splash">res/images/splash.png</file>
         <file alias="splash_testnet">res/images/splash-testnet.png</file>
+		<file alias="vertical_logo_horizontal">res/images/vertical_logo_horizontal.png</file>
     </qresource>
 </RCC>
