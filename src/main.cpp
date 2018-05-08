@@ -1866,10 +1866,28 @@ bool ReadBlockFromDisk(CBlock &block, const CBlockIndex *pindex, const Consensus
     return true;
 }
 
+const unsigned int Premine        = 243800;   // VRT Premine 243750 VRT + 50 VRT
+const unsigned int MaxCoinSupply  = 35000000; // 35 000 000 VRT is max supply
+const unsigned int RewardPerBlock = 32;       // VRT / block
+const unsigned int nVnodePayment  = 8;        // 25 % of 32
+
+CAmount GetVnodePayment(int nHeight, CAmount blockValue) {
+   if (nHeight > (MaxCoinSupply - Premine) / RewardPerBlock)
+      return CAmount(0.5* COIN);
+
+   // 25% or 32 VRT = 8 VRT for Masternodes - 75% of 32 VRT = 24 for POW 
+   return CAmount((RewardPerBlock * 0.25) * COIN);
+}
+
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params &consensusParams, int nTime) {
+   if (nHeight > (MaxCoinSupply - Premine) / RewardPerBlock)
+      return CAmount(1 * COIN);
+   
    if (nHeight == 1)
-      return CAmount(243750 * COIN); // 243750 VRT Premine
-   return CAmount(32 * COIN); //32 VRT - 20 for POW / 12 for vnodes
+      return CAmount(Premine * COIN); 
+
+   // 25% or 32 VRT = 8 VRT for Masternodes - 75% of 32 VRT = 24 for POW 
+   return CAmount(RewardPerBlock * COIN);
 }
 
 bool IsInitialBlockDownload() {
@@ -3299,10 +3317,6 @@ int GetInputAge(const CTxIn &txin) {
             return -1;
         }
     }
-}
-
-CAmount GetVnodePayment(int nHeight, CAmount blockValue) {
-    return CAmount(12 * COIN); // 12 VRT - 20 for POW / 12 for vnodes
 }
 
 bool DisconnectBlocks(int blocks) {
