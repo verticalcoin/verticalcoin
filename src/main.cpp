@@ -1866,16 +1866,16 @@ bool ReadBlockFromDisk(CBlock &block, const CBlockIndex *pindex, const Consensus
     return true;
 }
 
-const unsigned int Premine        = 243800;   // VRT Premine 243750 VRT + 50 VRT
-const unsigned int MaxCoinSupply  = 35000000; // 35 000 000 VRT is max supply
-const unsigned int RewardPerBlock = 32;       // VRT / block
+const unsigned int Premine        = 243800;   // VTL Premine 243750 VTL + 50 VTL
+const unsigned int MaxCoinSupply  = 35000000; // 35 000 000 VTL is max supply
+const unsigned int RewardPerBlock = 32;       // VTL / block
 const unsigned int nVnodePayment  = 8;        // 25 % of 32
 
 CAmount GetVnodePayment(int nHeight, CAmount blockValue) {
    if (nHeight > (MaxCoinSupply - Premine) / RewardPerBlock)
       return CAmount(0.5* COIN);
 
-   // 25% or 32 VRT = 8 VRT for Masternodes - 75% of 32 VRT = 24 for POW 
+   // 25% or 32 VTL = 8 VTL for Masternodes - 75% of 32 VTL = 24 for POW 
    return CAmount((RewardPerBlock * 0.25) * COIN);
 }
 
@@ -1886,7 +1886,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params &consensusParams, i
    if (nHeight == 1)
       return CAmount(Premine * COIN); 
 
-   // 25% or 32 VRT = 8 VRT for Masternodes - 75% of 32 VRT = 24 for POW 
+   // 25% or 32 VTL = 8 VTL for Masternodes - 75% of 32 VTL = 24 for POW 
    return CAmount(RewardPerBlock * COIN);
 }
 
@@ -4001,7 +4001,7 @@ bool CheckBlock(const CBlock &block, CValidationState &state, const Consensus::P
                      instantsend.Relay(hashLocked);
                      LOCK(cs_main);
                      mapRejectedBlocks.insert(make_pair(block.GetHash(), GetTime()));
-                     return state.DoS(0, error("CheckBlock(VRT): transaction %s conflicts with transaction lock %s",
+                     return state.DoS(0, error("CheckBlock(VTL): transaction %s conflicts with transaction lock %s",
                                                 tx.GetHash().ToString(), hashLocked.ToString()),
                                        REJECT_INVALID, "conflict-tx-lock");
                   }

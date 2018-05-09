@@ -164,8 +164,8 @@ public:
        assert(consensus.hashGenesisBlock == uint256S("0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba"));
        assert(genesis.hashMerkleRoot == uint256S("0x1ab1367b6c7666c78b3ce0b688c4ef323f42379158a6a29463fe03781ec1d745"));
 
-       // oldschool - DNSSEC - 51.15.85.226
-       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vrtseed.ovh", false));
+       // oldschool - ipv4 / ipv6
+       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
 
        vFixedSeeds.clear();
 

@@ -2262,8 +2262,8 @@ UniValue settxfee(const UniValue& params, bool fHelp)
             "\nResult\n"
             "true|false        (boolean) Returns true if successful\n"
             "\nExamples:\n"
-            + HelpExampleCli("settxfee", "0.00000001 VRT")
-            + HelpExampleRpc("settxfee", "0.00000001 VRT")
+            + HelpExampleCli("settxfee", "0.00000001 VTL")
+            + HelpExampleRpc("settxfee", "0.00000001 VTL")
         );
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
@@ -2584,7 +2584,7 @@ UniValue fundrawtransaction(const UniValue& params, bool fHelp)
     return result;
 }
 
-//[vrtcoin]: verticalcoin section
+//[vtlcoin]: verticalcoin section
 // verticalcoin section
 
 UniValue listunspentmintzerocoins(const UniValue &params, bool fHelp) {
