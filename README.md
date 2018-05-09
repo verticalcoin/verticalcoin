@@ -4,12 +4,13 @@ Features and Specs
 Specs
 ----------------------
 - LWMA difficulty algorithm https://github.com/zawy12/difficulty-algorithms/issues/3
-- Lyra2Z mining algorithm
+- Lyra2Z pow algorithm
 - vnodes 
 - Tor integration
 - 2 minute blocktime
 - 2 MB blocksize
-
+- Coin Maturity: 50
+- Maximum Supply: 35 million 
 
 Linux Build Instructions and Notes
 ==================================
