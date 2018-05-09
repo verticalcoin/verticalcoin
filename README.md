@@ -5,10 +5,10 @@ Specs
 ----------------------
 - LWMA difficulty algorithm https://github.com/zawy12/difficulty-algorithms/issues/3
 - Lyra2Z pow algorithm
-- vnodes 
+- vNodes 
 - Tor integration
-- 2 minute blocktime
-- 2 MB blocksize
+- Blocktime: 2 minutes 
+- Blocksize: 2 MB 
 - Coin Maturity: 50
 - Maximum Supply: 35 million 
 
