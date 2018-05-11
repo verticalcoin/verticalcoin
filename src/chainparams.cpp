@@ -50,7 +50,7 @@ void mineBlock(CBlock block)
         block.nNonce++;
     }
 
-    std::cout << "Hash: " << block.GetPoWHash(0).ToString() << std::endl;
+    std::cout << "Hash: " << block.GetHash().ToString() << std::endl;
     std::cout << "Merkle: " << block.hashMerkleRoot.ToString() << std::endl;
     std::cout << "Nonce: " << block.nNonce << std::endl;
 }
@@ -109,9 +109,9 @@ public:
        consensus.nMinNFactor = 10;
        consensus.nMaxNFactor = 30;
 
-       consensus.nChainStartTime = 1523301543;
+       consensus.nChainStartTime = 1526021849;
        consensus.BIP34Height = 1;
-       consensus.BIP34Hash = uint256S("0x00000b0c54ae4bc62a7f1541bf51d5314157be348550b43a528c299e46c3b9ca");
+       consensus.BIP34Hash = uint256S("0x27b1e75f31c4a4eb3d8cd2b9a0bf5e3dce95d8ffd2d52cbb00a96435ef5fcc85");
        consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
        // Mining diffuclty LWMA Algo
@@ -170,7 +170,7 @@ public:
        extraNonce[3] = 0x30;
 
        // Updated the nTime to avoid any max tip age issues.
-       genesis = CreateGenesisBlock(1526021849/*05/11/2018 @ 6:57am (UTC)*/, 1407710, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
+       genesis = CreateGenesisBlock(1526021849/*05/11/2018 @ 6:57am (UTC)*/, 1692973, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
        
        //std::cout << "MAIN" << std::endl;
        //mineBlock(genesis);
@@ -178,10 +178,7 @@ public:
        
        consensus.hashGenesisBlock = genesis.GetHash();
        
-       //std::cout << "verticalcoin genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-       //std::cout << "verticalcoin hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
-       
-       assert(consensus.hashGenesisBlock == uint256S("0x00000b0c54ae4bc62a7f1541bf51d5314157be348550b43a528c299e46c3b9ca"));
+       assert(consensus.hashGenesisBlock == uint256S("0x27b1e75f31c4a4eb3d8cd2b9a0bf5e3dce95d8ffd2d52cbb00a96435ef5fcc85"));
        assert(genesis.hashMerkleRoot == uint256S("0xaccdd85da930cbafe090c2927d43a58c2bbb74b09b33b6d77860d38e99d39728"));
 
        // oldschool - ipv4 / ipv6
@@ -205,7 +202,7 @@ public:
       
        checkpointData = (CCheckpointData) {
           boost::assign::map_list_of
-          (0, uint256S("0x00000b0c54ae4bc62a7f1541bf51d5314157be348550b43a528c299e46c3b9ca")),
+          (0, uint256S("0x27b1e75f31c4a4eb3d8cd2b9a0bf5e3dce95d8ffd2d52cbb00a96435ef5fcc85")),
              1526021849, // * UNIX timestamp of last checkpoint block
              0,    // * total number of transactions between genesis and last checkpoint
                    //   (the tx=... number in the SetBestChain debug.log lines)
