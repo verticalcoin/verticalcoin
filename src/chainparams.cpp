@@ -65,10 +65,10 @@ static CBlock CreateGenesisBlock(const char *pszTimestamp, const CScript &genesi
     txNew.nVersion = 1;
     txNew.vin.resize(1);
     txNew.vout.resize(1);
-    CScriptNum csn = CScriptNum(4);
-    std::cout << "CScriptNum(4):" << csn.GetHex();
-    CBigNum cbn = CBigNum(4);
-    std::cout << "CBigNum(4):" << cbn.GetHex();
+    //CScriptNum csn = CScriptNum(4);
+    //std::cout << "CScriptNum(4):" << csn.GetHex();
+    //CBigNum cbn = CBigNum(4);
+    //std::cout << "CBigNum(4):" << cbn.GetHex();
     txNew.vin[0].scriptSig = CScript() << 504365040 << CBigNum(4).getvch() << std::vector < unsigned char >
     ((const unsigned char *) pszTimestamp, (const unsigned char *) pszTimestamp + strlen(pszTimestamp)) << extraNonce;
     txNew.vout[0].nValue = genesisReward;
