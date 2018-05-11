@@ -230,7 +230,7 @@ public:
 		consensus.nMajorityWindow = 100;
 		consensus.nMinNFactor = 10;
 		consensus.nMaxNFactor = 30;
-		consensus.nChainStartTime = 1519267024;
+      consensus.nChainStartTime = 1526021849;
 		consensus.BIP34Height = 0;
 		consensus.BIP34Hash = uint256S("0x67dad51e489684aaad0217fb5adab655fb489d0393fd97d295e4c1241e01fd8c");
 		consensus.powLimit = uint256S("07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -261,7 +261,7 @@ public:
 		// The best chain should have at least this much work.
 		consensus.nMinimumChainWork = uint256S("0x00");
 		// Vnode params testnet
-		consensus.nVnodePaymentsStartBlock = 1;
+      consensus.nVnodePaymentsStartBlock = HF_VNODE_HEIGHT_TESTNET;
 		nMaxTipAge = 0x7fffffff; // allow mining on top of old blocks for testnet
 
 		nPoolMaxTransactions = 3;
@@ -342,7 +342,7 @@ public:
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
-        consensus.nChainStartTime = 1519267034;
+        consensus.nChainStartTime = 1526021849;
         consensus.BIP34Height = -1; // BIP34 has not necessarily activated on regtest
         consensus.BIP34Hash = uint256();
         consensus.powLimit = uint256S("0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f");
