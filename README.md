@@ -60,7 +60,7 @@ Build
         
 vNode Setup
 =====================================
-See (VNODE.mdd) for instructions.
+See (VNODE.md) for instructions.
 
         
 Mining 
