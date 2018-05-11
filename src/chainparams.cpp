@@ -112,7 +112,7 @@ public:
 
        consensus.nChainStartTime = 1523301543;
        consensus.BIP34Height = 227931;
-       consensus.BIP34Hash = uint256S("0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba");
+       consensus.BIP34Hash = uint256S("0x");
        consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
        // Mining diffuclty LWMA Algo
@@ -140,7 +140,7 @@ public:
        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1510704000;      // November 15th, 2017.
        
        // The best chain should have at least this much work.
-       consensus.nMinimumChainWork = uint256S("0x00");
+       consensus.nMinimumChainWork = uint256S("0x0");
 
        // vNode
        consensus.nVnodePaymentsStartBlock = HF_VNODE_PAYMENT_START;
@@ -179,12 +179,15 @@ public:
        
        consensus.hashGenesisBlock = genesis.GetHash();
        
+       std::cout << "verticalcoin genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+       std::cout << "verticalcoin hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
+       
        //assert(consensus.hashGenesisBlock == uint256S("0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba"));
        //assert(genesis.hashMerkleRoot == uint256S("0x1ab1367b6c7666c78b3ce0b688c4ef323f42379158a6a29463fe03781ec1d745"));
 
        // oldschool - ipv4 / ipv6
-       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
-
+       //vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
+       vSeeds.clear();
        vFixedSeeds.clear();
 
        // Note that of those with the service bits flag, most only support a subset of possible options
@@ -231,8 +234,8 @@ public:
 		consensus.nMinNFactor = 10;
 		consensus.nMaxNFactor = 30;
       consensus.nChainStartTime = 1526021849;
-		consensus.BIP34Height = 0;
-		consensus.BIP34Hash = uint256S("0x67dad51e489684aaad0217fb5adab655fb489d0393fd97d295e4c1241e01fd8c");
+      consensus.BIP34Height = 227931;
+		consensus.BIP34Hash = uint256S("0x");
 		consensus.powLimit = uint256S("07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
       
       // Mining diffuclty LWMA Algo
@@ -292,7 +295,10 @@ public:
       mineBlock(genesis);
       std::cout << genesis.GetHash().ToString() << std::endl;
 		consensus.hashGenesisBlock = genesis.GetHash();
-		
+
+      std::cout << "verticalcoin TEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+      std::cout << "verticalcoin TEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
+
       //assert(consensus.hashGenesisBlock == uint256S("0x67dad51e489684aaad0217fb5adab655fb489d0393fd97d295e4c1241e01fd8c"));
 		//assert(genesis.hashMerkleRoot == uint256S("0x36c0a4aeba89d3842c776f3576789f077f46359bc42c14132dab6e8684918a1a"));
 
@@ -392,6 +398,9 @@ public:
        
         consensus.hashGenesisBlock = genesis.GetHash();
         
+        std::cout << "verticalcoin REGTEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "verticalcoin REGTEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
+
         //assert(consensus.hashGenesisBlock == uint256S("0x0080c7bf30bb2579ed9c93213475bf8fafc1f53807da908cde19cf405b9eb55b"));
         //assert(genesis.hashMerkleRoot == uint256S("0x25b361d60bc7a66b311e72389bf5d9add911c735102bcb6425f63aceeff5b7b8"));
 
