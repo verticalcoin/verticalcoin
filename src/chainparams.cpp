@@ -174,7 +174,7 @@ public:
        genesis = CreateGenesisBlock(1526021849/*05/11/2018 @ 6:57am (UTC)*/, 1407710, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
        
        std::cout << "MAIN" << std::endl;
-       mineBlock(genesis);
+     //  mineBlock(genesis);
        std::cout << genesis.GetHash().ToString() << std::endl;
        
        consensus.hashGenesisBlock = genesis.GetHash();
@@ -292,7 +292,7 @@ public:
 		genesis = CreateGenesisBlock(1526021849 /*05/11/2018 @ 6:57am (UTC)*/, 213929, 0x1e0ffff0, 2, 100 * COIN, extraNonce);
       
       std::cout << "TEST" << std::endl;
-      mineBlock(genesis);
+    //  mineBlock(genesis);
       std::cout << genesis.GetHash().ToString() << std::endl;
 		consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -394,7 +394,7 @@ public:
         genesis = CreateGenesisBlock(1526021849 /*05/11/2018 @ 6:57am (UTC)*/, 414098458, 0x1d00ffff, 1, 0 * COIN, extraNonce);
         
         std::cout << "REG" << std::endl;
-        mineBlock(genesis);
+     //   mineBlock(genesis);
        
         consensus.hashGenesisBlock = genesis.GetHash();
         
