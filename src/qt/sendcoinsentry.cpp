@@ -14,6 +14,21 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QComboBox>
+#include <QDateTimeEdit>
+#include <QDesktopServices>
+#include <QDoubleValidator>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMenu>
+#include <QPoint>
+#include <QScrollBar>
+#include <QSignalMapper>
+#include <QTableView>
+#include <QUrl>
+#include <QVBoxLayout>
 
 SendCoinsEntry::SendCoinsEntry(const PlatformStyle *platformStyle, QWidget *parent) :
     QStackedWidget(parent),

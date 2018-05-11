@@ -848,10 +848,7 @@ void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVer
         }
         prevBlocks = count;
 
-#ifdef ENABLE_WALLET
-        if(walletFrame)
-            walletFrame->showOutOfSyncWarning(true);
-#endif // ENABLE_WALLET
+
 
         tooltip += QString("<br>");
         tooltip += tr("Last received block was generated %1 ago.").arg(timeBehindText);
@@ -897,10 +894,6 @@ void BitcoinGUI::setAdditionalDataSyncProgress(int count, double nSyncProgress)
                                                .pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
             spinnerFrame = (spinnerFrame + 1) % SPINNER_FRAMES;
 
-#ifdef ENABLE_WALLET
-            if(walletFrame)
-                walletFrame->showOutOfSyncWarning(false);
-#endif // ENABLE_WALLET
 
             progressBar->setFormat(tr("Synchronizing additional data: %p%"));
             progressBar->setMaximum(1000000000);

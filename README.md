@@ -4,12 +4,13 @@ Features and Specs
 Specs
 ----------------------
 - LWMA difficulty algorithm https://github.com/zawy12/difficulty-algorithms/issues/3
-- Lyra2Z mining algorithm
-- vnodes 
+- Lyra2Z pow algorithm
+- vNodes 
 - Tor integration
-- 2 minute blocktime
-- 2 MB blocksize
-
+- Blocktime: 2 minutes 
+- Blocksize: 2 MB 
+- Coin Maturity: 50
+- Maximum Supply: 35 million 
 
 Linux Build Instructions and Notes
 ==================================
@@ -66,3 +67,8 @@ See (doc/build-osx.md) for instructions on building on Mac OS X.
 Windows (64/32 bit) Build Instructions and Notes
 =====================================
 See (doc/build-windows.md) for instructions on building on Windows 64/32 bit.
+
+
+Docker Image to build Verticalcoin (Linux/Windows)
+=====================================
+https://github.com/DerUntote/verticalcoin-docker/

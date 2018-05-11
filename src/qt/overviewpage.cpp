@@ -28,6 +28,7 @@
 #define DECORATION_SIZE 54
 #define NUM_ITEMS 5
 
+
 class TxViewDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
@@ -141,11 +142,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 		}
     }
 
-    // use a SingleColorIcon for the "out of sync warning" icon
-    QIcon icon = QIcon(":/icons/warning");
-    icon.addPixmap(icon.pixmap(QSize(64,64), QIcon::Normal), QIcon::Disabled); // also set the disabled icon because we are using a disabled QPushButton to work around missing HiDPI support of QLabel (https://bugreports.qt.io/browse/QTBUG-42503)
-    ui->labelTransactionsStatus->setIcon(icon);
-    ui->labelWalletStatus->setIcon(icon);
 
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);
@@ -156,8 +152,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     connect(ui->listTransactions, SIGNAL(clicked(QModelIndex)), this, SLOT(handleTransactionClicked(QModelIndex)));
     connect(ui->checkboxEnabledTor, SIGNAL(toggled(bool)), this, SLOT(handleEnabledTorChanged()));
 
-    // start with displaying the "out of sync" warnings
-    showOutOfSyncWarning(false);
 }
 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)
@@ -297,10 +291,4 @@ void OverviewPage::updateAlerts(const QString &warnings)
 {
     this->ui->labelAlerts->setVisible(!warnings.isEmpty());
     this->ui->labelAlerts->setText(warnings);
-}
-
-void OverviewPage::showOutOfSyncWarning(bool fShow)
-{
-    ui->labelWalletStatus->setVisible(fShow);
-    ui->labelTransactionsStatus->setVisible(fShow);
 }
