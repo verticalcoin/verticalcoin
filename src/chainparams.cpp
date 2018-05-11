@@ -110,8 +110,8 @@ public:
        consensus.nMaxNFactor = 30;
 
        consensus.nChainStartTime = 1523301543;
-       consensus.BIP34Height = 227931;
-       consensus.BIP34Hash = uint256S("0x");
+       consensus.BIP34Height = 1;
+       consensus.BIP34Hash = uint256S("0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd");
        consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
        // Mining diffuclty LWMA Algo
@@ -172,21 +172,20 @@ public:
        // Updated the nTime to avoid any max tip age issues.
        genesis = CreateGenesisBlock(1526021849/*05/11/2018 @ 6:57am (UTC)*/, 1407710, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
        
-       std::cout << "MAIN" << std::endl;
-       mineBlock(genesis);
-       std::cout << genesis.GetHash().ToString() << std::endl;
+       //std::cout << "MAIN" << std::endl;
+       //mineBlock(genesis);
+       //std::cout << genesis.GetHash().ToString() << std::endl;
        
        consensus.hashGenesisBlock = genesis.GetHash();
        
-       std::cout << "verticalcoin genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-       std::cout << "verticalcoin hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
+       //std::cout << "verticalcoin genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+       //std::cout << "verticalcoin hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
        
-       //assert(consensus.hashGenesisBlock == uint256S("0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba"));
-       //assert(genesis.hashMerkleRoot == uint256S("0x1ab1367b6c7666c78b3ce0b688c4ef323f42379158a6a29463fe03781ec1d745"));
+       assert(consensus.hashGenesisBlock == uint256S("0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd"));
+       assert(genesis.hashMerkleRoot == uint256S("0xaccdd85da930cbafe090c2927d43a58c2bbb74b09b33b6d77860d38e99d39728"));
 
        // oldschool - ipv4 / ipv6
-       //vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
-       vSeeds.clear();
+       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
        vFixedSeeds.clear();
 
        // Note that of those with the service bits flag, most only support a subset of possible options
@@ -203,17 +202,15 @@ public:
        fRequireStandard = true;
        fMineBlocksOnDemand = false;
        fTestnetToBeDeprecatedFieldRPC = false;
-
-       /*
+      
        checkpointData = (CCheckpointData) {
           boost::assign::map_list_of
-          (0, uint256S("0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba")),
-             1523301543, // * UNIX timestamp of last checkpoint block
+          (0, uint256S("0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd")),
+             1526021849, // * UNIX timestamp of last checkpoint block
              0,    // * total number of transactions between genesis and last checkpoint
                    //   (the tx=... number in the SetBestChain debug.log lines)
              0     // * estimated number of transactions per day after checkpoint
        };
-       */
     }
 };
 
@@ -290,16 +287,16 @@ public:
 
 		genesis = CreateGenesisBlock(1526021849 /*05/11/2018 @ 6:57am (UTC)*/, 213929, 0x1e0ffff0, 2, 100 * COIN, extraNonce);
       
-      std::cout << "TEST" << std::endl;
-      mineBlock(genesis);
-      std::cout << genesis.GetHash().ToString() << std::endl;
+      //std::cout << "TEST" << std::endl;
+      //mineBlock(genesis);
+      //std::cout << genesis.GetHash().ToString() << std::endl;
 		consensus.hashGenesisBlock = genesis.GetHash();
 
-      std::cout << "verticalcoin TEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-      std::cout << "verticalcoin TEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
+      //std::cout << "verticalcoin TEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+      //std::cout << "verticalcoin TEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
-      //assert(consensus.hashGenesisBlock == uint256S("0x67dad51e489684aaad0217fb5adab655fb489d0393fd97d295e4c1241e01fd8c"));
-		//assert(genesis.hashMerkleRoot == uint256S("0x36c0a4aeba89d3842c776f3576789f077f46359bc42c14132dab6e8684918a1a"));
+      //assert(consensus.hashGenesisBlock == uint256S("0x698346d08d95507906406a509dd4d6c4806ee8e04e8401616af139f8840aa539"));
+		//assert(genesis.hashMerkleRoot == uint256S("0x1d5ef2f3f3d8db8633d21534a096649a37bf901e7b42e7f40f66f228692fcc30"));
 
 
 		// nodes with support for servicebits filtering should be at the top
@@ -322,15 +319,14 @@ public:
 		fMineBlocksOnDemand = false;
 		fTestnetToBeDeprecatedFieldRPC = true;
 
-      /*
+      
 		checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-                (0, uint256S("0x67dad51e489684aaad0217fb5adab655fb489d0393fd97d295e4c1241e01fd8c")),
+                (0, uint256S("0x1d5ef2f3f3d8db8633d21534a096649a37bf901e7b42e7f40f66f228692fcc30")),
             1519267024,
             0,
             0
 		};
-      */
     }
 };
 
@@ -392,13 +388,12 @@ public:
         
         genesis = CreateGenesisBlock(1526021849 /*05/11/2018 @ 6:57am (UTC)*/, 414098458, 0x1d00ffff, 1, 0 * COIN, extraNonce);
         
-        std::cout << "REG" << std::endl;
-        mineBlock(genesis);
+       //std::cout << "REG" << std::endl;
+       //mineBlock(genesis);
        
         consensus.hashGenesisBlock = genesis.GetHash();
-        
-        std::cout << "verticalcoin REGTEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "verticalcoin REGTEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        //std::cout << "verticalcoin REGTEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        //std::cout << "verticalcoin REGTEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
         //assert(consensus.hashGenesisBlock == uint256S("0x0080c7bf30bb2579ed9c93213475bf8fafc1f53807da908cde19cf405b9eb55b"));
         //assert(genesis.hashMerkleRoot == uint256S("0x25b361d60bc7a66b311e72389bf5d9add911c735102bcb6425f63aceeff5b7b8"));

@@ -9,7 +9,7 @@ static map<int, uint256> mapPoWHash;
 #define  PRECOMPUTED_HASHES 1
 
 const char *precomputedHash[PRECOMPUTED_HASHES] = {
-        "0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba"
+        "0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd"
 };
 
 void buildMapPoWHash() {
