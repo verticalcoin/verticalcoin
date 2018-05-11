@@ -65,10 +65,10 @@ static CBlock CreateGenesisBlock(const char *pszTimestamp, const CScript &genesi
     txNew.nVersion = 1;
     txNew.vin.resize(1);
     txNew.vout.resize(1);
-//    CScriptNum csn = CScriptNum(4);
-//    std::cout << "CScriptNum(4):" << csn.GetHex();
-//    CBigNum cbn = CBigNum(4);
-//    std::cout << "CBigNum(4):" << cbn.GetHex();
+    CScriptNum csn = CScriptNum(4);
+    std::cout << "CScriptNum(4):" << csn.GetHex();
+    CBigNum cbn = CBigNum(4);
+    std::cout << "CBigNum(4):" << cbn.GetHex();
     txNew.vin[0].scriptSig = CScript() << 504365040 << CBigNum(4).getvch() << std::vector < unsigned char >
     ((const unsigned char *) pszTimestamp, (const unsigned char *) pszTimestamp + strlen(pszTimestamp)) << extraNonce;
     txNew.vout[0].nValue = genesisReward;
@@ -84,7 +84,6 @@ static CBlock CreateGenesisBlock(const char *pszTimestamp, const CScript &genesi
     genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
     return genesis;
 }
-
 /**
  * Build the genesis block. Note that the output of its generation
  * transaction cannot be spent since it did not originally exist in the
@@ -174,7 +173,7 @@ public:
        genesis = CreateGenesisBlock(1526021849/*05/11/2018 @ 6:57am (UTC)*/, 1407710, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
        
        std::cout << "MAIN" << std::endl;
-     //  mineBlock(genesis);
+       mineBlock(genesis);
        std::cout << genesis.GetHash().ToString() << std::endl;
        
        consensus.hashGenesisBlock = genesis.GetHash();
@@ -292,7 +291,7 @@ public:
 		genesis = CreateGenesisBlock(1526021849 /*05/11/2018 @ 6:57am (UTC)*/, 213929, 0x1e0ffff0, 2, 100 * COIN, extraNonce);
       
       std::cout << "TEST" << std::endl;
-    //  mineBlock(genesis);
+      mineBlock(genesis);
       std::cout << genesis.GetHash().ToString() << std::endl;
 		consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -394,7 +393,7 @@ public:
         genesis = CreateGenesisBlock(1526021849 /*05/11/2018 @ 6:57am (UTC)*/, 414098458, 0x1d00ffff, 1, 0 * COIN, extraNonce);
         
         std::cout << "REG" << std::endl;
-     //   mineBlock(genesis);
+        mineBlock(genesis);
        
         consensus.hashGenesisBlock = genesis.GetHash();
         
