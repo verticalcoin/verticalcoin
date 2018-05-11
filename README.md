@@ -57,11 +57,20 @@ Build
 
         make check
 
+        
+vNode Setup
+=====================================
+See (VNODE.mdd) for instructions.
+
+        
+Mining 
+=====================================
+We have a build in CPU miner. "setgenerate true 1" will activate it for 1 CPU. GPU mining on Windows is possible with ccminer https://github.com/tpruvot/ccminer/releases
+
 
 Mac OS X Build Instructions and Notes
 =====================================
 See (doc/build-osx.md) for instructions on building on Mac OS X.
-
 
 
 Windows (64/32 bit) Build Instructions and Notes
