@@ -19,9 +19,6 @@
 #include "chainparamsseeds.h"
 #include "arith_uint256.h"
 
-// [oldschool] TODO: remove with mining below.
-//#include "oldschool/genesis.cpp"
-
 const arith_uint256 maxUint = UintToArith256(uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
 static CBlock CreateGenesisBlock(const char *pszTimestamp, const CScript &genesisOutputScript, uint32_t nTime, uint32_t nNonce,
@@ -86,7 +83,7 @@ public:
        consensus.nMajorityWindow = 1000;
        consensus.nMinNFactor = 10;
        consensus.nMaxNFactor = 30;
-       //nVertcoinStartTime
+
        consensus.nChainStartTime = 1523301543;
        consensus.BIP34Height = 227931;
        consensus.BIP34Hash = uint256S("0x57dd7d975f4b17ada4f105daa40fc3efa97168482b4aba024a57f2d6f4d70dba");
@@ -240,14 +237,8 @@ public:
 
 		// The best chain should have at least this much work.
 		consensus.nMinimumChainWork = uint256S("0x00");
-		// Znode params testnet
-		consensus.nVnodePaymentsStartBlock = 0; // not true, but it's ok as long as it's less then n
-												//consensus.nZnodePaymentsIncreaseBlock = 360; // not used for now, probably later
-												//consensus.nZnodePaymentsIncreasePeriod = 650; // not used for now, probably later
-												//consensus.nSuperblockStartBlock = 61000;
-												//consensus.nBudgetPaymentsStartBlock = 60000;
-												//consensus.nBudgetPaymentsCycleBlocks = 50;
-												//consensus.nBudgetPaymentsWindowBlocks = 10;
+		// Vnode params testnet
+		consensus.nVnodePaymentsStartBlock = 1;
 		nMaxTipAge = 0x7fffffff; // allow mining on top of old blocks for testnet
 
 		nPoolMaxTransactions = 3;
