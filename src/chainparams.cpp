@@ -111,7 +111,7 @@ public:
 
        consensus.nChainStartTime = 1523301543;
        consensus.BIP34Height = 1;
-       consensus.BIP34Hash = uint256S("0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd");
+       consensus.BIP34Hash = uint256S("0x00000b0c54ae4bc62a7f1541bf51d5314157be348550b43a528c299e46c3b9ca");
        consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
        // Mining diffuclty LWMA Algo
@@ -181,7 +181,7 @@ public:
        //std::cout << "verticalcoin genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
        //std::cout << "verticalcoin hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
        
-       assert(consensus.hashGenesisBlock == uint256S("0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd"));
+       assert(consensus.hashGenesisBlock == uint256S("0x00000b0c54ae4bc62a7f1541bf51d5314157be348550b43a528c299e46c3b9ca"));
        assert(genesis.hashMerkleRoot == uint256S("0xaccdd85da930cbafe090c2927d43a58c2bbb74b09b33b6d77860d38e99d39728"));
 
        // oldschool - ipv4 / ipv6
@@ -205,7 +205,7 @@ public:
       
        checkpointData = (CCheckpointData) {
           boost::assign::map_list_of
-          (0, uint256S("0x849f590d01f40ed631bf59688d42d31304d558ca5188506242eb618bfb77f3bd")),
+          (0, uint256S("0x00000b0c54ae4bc62a7f1541bf51d5314157be348550b43a528c299e46c3b9ca")),
              1526021849, // * UNIX timestamp of last checkpoint block
              0,    // * total number of transactions between genesis and last checkpoint
                    //   (the tx=... number in the SetBestChain debug.log lines)
@@ -295,7 +295,7 @@ public:
       //std::cout << "verticalcoin TEST genesisBlock hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
       //std::cout << "verticalcoin TEST hashMerkleRoot hash: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
-      //assert(consensus.hashGenesisBlock == uint256S("0x698346d08d95507906406a509dd4d6c4806ee8e04e8401616af139f8840aa539"));
+      //assert(consensus.hashGenesisBlock == uint256S("0x0000009493cd49249adb44f2cb8af1fd83920e2c6027024a47394b8c7b4e1c06"));
 		//assert(genesis.hashMerkleRoot == uint256S("0x1d5ef2f3f3d8db8633d21534a096649a37bf901e7b42e7f40f66f228692fcc30"));
 
 
@@ -322,7 +322,7 @@ public:
       
 		checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-                (0, uint256S("0x1d5ef2f3f3d8db8633d21534a096649a37bf901e7b42e7f40f66f228692fcc30")),
+                (0, uint256S("0x0000009493cd49249adb44f2cb8af1fd83920e2c6027024a47394b8c7b4e1c06")),
             1519267024,
             0,
             0
