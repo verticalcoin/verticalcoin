@@ -104,11 +104,17 @@ QProgressBar::chunk {
 
 
 QTabWidget {
-    background-color:#f2f2f2;
+    background-color:#2b2b2b;
 }
 
+OptionsModel{
+    color: #2b2b2b;
+}
+
+
+
 QTabWidget::pane {
-    background-color:#f2f2f2;
+    background-color:#2b2b2b;
     border:0px solid #c2c2c2;
 }
 
@@ -542,7 +548,7 @@ QSlider::add-page:horizontal {
 /**************************** DIALOG BOXES **********************************************/
 
 QDialog {
-    background-color: #f8f6f6;
+    background-color: #2b2b2b !important;
 }
 
 QDialog .QTabWidget {
@@ -551,6 +557,7 @@ QDialog .QTabWidget {
 
 QDialog .QTabWidget::pane {
     border: 1px solid #d7d7d7;
+	color: #2b2b2b;
 }
 
 QDialog .QTabWidget QTabBar::tab {
@@ -751,6 +758,10 @@ QWidget#AddressBookPage QHeaderView::section { /* Min width for Windows fix */
 
 /**************************** SETTINGS MENU *********************************************/
 
+QDialog#OptionsDialog  {
+    color: #2b2b2b !important;
+}
+
 /* Encrypt Wallet and Change Passphrase Dialog */
 QDialog#AskPassphraseDialog QLabel#passLabel1, QDialog#AskPassphraseDialog QLabel#passLabel2, QDialog#AskPassphraseDialog QLabel#passLabel3 {
     qproperty-alignment: 'AlignVCenter | AlignRight';
@@ -762,6 +773,7 @@ QDialog#AskPassphraseDialog QLabel#passLabel1, QDialog#AskPassphraseDialog QLabe
 QDialog#OptionsDialog QValueComboBox, QDialog#OptionsDialog QSpinBox {
     margin-top:5px;
     margin-bottom:5px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog QValidatedLineEdit, QDialog#OptionsDialog QValidatedLineEdit:disabled, QDialog#OptionsDialog QLineEdit, QDialog#OptionsDialog QLineEdit:disabled {
