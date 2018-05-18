@@ -91,7 +91,7 @@ static CBlock CreateGenesisBlock(const char *pszTimestamp, const CScript &genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward,
                    std::vector<unsigned char> extraNonce) {
-    const char *pszTimestamp = "Bitcoin hash: 00000000000000000019d9968c5a3af19e325d85473e7c5dacb1c414305c042e Ether hash: 0x67f208aaba5d00b24ffc322224be9ec8b2228b9445513c8377b0e4552d852c29";
+    const char *pszTimestamp = "Bitcoin hash: 00000000000000000012084b1ace813b6d3d47ae7778e0502a865001e559b74d Ether hash: 0x7992d43efe80ed4c4c1d733caa40652a644e1f2c00bccffba84cfb5f2d4779c6";
     const CScript genesisOutputScript = CScript();
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward,
                               extraNonce);
@@ -109,9 +109,9 @@ public:
        consensus.nMinNFactor = 10;
        consensus.nMaxNFactor = 30;
 
-       consensus.nChainStartTime = 1526670368;
+       consensus.nChainStartTime = 1526671158;
        consensus.BIP34Height = 1;
-       consensus.BIP34Hash = uint256S("0xd853097c7fb224ec51b285f9e9672b02d656d897e331667e8d6675c353e2a28d");
+       consensus.BIP34Hash = uint256S("0x3c0aae488138f9e87d8105220dcc72f8074027a779e5407536f36262ad61cb2b");
        consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
        // Mining diffuclty LWMA Algo
@@ -170,16 +170,16 @@ public:
        extraNonce[3] = 0x11;
 
        // Updated the nTime to avoid any max tip age issues.
-       genesis = CreateGenesisBlock(1526670368, 8493092, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
+       genesis = CreateGenesisBlock(1526671158, 9134602, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
        
       //std::cout << "MAIN" << std::endl;
       //mineBlock(genesis);
       //std::cout << genesis.GetHash().ToString() << std::endl;
-       
+      // 
        consensus.hashGenesisBlock = genesis.GetHash();
        
-       assert(consensus.hashGenesisBlock == uint256S("0xd853097c7fb224ec51b285f9e9672b02d656d897e331667e8d6675c353e2a28d"));
-       assert(genesis.hashMerkleRoot == uint256S("0xdbbe3593fd1eda2ec746e011305e0f3a146850a50b717f8144625f927f926959"));
+       assert(consensus.hashGenesisBlock == uint256S("0x3c0aae488138f9e87d8105220dcc72f8074027a779e5407536f36262ad61cb2b"));
+       assert(genesis.hashMerkleRoot == uint256S("0x1f8568730d55fc9d9967f5e593ab7feb21256879ea7907949a12a43f9c0ffc95"));
 
        // oldschool - ipv4 / ipv6
        //vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
@@ -200,14 +200,14 @@ public:
        fMineBlocksOnDemand = false;
        fTestnetToBeDeprecatedFieldRPC = false;
       
-       //checkpointData = (CCheckpointData) {
-       //   boost::assign::map_list_of
-       //   (0, uint256S("0xd853097c7fb224ec51b285f9e9672b02d656d897e331667e8d6675c353e2a28d")),
-       //    1526670368, // * UNIX timestamp of last checkpoint block
-       //      0,    // * total number of transactions between genesis and last checkpoint
-       //            //   (the tx=... number in the SetBestChain debug.log lines)
-       //      0     // * estimated number of transactions per day after checkpoint
-       //};
+       checkpointData = (CCheckpointData) {
+          boost::assign::map_list_of
+          (0, uint256S("0x3c0aae488138f9e87d8105220dcc72f8074027a779e5407536f36262ad61cb2b")),
+           1526671158, // * UNIX timestamp of last checkpoint block
+             0,    // * total number of transactions between genesis and last checkpoint
+                   //   (the tx=... number in the SetBestChain debug.log lines)
+             0     // * estimated number of transactions per day after checkpoint
+       };
     }
 };
 
