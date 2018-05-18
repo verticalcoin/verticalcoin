@@ -104,18 +104,24 @@ QProgressBar::chunk {
 
 
 QTabWidget {
-    background-color:#f2f2f2;
+    background-color:#2b2b2b;
 }
 
+OptionsModel {
+    color: #2b2b2b;
+}
+
+
+
 QTabWidget::pane {
-    background-color:#f2f2f2;
+    background-color:#2b2b2b;
     border:0px solid #c2c2c2;
 }
 
 
 QTabBar {
     background-color:#f2f2f2;
-    color:#333;
+    color: #33333 !important;
 }
 
 QTabBar::tab:hover:!selected {
@@ -130,7 +136,7 @@ QWidget {
 
 QGroupBox {
     background-color:#fcfcfc;
-    color:#333;
+    color:#2b2b2b;
 }
 
 QToolTip {
@@ -154,6 +160,7 @@ QWidget .QFrame#frame > .QLabel#progressBarLabel {
 QHBoxLayout {
      border-width: 0px;
      border-color: #0e0e0e;
+	 color: #2b2b2b;
  }
  
  
@@ -542,7 +549,7 @@ QSlider::add-page:horizontal {
 /**************************** DIALOG BOXES **********************************************/
 
 QDialog {
-    background-color: #f8f6f6;
+    background-color: #2b2b2b !important;
 }
 
 QDialog .QTabWidget {
@@ -551,6 +558,7 @@ QDialog .QTabWidget {
 
 QDialog .QTabWidget::pane {
     border: 1px solid #d7d7d7;
+	color: #2b2b2b;
 }
 
 QDialog .QTabWidget QTabBar::tab {
@@ -572,6 +580,7 @@ QDialog .QTabWidget .QWidget {
     background-color:#fff;
     color:#333;
 }
+
 
 QDialog .QTabWidget .QWidget QAbstractSpinBox {
     min-height:15px;
@@ -751,17 +760,23 @@ QWidget#AddressBookPage QHeaderView::section { /* Min width for Windows fix */
 
 /**************************** SETTINGS MENU *********************************************/
 
+QDialog#OptionsDialog .QVBoxLayout .QLabel {
+    color: #2b2b2b !important;
+}
+
 /* Encrypt Wallet and Change Passphrase Dialog */
 QDialog#AskPassphraseDialog QLabel#passLabel1, QDialog#AskPassphraseDialog QLabel#passLabel2, QDialog#AskPassphraseDialog QLabel#passLabel3 {
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:170px;
     min-height:33px; /* base width of 25px for QLineEdit, plus padding and border */
+	color: #2b2b2b;
 }
 
 /* Options Dialog */
 QDialog#OptionsDialog QValueComboBox, QDialog#OptionsDialog QSpinBox {
     margin-top:5px;
     margin-bottom:5px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog QValidatedLineEdit, QDialog#OptionsDialog QValidatedLineEdit:disabled, QDialog#OptionsDialog QLineEdit, QDialog#OptionsDialog QLineEdit:disabled {
@@ -771,31 +786,37 @@ QDialog#OptionsDialog QValidatedLineEdit, QDialog#OptionsDialog QValidatedLineEd
     margin-bottom:0px;
     padding-top:1px;
     padding-bottom:1px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog > QLabel {
     qproperty-alignment: 'AlignVCenter';
     min-height:20px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog QWidget#tabDisplay QValueComboBox {
     margin-top:0px;
     margin-bottom:0px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog QLabel#label_3 { /* Translations Missing? Label */
     qproperty-alignment: 'AlignVCenter | AlignCenter';
     color:#818181;
     padding-bottom:8px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog QCheckBox {
     qproperty-alignment: 'AlignVCenter';
     min-height:20px;
+	color: #2b2b2b;
 }
 
 QDialog#OptionsDialog QCheckBox#displayAddresses {
     min-height:33px;
+	color: #2b2b2b;
 }
 
 /**************************** TOOLS MENU ************************************************/
@@ -1202,6 +1223,7 @@ QWidget .QFrame#frame_2 { /* Transactions Widget */
     margin-right:20px;
     margin-left:0;
     margin-top:0;
+	color: #f1f1f1 !important;
 }
 
 QWidget .QFrame#frame_2 .QLabel#label_4 { /* Recent Transactions Label */
@@ -1223,7 +1245,6 @@ QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions
     margin-left:16px;
     margin-right:5px;
     min-height:16px;
-	background-color: #ff000 !important;
 }
 
 QWidget .QFrame#frame_2 QListView { /* Transaction List */
