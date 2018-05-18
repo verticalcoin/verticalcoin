@@ -182,7 +182,7 @@ public:
        assert(genesis.hashMerkleRoot == uint256S("0x723c399bcb2e73ab0d33175127fcd3e999312f425b02b8b738053879948e345a"));
 
        // oldschool - ipv4 / ipv6
-       //vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
+       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
        vFixedSeeds.clear();
 
        // Note that of those with the service bits flag, most only support a subset of possible options
