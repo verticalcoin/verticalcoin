@@ -44,14 +44,14 @@ bool checkProofOfWork(uint256 hash, unsigned int nBits)
     return true;
 }
 
-void mineBlock(CBlock block)
+void mineBlock(CBlock &block)
 {
     while (!checkProofOfWork(block.GetPoWHash(0), block.nBits)) {
         block.nNonce++;
     }
 
-    std::cout << "Hash: " << block.GetHash().ToString() << std::endl;
-    std::cout << "Merkle: " << block.hashMerkleRoot.ToString() << std::endl;
+    std::cout << "Hash: 0x" << block.GetHash().ToString() << std::endl;
+    std::cout << "Merkle: 0x" << block.hashMerkleRoot.ToString() << std::endl;
     std::cout << "Nonce: " << block.nNonce << std::endl;
 }
 
@@ -91,7 +91,7 @@ static CBlock CreateGenesisBlock(const char *pszTimestamp, const CScript &genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward,
                    std::vector<unsigned char> extraNonce) {
-    const char *pszTimestamp = "Bitcoin hash: 0000000000000000000841791c269f7666dbf9bfbbb43c40f38cd970bfce59bc Ethereum hash: 0x51d2e7a7508512732d43c5b49d983c5a197cd22f516ede0a62b07da7a0cffbba";
+    const char *pszTimestamp = "Bitcoin hash: 00000000000000000019d9968c5a3af19e325d85473e7c5dacb1c414305c042e Ether hash: 0x67f208aaba5d00b24ffc322224be9ec8b2228b9445513c8377b0e4552d852c29";
     const CScript genesisOutputScript = CScript();
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward,
                               extraNonce);
@@ -109,9 +109,9 @@ public:
        consensus.nMinNFactor = 10;
        consensus.nMaxNFactor = 30;
 
-       consensus.nChainStartTime = 1526664955;
+       consensus.nChainStartTime = 1526670368;
        consensus.BIP34Height = 1;
-       consensus.BIP34Hash = uint256S("0x42d552dae305fbcd5f4ae811a654fe875770bac438e30a94c8215b1b662fc7d3");
+       consensus.BIP34Hash = uint256S("0xd853097c7fb224ec51b285f9e9672b02d656d897e331667e8d6675c353e2a28d");
        consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
        // Mining diffuclty LWMA Algo
@@ -170,16 +170,16 @@ public:
        extraNonce[3] = 0x11;
 
        // Updated the nTime to avoid any max tip age issues.
-       genesis = CreateGenesisBlock(1526664955 /*05/11/2018 @ 6:57am (UTC)*/, 4081731, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
+       genesis = CreateGenesisBlock(1526670368, 8493092, 0x1e0ffff0, 2, 0 * COIN, extraNonce);
        
-       //std::cout << "MAIN" << std::endl;
-       //mineBlock(genesis);
-       //std::cout << genesis.GetHash().ToString() << std::endl;
+      //std::cout << "MAIN" << std::endl;
+      //mineBlock(genesis);
+      //std::cout << genesis.GetHash().ToString() << std::endl;
        
        consensus.hashGenesisBlock = genesis.GetHash();
        
-       assert(consensus.hashGenesisBlock == uint256S("0x42d552dae305fbcd5f4ae811a654fe875770bac438e30a94c8215b1b662fc7d3"));
-       assert(genesis.hashMerkleRoot == uint256S("0xb3545c984eb63fe388e52f874c6adf92ef60b22a4c423b12fa0655e8d4878e8b"));
+       assert(consensus.hashGenesisBlock == uint256S("0xd853097c7fb224ec51b285f9e9672b02d656d897e331667e8d6675c353e2a28d"));
+       assert(genesis.hashMerkleRoot == uint256S("0xdbbe3593fd1eda2ec746e011305e0f3a146850a50b717f8144625f927f926959"));
 
        // oldschool - ipv4 / ipv6
        //vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
@@ -200,14 +200,14 @@ public:
        fMineBlocksOnDemand = false;
        fTestnetToBeDeprecatedFieldRPC = false;
       
-       checkpointData = (CCheckpointData) {
-          boost::assign::map_list_of
-          (0, uint256S("0x42d552dae305fbcd5f4ae811a654fe875770bac438e30a94c8215b1b662fc7d3")),
-           1526664955 , // * UNIX timestamp of last checkpoint block
-             0,    // * total number of transactions between genesis and last checkpoint
-                   //   (the tx=... number in the SetBestChain debug.log lines)
-             0     // * estimated number of transactions per day after checkpoint
-       };
+       //checkpointData = (CCheckpointData) {
+       //   boost::assign::map_list_of
+       //   (0, uint256S("0xd853097c7fb224ec51b285f9e9672b02d656d897e331667e8d6675c353e2a28d")),
+       //    1526670368, // * UNIX timestamp of last checkpoint block
+       //      0,    // * total number of transactions between genesis and last checkpoint
+       //            //   (the tx=... number in the SetBestChain debug.log lines)
+       //      0     // * estimated number of transactions per day after checkpoint
+       //};
     }
 };
 
@@ -319,13 +319,13 @@ public:
 		fTestnetToBeDeprecatedFieldRPC = true;
 
       
-		checkpointData = (CCheckpointData) {
-            boost::assign::map_list_of
-                (0, uint256S("0xd484c39dd1f4079e2cac70d3bcba2f3debb7821373cfc2491cba99ebb273ef98")),
-            1526664990,
-            0,
-            0
-		};
+		//checkpointData = (CCheckpointData) {
+      //      boost::assign::map_list_of
+      //          (0, uint256S("0xd484c39dd1f4079e2cac70d3bcba2f3debb7821373cfc2491cba99ebb273ef98")),
+      //      1526664990,
+      //      0,
+      //      0
+		//};
     }
 };
 
@@ -443,8 +443,8 @@ CChainParams &Params(const std::string &chain) {
         return mainParams;
     else if (chain == CBaseChainParams::TESTNET)
         return testNetParams;
-    //else if (chain == CBaseChainParams::REGTEST)
-    //    return regTestParams;
+    else if (chain == CBaseChainParams::REGTEST)
+        return regTestParams;
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }
