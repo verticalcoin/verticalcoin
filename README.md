@@ -80,4 +80,4 @@ See (doc/build-windows.md) for instructions on building on Windows 64/32 bit.
 
 Docker Image to build Verticalcoin (Linux/Windows)
 =====================================
-https://github.com/DerUntote/verticalcoin-docker/
+https://github.com/verticalcoin/verticalcoin-docker/

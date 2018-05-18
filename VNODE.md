@@ -13,7 +13,7 @@ Step 1. Build
 ----------------------
 **1.1.**  Check out from source:
 
-    git clone https://github.com/DerUntote/verticalcoin
+    git clone https://github.com/verticalcoin/verticalcoin
 
 **1.2.**  See [README.md](README.md) for instructions on building.
 
