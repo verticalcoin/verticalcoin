@@ -158,16 +158,16 @@ public:
        * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
        `  * a large 32-bit integer with any alignment.
        */
-       pchMessageStart[0] = 0xd3;
-       pchMessageStart[1] = 0xe5;
-       pchMessageStart[2] = 0x12;
-       pchMessageStart[3] = 0x21;
+       pchMessageStart[0] = 0x22;
+       pchMessageStart[1] = 0xa1;
+       pchMessageStart[2] = 0x43;
+       pchMessageStart[3] = 0x10;
 
        std::vector<unsigned char> extraNonce(4);
-       extraNonce[0] = 0x12;
-       extraNonce[1] = 0x2f;
-       extraNonce[2] = 0x10;
-       extraNonce[3] = 0x30;
+       extraNonce[0] = 0x21;
+       extraNonce[1] = 0x6a;
+       extraNonce[2] = 0x82;
+       extraNonce[3] = 0x11;
 
        // Updated the nTime to avoid any max tip age issues.
        genesis = CreateGenesisBlock(1526021849/*05/11/2018 @ 6:57am (UTC)*/, 1692973, 0x1e0ffff0, 2, 0 * COIN, extraNonce);

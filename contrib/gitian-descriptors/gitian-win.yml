@@ -22,7 +22,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/verticalcoinofficial/verticalcoin"
+- "url": "https://github.com/verticalcoin/verticalcoin"
   "dir": "verticalcoin"
 files: []
 script: |
