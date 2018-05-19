@@ -464,23 +464,23 @@ bool CVnodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
     BOOST_FOREACH (CVnodePayee& payee, vecPayees) {
         if (payee.GetVoteCount() >= MNPAYMENTS_SIGNATURES_REQUIRED) {
 
-            LogPrint("BOOST_FOREACH (CVnodePayee& payee, vecPayees)\n");
+            LogPrintf("BOOST_FOREACH (CVnodePayee& payee, vecPayees)\n");
 
             hasValidPayee = true;
 
             BOOST_FOREACH (CTxOut txout, txNew.vout) {
-                LogPrint(" BOOST_FOREACH (CTxOut txout, txNew.vout)\n");
+                LogPrintf(" BOOST_FOREACH (CTxOut txout, txNew.vout)\n");
 
                 auto bIsPayeeValid = payee.GetPayee() == txout.scriptPubKey;
                 auto bIsPaymentValid = nVnodePayment == txout.nValue;
                 
                 if (bIsPayeeValid == false) {
-                    LogPrint("bIsPayeeValid - false\n");
+                    LogPrintf("bIsPayeeValid - false\n");
                 }
                 else if (bIsPaymentValid == false) {
-                    LogPrint("bIsPaymentValid - false\n");
+                    LogPrintf("bIsPaymentValid - false\n");
                 } else {
-                    LogPrint("CVnodeBlockPayees::IsTransactionValid -- Found required payment\n");
+                    LogPrintf("CVnodeBlockPayees::IsTransactionValid -- Found required payment\n");
                     return true;
                 }
             }
