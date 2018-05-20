@@ -803,7 +803,11 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     }
     result.push_back(Pair("vnode", vnodeObj));
     result.push_back(Pair("vnode_payments_started", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
-//    result.push_back(Pair("vnode_payments_enforced", sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)));
+    result.push_back(Pair("vnode_payments_enforced", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
+    
+    result.push_back(Pair("masternode", vnodeObj));
+    result.push_back(Pair("masternode_payments_started", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
+    result.push_back(Pair("masternode_payments_enforced", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
 
     const struct BIP9DeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
     if (!pblocktemplate->vchCoinbaseCommitment.empty() && setClientRules.find(segwit_info.name) != setClientRules.end()) {
