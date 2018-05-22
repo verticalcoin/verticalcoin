@@ -80,7 +80,6 @@ public:
     int PoolMaxTransactions() const { return nPoolMaxTransactions; }
     int FulfilledRequestExpireTime() const { return nFulfilledRequestExpireTime; }
     std::string SporkPubKey() const { return strSporkPubKey; }
-    std::string ZnodePaymentPubKey() const { return strZnodePaymentsPubKey; }
 	
 	/** Zerocoin-related block numbers when features are changed */
 	int nSpendV15StartBlock;
