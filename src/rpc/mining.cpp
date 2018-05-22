@@ -774,8 +774,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
     result.push_back(Pair("transactions", transactions));
     result.push_back(Pair("coinbaseaux", aux));
-    // result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue)); // Hotfix, redo this
-    result.push_back(Pair("coinbasevalue", (int64_t)3200000000));
+    result.push_back(Pair("coinbasevalue", static_cast<int64_t>(pblock->vtx[0].vout[0].nValue + pblock->txoutVnode.nValue))); // vNode rewards are now included in coinbasevalue
     result.push_back(Pair("longpollid", chainActive.Tip()->GetBlockHash().GetHex() + i64tostr(nTransactionsUpdatedLast)));
     result.push_back(Pair("target", hashTarget.GetHex()));
     result.push_back(Pair("mintime", (int64_t)pindexPrev->GetMedianTimePast()+1));
@@ -802,9 +801,6 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         vnodeObj.push_back(Pair("script", HexStr(pblock->txoutVnode.scriptPubKey.begin(), pblock->txoutVnode.scriptPubKey.end())));
         vnodeObj.push_back(Pair("amount", pblock->txoutVnode.nValue));
     }
-    result.push_back(Pair("vnode", vnodeObj));
-    result.push_back(Pair("vnode_payments_started", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
-    result.push_back(Pair("vnode_payments_enforced", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
     
     result.push_back(Pair("masternode", vnodeObj));
     result.push_back(Pair("masternode_payments_started", pindexPrev->nHeight + 1 > Params().GetConsensus().nVnodePaymentsStartBlock));
