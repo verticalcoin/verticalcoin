@@ -85,7 +85,12 @@ bool IsBlockPayeeValid(const CTransaction& txNew, int nBlockHeight, CAmount bloc
         LogPrint("mnpayments", "IsBlockPayeeValid -- Valid vnode payment at height %d: %s", nBlockHeight, txNew.ToString());
         return true;
     }
-    // ADD SOFTFORK HEIGHT
+    if (nBlockHeight < HF_VNODE_PAYMENT_ENFORCE)
+    {
+        LogPrint("mnpayments", "IsBlockPayeeValid -- Valid until Block %d/%d: %s", nBlockHeight, HF_VNODE_PAYMENT_ENFORCE, txNew.ToString());
+        return true;
+    }
+
     LogPrint("mnpayments", "IsBlockPayeeValid -- invalid vnode payment at height %d: %s", nBlockHeight, txNew.ToString());
     return false;
 }
