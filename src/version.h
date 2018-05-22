@@ -9,7 +9,7 @@
  * network protocol versioning
  */
 
-static const int PROTOCOL_VERSION = 90050;
+static const int PROTOCOL_VERSION = 90051;
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 90050;
@@ -20,8 +20,8 @@ static const int GETHEADERS_VERSION = 90050;
 //! disconnect from peers older than this proto version
 static const int MIN_PEER_PROTO_VERSION = 90049;
 
-//! disconnect from all older peers after Vnode payment HF
-static const int MIN_PEER_PROTO_VERSION_AFTER_VNODE_PAYMENT_HF = 90050;
+//! disconnect from all older peers after next hard fork 
+static const int MIN_PEER_PROTO_VERSION_AFTER_MODULUS_HF = 90051;
 
 //! nTime field added to CAddress, starting with this version;
 //! if possible, avoid requesting addresses nodes older than this
