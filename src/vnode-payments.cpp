@@ -10,6 +10,7 @@
 #include "vnode-payments.h"
 #include "vnode-sync.h"
 #include "vnodeman.h"
+#include "consensus/consensus.h"
 
 #include <boost/lexical_cast.hpp>
 
