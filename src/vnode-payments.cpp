@@ -81,19 +81,18 @@ bool IsBlockPayeeValid(const CTransaction& txNew, int nBlockHeight, CAmount bloc
             LogPrintf("IsBlockPayeeValid -- WARNING: Client not synced, skipping block payee checks\n");
         return true;
     }
-
-    //check for vnode payee
     if (mnpayments.IsTransactionValid(txNew, nBlockHeight)) {
         LogPrint("mnpayments", "IsBlockPayeeValid -- Valid vnode payment at height %d: %s", nBlockHeight, txNew.ToString());
         return true;
-    } else {
-        if (sporkManager.IsSporkActive(SPORK_8_VNODE_PAYMENT_ENFORCEMENT)) {
-            return false;
-        } else {
-            LogPrintf("Vnode payment enforcement is disabled, accepting block\n");
-            return true;
-        }
     }
+    if (nBlockHeight < HF_VNODE_PAYMENT_ENFORCE)
+    {
+        LogPrint("mnpayments", "IsBlockPayeeValid -- Valid until Block %d/%d: %s", nBlockHeight, HF_VNODE_PAYMENT_ENFORCE, txNew.ToString());
+        return true;
+    }
+
+    LogPrint("mnpayments", "IsBlockPayeeValid -- invalid vnode payment at height %d: %s", nBlockHeight, txNew.ToString());
+    return false;
 }
 
 void FillBlockPayments(CMutableTransaction& txNew, int nBlockHeight, CAmount vnodePayment, CTxOut& txoutVnodeRet, std::vector<CTxOut>& voutSuperblockRet)
@@ -463,7 +462,6 @@ bool CVnodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
 
     BOOST_FOREACH (CVnodePayee& payee, vecPayees) {
         if (payee.GetVoteCount() >= MNPAYMENTS_SIGNATURES_REQUIRED) {
-
             LogPrintf("BOOST_FOREACH (CVnodePayee& payee, vecPayees)\n");
 
             hasValidPayee = true;
@@ -473,11 +471,10 @@ bool CVnodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
 
                 auto bIsPayeeValid = payee.GetPayee() == txout.scriptPubKey;
                 auto bIsPaymentValid = nVnodePayment == txout.nValue;
-                
+
                 if (bIsPayeeValid == false) {
                     LogPrintf("bIsPayeeValid - false\n");
-                }
-                else if (bIsPaymentValid == false) {
+                } else if (bIsPaymentValid == false) {
                     LogPrintf("bIsPaymentValid - false\n");
                 } else {
                     LogPrintf("CVnodeBlockPayees::IsTransactionValid -- Found required payment\n");
