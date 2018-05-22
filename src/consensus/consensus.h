@@ -15,9 +15,7 @@
 static const int HF_LYRA2Z_HEIGHT = 0;
 static const int HF_VNODE_HEIGHT = 100;
 static const int HF_VNODE_PAYMENT_START = 720; // After ~1 day we start with Masternodes
-static const int HF_VNODE_PAYMENT_ENFORCE = 5360; // in ~3 days we enforce vNode payments
-
-    //static const int HF_MTP_HEIGHT = 70000;
+//static const int HF_MTP_HEIGHT = 70000;
 
 static const int HF_LYRA2Z_HEIGHT_TESTNET = 0;
 static const int HF_VNODE_HEIGHT_TESTNET = HF_VNODE_PAYMENT_START;
