@@ -463,13 +463,9 @@ bool CVnodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
 
     BOOST_FOREACH (CVnodePayee& payee, vecPayees) {
         if (payee.GetVoteCount() >= MNPAYMENTS_SIGNATURES_REQUIRED) {
-            LogPrintf("BOOST_FOREACH (CVnodePayee& payee, vecPayees)\n");
-
             hasValidPayee = true;
 
             BOOST_FOREACH (CTxOut txout, txNew.vout) {
-                LogPrintf(" BOOST_FOREACH (CTxOut txout, txNew.vout)\n");
-
                 auto bIsPayeeValid = payee.GetPayee() == txout.scriptPubKey;
                 auto bIsPaymentValid = nVnodePayment == txout.nValue;
 
