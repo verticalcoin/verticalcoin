@@ -182,8 +182,8 @@ public:
        assert(consensus.hashGenesisBlock == uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920"));
        assert(genesis.hashMerkleRoot == uint256S("0x723c399bcb2e73ab0d33175127fcd3e999312f425b02b8b738053879948e345a"));
 
-       // DNSSeed 01 - ipv4 / ipv6 - removed until we found out whats wrong with it.
-      // vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
+       // DNSSeed 01 - ipv4 / ipv6 
+       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
        vFixedSeeds.clear();
 
        // Note that of those with the service bits flag, most only support a subset of possible options
@@ -203,11 +203,12 @@ public:
       
        checkpointData = (CCheckpointData) {
           boost::assign::map_list_of
-          (0, uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920")),
-           1526671733, // * UNIX timestamp of last checkpoint block
-             0,    // * total number of transactions between genesis and last checkpoint
-                   //   (the tx=... number in the SetBestChain debug.log lines)
-             0     // * estimated number of transactions per day after checkpoint
+          (1,   uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920")),
+          (4000,uint256S("0x9124504f6d93a8c005a91b35368d86b8015c8870b8b9f4ab607afa0d7bd5dbe8")),
+              1527089288, // * UNIX timestamp of last checkpoint block
+              5282,       // * total number of transactions between genesis and last checkpoint
+                          //   (the tx=... number in the SetBestChain debug.log lines)
+              720         // * estimated number of transactions per day after checkpoint
        };
 
 	    
