@@ -182,8 +182,8 @@ public:
        assert(consensus.hashGenesisBlock == uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920"));
        assert(genesis.hashMerkleRoot == uint256S("0x723c399bcb2e73ab0d33175127fcd3e999312f425b02b8b738053879948e345a"));
 
-       // oldschool - ipv4 / ipv6
-       vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
+       // DNSSeed 01 - ipv4 / ipv6 - removed until we found out whats wrong with it.
+      // vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
        vFixedSeeds.clear();
 
        // Note that of those with the service bits flag, most only support a subset of possible options
