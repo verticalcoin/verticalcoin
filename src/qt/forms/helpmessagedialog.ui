@@ -70,6 +70,7 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
+  
       </widget>
      </item>
     </layout>
@@ -78,6 +79,9 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QTextEdit" name="helpMessage">
+	  <property name="styleSheet">
+         <string notr="true">color: #2b2b2b;</string>
+	  </property>	
        <property name="readOnly">
         <bool>true</bool>
        </property>
@@ -98,6 +102,9 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QLabel" name="aboutMessage">
+		  <property name="styleSheet">
+         <string notr="true">color: #2b2b2b;</string>
+	  </property>	
            <property name="cursor">
             <cursorShape>IBeamCursor</cursorShape>
            </property>

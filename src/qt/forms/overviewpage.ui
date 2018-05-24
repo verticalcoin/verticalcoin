@@ -445,7 +445,7 @@
           <item>
            <widget class="QListView" name="listTransactions">
             <property name="styleSheet">
-             <string notr="true">QListView { background: transparent; }</string>
+             <string notr="true">QListView { background: transparent; color: #f1f1f1; }</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>

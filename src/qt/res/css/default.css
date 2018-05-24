@@ -1228,7 +1228,7 @@ QWidget .QFrame#frame_2 { /* Transactions Widget */
 
 QWidget .QFrame#frame_2 .QLabel#label_4 { /* Recent Transactions Label */
     min-width:180px;
-    color:#f1f1f1;
+    color: #f1f1f1 !important;
     margin-left:67px;
     margin-top:165px;
     margin-right:5px;
@@ -1253,6 +1253,7 @@ QWidget .QFrame#frame_2 QListView { /* Transaction List */
     max-width:369px;
     margin-top:12px;
     margin-left:0px; /* CSS Voodoo - set to -66px to hide default transaction icons */
+	color: #f1f1f1 !important;
 }
 
 /**************************** SEND DIALOG ***********************************************/
