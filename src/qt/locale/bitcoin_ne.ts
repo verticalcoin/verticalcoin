@@ -76,7 +76,7 @@
     </message>
 </context>
 <context>
-    <name>ZcoinGUI</name>
+    <name>VerticalcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>सन्देशमा &amp;amp;हस्ताक्षर  गर्नुहोस्...</translation>

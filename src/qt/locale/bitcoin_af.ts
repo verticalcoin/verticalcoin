@@ -72,7 +72,7 @@
     </message>
 </context>
 <context>
-    <name>ZcoinGUI</name>
+    <name>VerticalcoinGUI</name>
     <message>
         <source>Synchronizing with network...</source>
         <translation>Netwerk-sinkronisasie...</translation>

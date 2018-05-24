@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>These are your Verticalcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Detta är dina Verticalcoin adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar Zcoins.</translation>
+        <translation>Detta är dina Verticalcoin adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar Verticalcoins.</translation>
     </message>
     <message>
         <source>These are your Verticalcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
@@ -233,7 +233,7 @@ Var vänlig och försök igen.</translation>
     </message>
 </context>
 <context>
-    <name>ZcoinGUI</name>
+    <name>VerticalcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Signera &amp;meddelande...</translation>

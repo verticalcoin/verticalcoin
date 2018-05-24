@@ -5846,7 +5846,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
             LOCK(cs_main);
             nHeight = chainActive.Height();
         }
-        int minPeerVersion = (nHeight + 1 < HF_VNODE_HEIGHT) ? MIN_PEER_PROTO_VERSION : MIN_PEER_PROTO_VERSION_AFTER_VNODE_PAYMENT_HF;
+        int minPeerVersion = MIN_PEER_PROTO_VERSION;
         if (pfrom->nVersion < minPeerVersion) {
             // disconnect from peers older than this proto version
             // LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
@@ -7183,6 +7183,8 @@ bool ProcessMessages(CNode *pfrom) {
         // Scan for message start
         if (memcmp(msg.hdr.pchMessageStart, chainparams.MessageStart(), MESSAGE_START_SIZE) != 0) {
             LogPrintf("PROCESSMESSAGE: INVALID MESSAGESTART\n");
+            //LogPrintf("msg.hdr.pchMessageStart:     %c %c %c %c \n", msg.hdr.pchMessageStart[0], msg.hdr.pchMessageStart[1], msg.hdr.pchMessageStart[2], msg.hdr.pchMessageStart[3]);
+            //LogPrintf("chainparams.MessageStart():  %c %c %c %c \n", chainparams.MessageStart()[0], chainparams.MessageStart()[1], chainparams.MessageStart()[2], chainparams.MessageStart());
             fOk = false;
             break;
         }
