@@ -496,11 +496,7 @@ bool CVnodeBroadcast::Create(CTxIn txin, CService service, CKey keyCollateralAdd
     }
 
     int nHeight = chainActive.Height();
-    if (nHeight < ZC_MODULUS_V2_START_BLOCK) {
-        mnbRet = CVnodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyVnodeNew, INIT_PROTO_VERSION);
-    } else {
-        mnbRet = CVnodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyVnodeNew, PROTOCOL_VERSION);
-    }
+    mnbRet = CVnodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyVnodeNew, PROTOCOL_VERSION);
 
     if (!mnbRet.IsValidNetAddr()) {
         strErrorRet = strprintf("Invalid IP address, vnode=%s", txin.prevout.ToStringShort());
