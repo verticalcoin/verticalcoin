@@ -63,7 +63,7 @@ script:
     - depends/$HOST/native/bin/ccache --max-size=$CCACHE_SIZE
     - test -n "$USE_SHELL" && eval '"$USE_SHELL" -c "./autogen.sh"' || ./autogen.sh
     - ./configure $BITCOIN_CONFIG_ALL 
-    - make distdir PACKAGE=vertialcoin VERSION=$HOST
+    - make distdir PACKAGE=verticalcoin VERSION=$HOST
     - cd verticalcoin-$HOST
     - ./configure $BITCOIN_CONFIG_ALL
     - make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && make $GOAL V=1 ; false )
