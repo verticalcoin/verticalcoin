@@ -52,7 +52,7 @@ install:
     - if [ -n "$DPKG_ADD_ARCH" ]; then DOCKER_EXEC dpkg --add-architecture "$DPKG_ADD_ARCH" ; fi
     - travis_retry DOCKER_EXEC apt-get update
     - if [ -n "$PPA" ]; then travis_retry DOCKER-EXEC apt-get install software-properties-common ; fi
-    - if [ -n "$PPA" ]; travis_retry DOCKER_EXEC add-apt-repository ppa:bitcoin/bitcoin -y ; fi
+    - if [ -n "$PPA" ]; then travis_retry DOCKER_EXEC add-apt-repository ppa:bitcoin/bitcoin -y ; fi
     - travis_retry DOCKER_EXEC apt-get update
     - travis_retry DOCKER_EXEC apt-get install --no-install-recommends --no-upgrade -qq $PACKAGES $DOCKER_PACKAGES
 before_script:
