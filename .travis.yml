@@ -51,7 +51,7 @@ install:
     - DOCKER_ID=$(docker run $DOCKER_ADMIN -idt --mount type=bind,src=$TRAVIS_BUILD_DIR,dst=$TRAVIS_BUILD_DIR --mount type=bind,src=$CCACHE_DIR,dst=$CCACHE_DIR -w $TRAVIS_BUILD_DIR --env-file /tmp/env ubuntu:18.04)
     - DOCKER_EXEC () { docker exec $DOCKER_ID bash -c "cd $PWD && $*"; }
     - if [ -n "$DPKG_ADD_ARCH" ]; then travis_retry DOCKER_EXEC dpkg --add-architecture "$DPKG_ADD_ARCH" ; fi
-    - travis_retry DOCKER_EXEC sudo add-apt-repository "$PPA" -y
+    - travis_retry DOCKER_EXEC sudo add-apt-repository $PPA -y
 	- travis_retry DOCKER_EXEC apt-get update
     - travis_retry DOCKER_EXEC apt-get install --no-install-recommends --no-upgrade -qq $PACKAGES $DOCKER_PACKAGES
 before_script:
