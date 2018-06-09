@@ -18,8 +18,14 @@ elif [[ $HOST = "aarch64-linux-gnu" ]]; then
 elif [[ $HOST = "x86_64-unknown-linux-gnu" ]]; then
     ARCHIVE_NAME="linux-x64.tar.gz"
     ARCHIVE_CMD="tar -czf"
+elif [[ $HOST = "x86_64-apple-darwin10" ]]; then
+    ARCHIVE_NAME="osx-10-x64.zip"
 elif [[ $HOST = "x86_64-apple-darwin11" ]]; then
-    ARCHIVE_NAME="osx-x64.zip"
+    ARCHIVE_NAME="osx-11-x64.zip"
+elif [[ $HOST = "x86_64-apple-darwin12" ]]; then
+    ARCHIVE_NAME="osx-12-x64.zip"
+elif [[ $HOST = "x86_64-apple-darwin13" ]]; then
+    ARCHIVE_NAME="osx-13-x64.zip"
 fi
 
 cp $TRAVIS_BUILD_DIR/src/qt/verticalcoin-qt $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/qt/verticalcoin-qt.exe $OUTDIR/bin/ || echo "no QT Wallet"
