@@ -11,7 +11,7 @@ Specs
 - Blocksize: 2 MB 
 - Coin Maturity: 50
 - Maximum Supply: 35 million 
-- Travis CI build and releasechain ![](https://travis-ci.org/verticalcoin/verticalcoin.svg?branch=master)
+- Travis CI build and releasechain [![Build Status](https://travis-ci.org/verticalcoin/verticalcoin.svg?branch=master)](https://travis-ci.org/verticalcoin/verticalcoin)
 
 Linux Build Instructions and Notes
 ==================================
