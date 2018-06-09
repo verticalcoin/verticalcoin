@@ -24,8 +24,6 @@ elif [[ $HOST = "x86_64-apple-darwin11" ]]; then
     ARCHIVE_NAME="osx-11-x64.zip"
 elif [[ $HOST = "x86_64-apple-darwin12" ]]; then
     ARCHIVE_NAME="osx-12-x64.zip"
-elif [[ $HOST = "x86_64-apple-darwin13" ]]; then
-    ARCHIVE_NAME="osx-13-x64.zip"
 fi
 
 cp $TRAVIS_BUILD_DIR/src/qt/verticalcoin-qt $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/qt/verticalcoin-qt.exe $OUTDIR/bin/ || echo "no QT Wallet"
