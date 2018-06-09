@@ -12,7 +12,7 @@ Specs
 - Coin Maturity: 50
 - Maximum Supply: 35 million 
 - Travis CI build and releasechain 
-- ![status](https://travis-ci.org/verticalcoin/verticalcoin.svg?branch=master)
+           ![status](https://travis-ci.org/verticalcoin/verticalcoin.svg?branch=master)
 
 Linux Build Instructions and Notes
 ==================================
