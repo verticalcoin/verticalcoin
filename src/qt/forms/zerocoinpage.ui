@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>380</height>
+    <width>830</width>
+    <height>455</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -53,11 +53,11 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="denomination">
        <property name="text">
-        <string>Select denomination</string>
+        <string>Select Denomination</string>
        </property>
       </widget>
      </item>
