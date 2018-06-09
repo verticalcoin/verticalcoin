@@ -28,8 +28,10 @@ env:
     - HOST=x86_64-w64-mingw32 PACKAGES="g++-mingw-w64-x86-64 mingw-w64-x86-64-dev"
 # x86_64 Linux
     - HOST=x86_64-unknown-linux-gnu PACKAGES=""
-# Cross-Mac
-    - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" OSX_SDK=10.11
+# Cross-Mac-10.11
+    - HOST=x86_64-apple-darwin11-10.11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" OSX_SDK=10.11
+# Cross-Mac-10.10
+    - HOST=x86_64-apple-darwin11-10.10 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" OSX_SDK=10.10
 
 before_install:
     - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
@@ -54,8 +56,8 @@ before_deploy:
     - ./pre-deploy.sh
 deploy:
   provider: releases
-  #api_key:
-  #  secure: lLumAMSXlBUqalmiqfMxkhYsKZss8fJHeDE0sl6G1750zLr8nD3+wO6we+caOhyV8L3aGayfCLoVbKioNpZB0XZeztx70bn3DsqNo8qeMpwaeR5k3GwxXhNtCK8jgHO/gLSw6um6VowW6rmJB2pJmrmvR6kuG/nJfs6d3YRUDltK4SDhIyJD6t5TOP8AOE7DAwkV7DlmRo2Cp0vL/0K6VHfUc3ef1EHztnQ/zggje3cTunvw3iF5mQORtw21HB+OF0FhbpDhk8LOg6kQaUQCuJdZJuLoWo+BN8ENs0ZOC8rodaz8/q/O8Trry55N9+qE/GQEMhO5kxHLAlv+QWARR+y8xdkbF+SSKUSghaANKAriqZ3cGStsF9yMEIgzBaLC87mvX+3Oh2xuG2MSv3bSlC0eFg6W9D15t74nYomyymEiyuC6qaYN97emXcJlOfVqZFGvRA9LwKuJJDt1xXZbJAazceHKIVoK2YvQza1JpgrNvkQ3/NarqraH9s+8i7mJRH/gjbm8d8zWZAqEUGrkub1+Ized/Q0tn5fQ81DtFONWsqkwL6PYQz+mOcg/RuaQ6ahdWfKLK0KriVEMaG/VTsIiRx9rkVzF/YUrj8vXNKAoiXbb+u9X5q5Z0arLRefB+oQQ+OVuEHllf+0szYzJ8exBKjpHy/W/XtoIUdCKpH8=
+  api_key: 
+    secure: Yai5OGSMOwPEbA41/N0nZHDx9z6kkIcmYmjo/6qEFVr7GL7VHSvSK7LFcNrUjseSHzLcwVVKRZqL5Dq+VHZsUSOI1IM0t5IXbBCgNyJE23RcxjUZufBPrxjabxrkDhUjSrqBilAFUg2KYFRMDBTGPcdqegpl6wsCIzrNn/wCUOXsib531enc/eMFS+OcZVvihFubX1agI8fq7mdhGuCiRtl73u9wfAxn0ygccgGYhGMqIInHm6B5IrbSRQLl5o599+OTvwf1Zm49ChPsYcvGxvxTlEqooQlHhKn+QNmLFua+u6Ru43bynr+5wMkkVNtW0i+ecl8ypEmkYtEcKF+gDbv3F7Lvj7LtrcBAYM2APrxaYudvOLHV83tJmOdimlxKJUokAtzb+Cs9sddqpkrFRVD/BOxiE0Nj+X1YbBWpN86Xw4fpVWQpRns8ToxHMMpjR2lokBBIyRGCTUTj6WT3fYBcM0dIsZZgPG6MRXHfLVDpYcCujVYs3dLmtoxzqYSWP6QC75D7vxXethEOPawIULHQcGGAR6WHIwaWMo2gOMw1IBt3RqnXDFN/1sd0sugC0+gjUOCCINCxBGzLvbsm1GAy9viGSfi7VPy3LMfI1NGGXI15TTmGmlAomSs9mUG+4hHJmxDZvEvaNKJcDYuK1TU85AXNsmg6xV5Ra9Ugn+Q=
   file_glob: true
   file: out/**/zip/*
   skip_cleanup: true
