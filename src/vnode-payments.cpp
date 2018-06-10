@@ -689,7 +689,7 @@ void CVnodePaymentVote::Relay()
 {
     // do not relay until synced
     if (!vnodeSync.IsWinnersListSynced()) {
-        LogPrintf("CVnodePaymentVote::Relay - vnodeSync.IsWinnersListSynced() not sync\n");
+        //LogPrintf("CVnodePaymentVote::Relay - vnodeSync.IsWinnersListSynced() not sync\n");
         return;
     }
     CInv inv(MSG_VNODE_PAYMENT_VOTE, GetHash());

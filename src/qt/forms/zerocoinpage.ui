@@ -140,10 +140,10 @@
                     </rect>
                   </property>
                   <property name="toolTip">
-                    <string>Mint Zerocoin</string>
+                    <string>Mint Vertical</string>
                   </property>
                   <property name="text">
-                    <string>&amp;Mint Zerocoin</string>
+                    <string>&amp;Mint Vertical</string>
                   </property>
                   <property name="icon">
                     <iconset>
@@ -182,10 +182,10 @@
                     </rect>
                   </property>
                   <property name="toolTip">
-                    <string>Spend Zerocoin</string>
+                    <string>Spend Vertical</string>
                   </property>
                   <property name="text">
-                    <string>&amp;Spend Zerocoin</string>
+                    <string>&amp;Spend Vertical</string>
                   </property>
                   <property name="icon">
                     <iconset>

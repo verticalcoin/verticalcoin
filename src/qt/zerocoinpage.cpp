@@ -36,7 +36,7 @@ ZerocoinPage::ZerocoinPage(const PlatformStyle *platformStyle, Mode mode, QWidge
 
     switch (mode) {
         case ForSelection:
-            setWindowTitle(tr("Zerocoin"));
+            setWindowTitle(tr("Verticalcoin"));
             connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(accept()));
             ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
             ui->tableView->setFocus();
@@ -46,7 +46,7 @@ ZerocoinPage::ZerocoinPage(const PlatformStyle *platformStyle, Mode mode, QWidge
             setWindowTitle(tr("Zerocoin"));
     }
     ui->labelExplanation->setText(
-            tr("These are your private coins from mint zerocoin operation, You can perform spend zerocoin operation to redeem verticalcoin back from Zerocoin."));
+            tr("These are your private coins from mint zerocoin operation, You can perform spend zerocoin operation to redeem verticalcoin back from Verticalcoin."));
     ui->zerocoinAmount->setVisible(true);
     ui->zerocoinMintButton->setVisible(true);
     ui->zerocoinSpendButton->setVisible(true);
@@ -116,11 +116,11 @@ void ZerocoinPage::on_zerocoinMintButton_clicked() {
         QString t = tr(stringError.c_str());
 
         QMessageBox::critical(this, tr("Error"),
-                              tr("You cannot mint zerocoin because %1").arg(t),
+                              tr("You cannot mint verticalcoin because %1").arg(t),
                               QMessageBox::Ok, QMessageBox::Ok);
     }else{
     	QMessageBox::information(this, tr("Success"),
-    	                              tr("You have been successfully mint zerocoin from the wallet"),
+    	                              tr("You have been successfully mint verticalcoin from the wallet"),
     	                              QMessageBox::Ok, QMessageBox::Ok);
 
     }
@@ -144,11 +144,11 @@ void ZerocoinPage::on_zerocoinSpendButton_clicked() {
 			QString t = tr(stringError.c_str());
 
 			QMessageBox::critical(this, tr("Error"),
-								  tr("You cannot spend zerocoin because %1").arg(t),
+								  tr("You cannot spend verticalcoin because %1").arg(t),
 								  QMessageBox::Ok, QMessageBox::Ok);
 		}else{
 			QMessageBox::information(this, tr("Success"),
-										  tr("You have been successfully spent zerocoin from the wallet"),
+										  tr("You have been successfully spent verticalcoin from the wallet"),
 										  QMessageBox::Ok, QMessageBox::Ok);
 
 		}
