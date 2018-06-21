@@ -12,7 +12,9 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+
 #include "crypto/common.h"
+#include "arith_uint256.h"
 
 /** Template base class for fixed-sized opaque blobs. */
 template<unsigned int BITS>
@@ -159,6 +161,51 @@ inline uint256 uint256S(const char *str)
 inline uint256 uint256S(const std::string& str)
 {
     uint256 rv;
+    rv.SetHex(str);
+    return rv;
+}
+
+/** 512-bit opaque blob.
+ * @note This type is called uint512for historical reasons only. It is an
+ * opaque blob of 512 bits and has no integer operations. Use arith_uint512 if
+ * those are required.
+ */
+class uint512 : public base_blob<512>
+{
+public:
+    uint512() {}
+    uint512(const base_blob<512>& b) : base_blob<512>(b) {}
+    explicit uint512(const std::vector<unsigned char>& vch) : base_blob<512>(vch) {}
+
+    uint256 trim256() const
+    {
+        std::vector<unsigned char> vch;
+        const unsigned char* p = this->begin();
+        for (unsigned int i = 0; i < 32; i++) {
+            vch.push_back(*p++);
+        }
+        uint256 retval(vch);
+        return retval;
+    }
+};
+
+/* uint512 from const char *.
+ * This is a separate function because the constructor uint512(const char*) can result
+ * in dangerously catching uint512(0).
+ */
+inline uint512 uint512S(const char* str)
+{
+    uint512 rv;
+    rv.SetHex(str);
+    return rv;
+}
+/* uint512 from std::string.
+ * This is a separate function because the constructor uint512(const std::string &str) can result
+ * in dangerously catching uint512(0) via std::string(const char*).
+ */
+inline uint512 uint512S(const std::string& str) 
+{
+    uint512 rv;
     rv.SetHex(str);
     return rv;
 }
