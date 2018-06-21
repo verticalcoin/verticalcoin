@@ -16,14 +16,14 @@
 #define GLOBAL extern
 #endif
 
-GLOBAL sph_bmw512_context       z_bmw;
-GLOBAL sph_blake512_context     z_blake;
-GLOBAL sph_keccak512_context    z_keccak;
+GLOBAL sph_bmw256_context       z_bmw;
+GLOBAL sph_blake256_context     z_blake;
+GLOBAL sph_keccak256_context    z_keccak;
 
 #define fillz() do { \
-    sph_bmw512_init(&z_bmw); \
-    sph_blake512_init(&z_blake); \
-    sph_keccak512_init(&z_keccak); \
+    sph_bmw256_init(&z_bmw); \
+    sph_blake256_init(&z_blake); \
+    sph_keccak256_init(&z_keccak); \
 } while (0) 
 
 #define ZBMW (memcpy(&ctx_bmw, &z_bmw, sizeof(z_bmw)))
@@ -34,9 +34,9 @@ template<typename T1>
 inline uint256 Lbk3_hash(const T1 pbegin, const T1 pend)
 
 {
-    sph_bmw512_context       ctx_bmw;
-    sph_blake512_context     ctx_blake;
-    sph_keccak512_context    ctx_keccak;
+    sph_bmw256_context       ctx_bmw;
+    sph_blake256_context     ctx_blake;
+    sph_keccak256_context    ctx_keccak;
 
     static unsigned char pblank[1];
 
@@ -51,26 +51,26 @@ inline uint256 Lbk3_hash(const T1 pbegin, const T1 pend)
     // ------------------ BlueMidnighWish, and Keccak together* --------------------
     // ------------------ in a semi-random shuffle.************ --------------------
 
-    // -- Semi-random multi-algo hashing round (randomized custom x3 implementation)
-    uint512 mask = 8;
-    uint512 zero = 0;
-    uint512 hash[2];
+    // -- Semi-random multi-algo hashing round (randomized custom 256-bit x3 implementation)
+    uint256 mask = 8;
+    uint256 zero = 0;
+    uint256 hash[2];
 
-    sph_bmw512_init(&ctx_bmw);
-    sph_bmw512 (&ctx_bmw, (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), (pend - pbegin) * sizeof(pbegin[0]));
-    sph_bmw512_close(&ctx_bmw, static_cast<void*>(&hash[0]));
+    sph_bmw256_init(&ctx_bmw);
+    sph_bmw256 (&ctx_bmw, (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), (pend - pbegin) * sizeof(pbegin[0]));
+    sph_bmw256_close(&ctx_bmw, static_cast<void*>(&hash[0]));
 
     if ((hash[0] & mask) != zero)
     {
-        sph_blake512_init(&ctx_blake);
-        sph_blake512 (&ctx_blake, static_cast<const void*>(&hash[0]), 64);
-        sph_blake512_close(&ctx_blake, static_cast<void*>(&hash[1]));
+        sph_blake256_init(&ctx_blake);
+        sph_blake256 (&ctx_blake, static_cast<const void*>(&hash[0]), 32);
+        sph_blake256_close(&ctx_blake, static_cast<void*>(&hash[1]));
     }
     else
     {
-        sph_keccak512_init(&ctx_keccak);
-        sph_keccak512 (&ctx_keccak, static_cast<const void*>(&hash[0]), 64);
-        sph_keccak512_close(&ctx_keccak, static_cast<void*>(&hash[1]));
+        sph_keccak256_init(&ctx_keccak);
+        sph_keccak256 (&ctx_keccak, static_cast<const void*>(&hash[0]), 32);
+        sph_keccak256_close(&ctx_keccak, static_cast<void*>(&hash[1]));
     }
 
     return hash[1].trim256();
