@@ -49,31 +49,25 @@ inline uint256 Lbk3_hash(const T1 pbegin, const T1 pend)
     // ------------------ CryptoCoderz team June 20th 2018***** --------------------
     // ------------------ It utilizes elements of Lyra2Z,****** --------------------
     // ------------------ BlueMidnighWish, and Keccak together* --------------------
-    // ------------------ in a semi-random shuffle.************ --------------------
+    // ------------------ in sequential hash rounds.*********** --------------------
 
-    // -- Semi-random multi-algo hashing round (randomized custom 256-bit x3 implementation)
-    uint256 mask = 8;
-    uint256 zero = 0;
-    uint256 hash[2];
+    // -- Sequential hashing round (custom 256-bit x3 implementation)
+    uint256 hash[3];
 
     sph_bmw256_init(&ctx_bmw);
     sph_bmw256 (&ctx_bmw, (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), (pend - pbegin) * sizeof(pbegin[0]));
     sph_bmw256_close(&ctx_bmw, static_cast<void*>(&hash[0]));
 
-    if ((hash[0] & mask) != zero)
-    {
-        sph_blake256_init(&ctx_blake);
-        sph_blake256 (&ctx_blake, static_cast<const void*>(&hash[0]), 32);
-        sph_blake256_close(&ctx_blake, static_cast<void*>(&hash[1]));
-    }
-    else
-    {
-        sph_keccak256_init(&ctx_keccak);
-        sph_keccak256 (&ctx_keccak, static_cast<const void*>(&hash[0]), 32);
-        sph_keccak256_close(&ctx_keccak, static_cast<void*>(&hash[1]));
-    }
+    sph_blake256_init(&ctx_blake);
+    sph_blake256 (&ctx_blake, static_cast<const void*>(&hash[0]), 32);
+    sph_blake256_close(&ctx_blake, static_cast<void*>(&hash[1]));
 
-    return hash[1].trim256();
+    sph_keccak256_init(&ctx_keccak);
+    sph_keccak256 (&ctx_keccak, static_cast<const void*>(&hash[1]), 32);
+    sph_keccak256_close(&ctx_keccak, static_cast<void*>(&hash[2]));
+
+
+    return hash[2];
 }
 
 
