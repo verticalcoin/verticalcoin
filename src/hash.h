@@ -8,6 +8,7 @@
 
 #include "crypto/ripemd160.h"
 #include "crypto/sha256.h"
+#include "crypto/sha512.h"
 #include "prevector.h"
 #include "serialize.h"
 #include "uint256.h"
@@ -15,6 +16,8 @@
 #include "version.h"
 
 #include <vector>
+
+using namespace std;
 
 typedef uint256 ChainCode;
 
@@ -47,7 +50,6 @@ class CHash512
 {
 private:
     CSHA512 sha;
-
 public:
     static const size_t OUTPUT_SIZE = CSHA512::OUTPUT_SIZE;
 
