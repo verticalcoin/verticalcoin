@@ -340,15 +340,16 @@ libbitcoin_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h \
   auxpow.h \
-  crypto/Lyra2Z/Lyra2.h \
-  crypto/Lyra2Z/Lyra2.c \
-  crypto/Lyra2Z/Lyra2Z.h \
-  crypto/Lyra2Z/Lyra2Z.c \
-  crypto/Lyra2Z/blake.c \
-  crypto/Lyra2Z/sph_blake.h \
-  crypto/Lyra2Z/sph_types.h \
-  crypto/Lyra2Z/Sponge.c \
-  crypto/Lyra2Z/Sponge.h
+  crypto/lbk3/common/Lyra2.h \
+  crypto/lbk3/common/Lyra2.c \
+  crypto/lbk3/Lyra2Z.h \
+  crypto/lbk3/Lyra2Z.c \
+  crypto/lbk3/common/blake.c \
+  crypto/lbk3/common/sph_blake.h \
+  crypto/lbk3/common/sph_types.h \
+  crypto/lbk3/common/Sponge.c \
+  crypto/lbk3/common/Sponge.h \
+  crypto/lbk3/common/lbk3.h
 
 # common: shared between verticalcoind, and verticalcoin-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)

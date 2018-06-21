@@ -13,8 +13,9 @@
 #include "crypto/common.h"
 #include "chainparams.h"
 #include "crypto/scrypt.h"
-#include "crypto/Lyra2Z/Lyra2Z.h"
-#include "crypto/Lyra2Z/Lyra2.h"
+#include "crypto/lbk3/Lyra2Z.h"
+#include "crypto/lbk3/lbk3.h"
+#include "crypto/lbk3/common/Lyra2.h"
 #include "util.h"
 #include <iostream>
 #include <chrono>
@@ -70,7 +71,15 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
     uint256 powHash;
 
     try {
-        lyra2z_hash(BEGIN(nVersion), BEGIN(powHash));
+        // hash is computed using lbk3 custom algorithm.
+        // It utilizes elements of Lyra2Z, BlueMidnighWish, and Keccak
+        // together in a semi-random shuffle.
+        if (nHeight < HF_LBK3_HEIGHT) {
+            lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Modify for custom algorithm
+        }
+        else {
+            Lbk3_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Modify for custom algorithm
+        }
     } catch (std::exception& e) {
         LogPrintf("excepetion: %s", e.what());
     }
