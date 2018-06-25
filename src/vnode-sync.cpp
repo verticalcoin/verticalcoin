@@ -72,7 +72,7 @@ bool CVnodeSync::IsBlockchainSynced(bool fBlockAccepted) {
         //Dont skip on REGTEST to make the tests run faster
         if(Params().NetworkIDString() != CBaseChainParams::REGTEST) {
             // skip if we already checked less than 1 tick ago
-            if (GetTime() - nTimeLastProcess < ZNODE_SYNC_TICK_SECONDS) {
+            if (GetTime() - nTimeLastProcess < VNODE_SYNC_TICK_SECONDS) {
                 nSkipped++;
                 return fBlockchainSynced;
             }
