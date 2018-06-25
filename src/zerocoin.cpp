@@ -32,7 +32,7 @@ libzerocoin::Params *ZCParamsV2 = new libzerocoin::Params(bnTrustedModulusV2, bn
 static CZerocoinState zerocoinState;
 
 static bool CheckZerocoinSpendSerial(CValidationState &state, CZerocoinTxInfo *zerocoinTxInfo, libzerocoin::CoinDenomination denomination, const CBigNum &serial, int nHeight, bool fConnectTip) {
-    if (nHeight > ZC_CHECK_BUG_FIXED_AT_BLOCK) {
+    if (nHeight > Params().nCheckBugFixedAtBlock) {
         // check for zerocoin transaction in this block as well
         if (zerocoinTxInfo && !zerocoinTxInfo->fInfoIsComplete && zerocoinTxInfo->spentSerials.count(serial) > 0)
             return state.DoS(0, error("CTransaction::CheckTransaction() : two or more spends with same serial in the same block"));
@@ -41,7 +41,7 @@ static bool CheckZerocoinSpendSerial(CValidationState &state, CZerocoinTxInfo *z
         if (zerocoinState.IsUsedCoinSerial(serial)) {
             // Proceed with checks ONLY if we're accepting tx into the memory pool or connecting block to the existing blockchain
             if (nHeight == INT_MAX || fConnectTip) {
-                if (nHeight < ZC_V1_5_STARTING_BLOCK)
+                if (nHeight < Params().nSpendV15StartBlock)
                     LogPrintf("ZCSpend: height=%d, denomination=%d, serial=%s\n", nHeight, (int)denomination, serial.ToString());
                 else
                     return state.DoS(0, error("CTransaction::CheckTransaction() : The CoinSpend serial has been used"));
@@ -532,9 +532,7 @@ bool ConnectBlockZC(CValidationState &state, const CChainParams &chainparams, CB
     if (pblock && pblock->zerocoinTxInfo) {
         if (pblock->zerocoinTxInfo->fHasSpendV1) {
             // Don't allow spend v1s after some point of time
-            int allowV1Height =
-                    chainparams.NetworkIDString() == CBaseChainParams::TESTNET ?
-                        ZC_V1_5_TESTNET_STARTING_BLOCK : ZC_V1_5_STARTING_BLOCK;
+            int allowV1Height =Params().nSpendV15StartBlock;
             if (pindexNew->nHeight >= allowV1Height + ZC_V1_5_GRACEFUL_PERIOD) {
                 LogPrintf("ConnectTipZC: spend v1 is not allowed after block %d\n", allowV1Height);
                 return false;
@@ -544,9 +542,9 @@ bool ConnectBlockZC(CValidationState &state, const CChainParams &chainparams, CB
 	    if (!fJustCheck)
 			pindexNew->spentSerials.clear();
 	    
-        if (pindexNew->nHeight > ZC_CHECK_BUG_FIXED_AT_BLOCK) {
+        if (pindexNew->nHeight > Params().nCheckBugFixedAtBlock) {
             BOOST_FOREACH(const PAIRTYPE(CBigNum,int) &serial, pblock->zerocoinTxInfo->spentSerials) {
-                if (!CheckZerocoinSpendSerial(state, pblock->zerocoinTxInfo, (libzerocoin::CoinDenomination)serial.second, serial.first, pindexNew->nHeight, true))
+                if (!CheckZerocoinSpendSerial(state, pblock->zerocoinTxInfo.get(), (libzerocoin::CoinDenomination)serial.second, serial.first, pindexNew->nHeight, true))
                     return false;
 	            
 	            if (!fJustCheck) {
@@ -731,7 +729,7 @@ void CZerocoinState::AddBlock(CBlockIndex *index) {
         }
     }
 
-    if (index->nHeight > ZC_CHECK_BUG_FIXED_AT_BLOCK) {
+    if (index->nHeight > Params().nCheckBugFixedAtBlock) {
         BOOST_FOREACH(const CBigNum &serial, index->spentSerials) {
             usedCoinSerials.insert(serial);
         }

@@ -32,6 +32,7 @@
 #include "crypto/Lyra2Z/Lyra2.h"
 #include "vnode-payments.h"
 #include "vnode-sync.h"
+#include "zerocoin.h"
 #include <algorithm>
 #include <boost/thread.hpp>
 #include <boost/tuple/tuple.hpp>
@@ -176,6 +177,9 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn)
     if(fTestNet || nHeight > SWITCH_TO_MORE_SPEND_TXS){
         MAX_SPEND_ZC_TX_PER_BLOCK = 1;
     }
+
+    if(Params().NetworkIDString() == CBaseChainParams::REGTEST)
+        MAX_SPEND_ZC_TX_PER_BLOCK = 2;
 
     // Collect memory pool transactions into the block
     CTxMemPool::setEntries inBlock;
