@@ -168,10 +168,10 @@ static const bool DEFAULT_PEERBLOOMFILTERS = true;
 #define LYRA2Z_HEIGHT 0
 
 // Block Height Limit Spend One TX Per Block
-#define OLD_LIMIT_SPEND_TXS 1
+#define OLD_LIMIT_SPEND_TXS 22000
 
 // Add more spend txs per block at block height
-#define SWITCH_TO_MORE_SPEND_TXS 2
+#define SWITCH_TO_MORE_SPEND_TXS 30000
 
 
 struct BlockHasher
