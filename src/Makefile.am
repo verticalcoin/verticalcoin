@@ -345,7 +345,11 @@ libbitcoin_consensus_a_SOURCES = \
   crypto/lbk3/Lyra2Z.h \
   crypto/lbk3/Lyra2Z.c \
   crypto/lbk3/common/blake.c \
+  crypto/lbk3/common/bmw.c \
+  crypto/lbk3/common/keccak.c \
   crypto/lbk3/common/sph_blake.h \
+  crypto/lbk3/common/sph_bmw.h \
+  crypto/lbk3/common/sph_keccak.h \
   crypto/lbk3/common/sph_types.h \
   crypto/lbk3/common/Sponge.c \
   crypto/lbk3/common/Sponge.h \
