@@ -42,8 +42,8 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
 
    if (height == HF_LBK3_HEIGHT)
    {
-      LogPrintf("LWMA Triggered difficulty reset for initial Lbk3 integration | pindexGenesisBlock->nBits:%x\n", pindexGenesisBlock->nBits);
-      return pindexGenesisBlock->nBits;
+      LogPrintf("LWMA Triggered difficulty reset for initial Lbk3 integration...\n");
+      return params.nMinimumChainWork;
    }
 
    assert(height > N);
