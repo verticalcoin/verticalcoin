@@ -21,6 +21,7 @@
 // LWMA difficulty algorithm (simplified)
 // Copyright (c) 2017-2018 Zawy
 // https://github.com/zawy12/difficulty-algorithms/issues/3
+// (Corrected Typo in LogPrinf 2018)
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
 {
    const int T = params.LWMAPowTargetSpacing;
@@ -35,8 +36,14 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
 
    if (height < N + 1)
    {
-      LogPrintf("LWMA Blockheigh is smaller than N? pindexLast->nBits:%x\n", pindexLast->nBits);
+      LogPrintf("LWMA Blockheight is smaller than N? pindexLast->nBits:%x\n", pindexLast->nBits);
       return pindexLast->nBits;
+   }
+
+   if (height == HF_LBK3_HEIGHT)
+   {
+      LogPrintf("LWMA Triggered difficulty reset for initial Lbk3 integration | pindexGenesisBlock->nBits:%x\n", pindexGenesisBlock->nBits);
+      return pindexGenesisBlock->nBits;
    }
 
    assert(height > N);

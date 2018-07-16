@@ -13,20 +13,16 @@
 
 // HF constants
 
-static const int HF_LYRA2Z_HEIGHT 					= 0; // TODO: Remove (for cleanliness, useless definition, not referenced)
 static const int HF_LBK3_HEIGHT 					= 999999; // TODO: Modify for engagement height
 static const int HF_VNODE_HEIGHT 					= 100;
 static const int HF_VNODE_PAYMENT_START   			= 720; // After ~1 day we start with Masternodes
 static const int HF_VNODE_PAYMENT_ENFORCE 			= 6000; // then blocks will go invalid without vnode payment.
+static const int HF_ZEROSPEND_FIX 					= 1;
 
-    //static const int HF_MTP_HEIGHT = 70000;
 
-static const int HF_LYRA2Z_HEIGHT_TESTNET 			= 0; // TODO: Remove (for cleanliness, useless definition, not referenced)
 static const int HF_LBK3_HEIGHT_TESTNET 			= HF_LBK3_HEIGHT; // TODO: Modify for engagement height
 static const int HF_VNODE_HEIGHT_TESTNET 			= HF_VNODE_PAYMENT_START;
-//static const int HF_MTP_HEIGHT_TESTNET = 30;
 
-static const int HF_ZEROSPEND_FIX 					= 1;
 
 /** The maximum allowed size for a serialized block, in bytes (only for buffer size limits) */
 static const unsigned int MAX_BLOCK_SERIALIZED_SIZE = 2000000;

@@ -75,10 +75,10 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
         // It utilizes elements of Lyra2Z, BlueMidnighWish, and Keccak
         // together in a semi-random shuffle.
         if (nHeight < HF_LBK3_HEIGHT) {
-            lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Modify for custom algorithm
+            lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
         }
         else {
-            Lbk3_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Modify for custom algorithm
+            Lbk3_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
         }
     } catch (std::exception& e) {
         LogPrintf("excepetion: %s", e.what());
