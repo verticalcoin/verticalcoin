@@ -164,6 +164,9 @@ static std::map<int, CBlock> mapBlockData;
 
 static const bool DEFAULT_PEERBLOOMFILTERS = true;
 
+// Block Height lbk3
+#define LBK3_HEIGHT 43054 // TODO: Set official fork after testing (OFF: 999999)
+
 // Block Height Limit Spend One TX Per Block
 #define OLD_LIMIT_SPEND_TXS 22000
 
