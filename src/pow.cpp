@@ -40,7 +40,7 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
       return pindexLast->nBits;
    }
 
-   if (height == LBK3_HEIGHT)
+   if (height >= LBK3_HEIGHT && height < LBK3_HEIGHT + N + 1)
    {
       arith_uint256 reset_target = UintToArith256(params.nMinimumChainWork);
       LogPrintf("LWMA Triggered difficulty reset for initial Lbk3 integration...\n");
