@@ -21,14 +21,12 @@
 // LWMA difficulty algorithm (simplified)
 // Copyright (c) 2017-2018 Zawy
 // https://github.com/zawy12/difficulty-algorithms/issues/3
-// (Corrected Typo in LogPrinf 2018)
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
 {
    const int T = params.LWMAPowTargetSpacing;
    const int N = params.LWMAAveragingWindow;
    const int k = (N + 1) / 2 * 0.998 * T;
    const int height = pindexLast->nHeight + 1;
-   const int oldheight = height - 5;
    
    LogPrintf("LWMA h=%i\n", height);
    LogPrintf("LWMA T=%i\n", T);
@@ -37,22 +35,8 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
 
    if (height < N + 1)
    {
-      LogPrintf("LWMA Blockheight is smaller than N? pindexLast->nBits:%x\n", pindexLast->nBits);
+      LogPrintf("LWMA Blockheigh is smaller than N? pindexLast->nBits:%x\n", pindexLast->nBits);
       return pindexLast->nBits;
-   }
-
-   if (height == LBK3_HEIGHT)
-   {
-      arith_uint256 reset;
-      const CBlockIndex* reset_block;
-      // Loop back to starting blocks
-      for (int i = height - oldheight; i < height; i++) {
-         reset_block = pindexLast->GetAncestor(i);
-      }
-      reset.SetCompact(reset_block->nBits);
-      // Debug pring
-      LogPrintf("LWMA Triggered difficulty reset for initial Lbk3 integration...\n");
-      return reset.GetCompact();
    }
 
    assert(height > N);
