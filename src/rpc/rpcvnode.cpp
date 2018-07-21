@@ -112,7 +112,7 @@ UniValue vnode(const UniValue &params, bool fHelp) {
                         "  debug        - Print vnode status\n"
                         "  genkey       - Generate new vnodeprivkey\n"
                         "  outputs      - Print vnode compatible outputs\n"
-                        "  start        - Start local Hot vnode configured in dash.conf\n"
+                        "  start        - Start local Hot vnode configured in vnode.conf\n"
                         "  start-alias  - Start single remote vnode by assigned alias configured in vnode.conf\n"
                         "  start-<mode> - Start remote vnodes configured in vnode.conf (<mode>: 'all', 'missing', 'disabled')\n"
                         "  status       - Print vnode status information\n"
