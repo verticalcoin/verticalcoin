@@ -164,11 +164,8 @@ static std::map<int, CBlock> mapBlockData;
 
 static const bool DEFAULT_PEERBLOOMFILTERS = true;
 
-// Block Height Lyra2Z
-#define LYRA2Z_HEIGHT 0 // TODO: Remove (for cleanliness, useless definition, not referenced)
-
 // Block Height lbk3
-#define LBK3_HEIGHT 999999 // TODO: Modify for custom algorithm
+#define LBK3_HEIGHT 200 // TODO: Set official fork after testing (OFF: 999999)
 
 // Block Height Limit Spend One TX Per Block
 #define OLD_LIMIT_SPEND_TXS 22000
@@ -201,7 +198,6 @@ extern bool fIsBareMultisigStd;
 extern bool fRequireStandard;
 extern bool fCheckBlockIndex;
 extern bool fCheckpointsEnabled;
-//extern int nBestHeight;
 
 // Settings
 extern int64_t nTransactionFee;

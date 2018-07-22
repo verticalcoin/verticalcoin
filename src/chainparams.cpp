@@ -114,7 +114,7 @@ public:
 		strSporkPubKey = "047560EDFAECC55DF8CE4DCC7BE0887A3AE611FF171CF7A5948BCA012E6ED2CDBFF44F4862B2EFED1E2BE6A70D7AEBE64130926B336DEC2452DC06E27091A15F36";
 		strVnodePaymentsPubKey = "04FB415FD3DB63A0CDAA0037A96BEDBD845A676BC4D9DA50A0AEA55C79EBF0C11712403E1E84F4DF5C5C551468DFD9AC7C537149E065E5851CB35206CF6BD8BF48";
 
-		nDefaultPort = 54111;
+		nDefaultPort = 54222; // 54111
 		nPruneAfterHeight = 100000;
 
 		/**
@@ -142,7 +142,7 @@ public:
 		assert(genesis.hashMerkleRoot == uint256S("0x723c399bcb2e73ab0d33175127fcd3e999312f425b02b8b738053879948e345a"));
 
 		// DNSSeed 01 - ipv4 / ipv6 
-		vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
+		//vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false)); // TODO: Re-enable for official
 		vFixedSeeds.clear();
 
 		// Note that of those with the service bits flag, most only support a subset of possible options
@@ -162,10 +162,10 @@ public:
 
 		checkpointData = (CCheckpointData) {
 			boost::assign::map_list_of
-			(0, uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920"))
-				(4000, uint256S("0x9124504f6d93a8c005a91b35368d86b8015c8870b8b9f4ab607afa0d7bd5dbe8")),
-				1527089288, // * UNIX timestamp of last checkpoint block
-				5282,       // * total number of transactions between genesis and last checkpoint
+			(0, uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920")),
+				//(4000, uint256S("0x9124504f6d93a8c005a91b35368d86b8015c8870b8b9f4ab607afa0d7bd5dbe8")),
+				1526671733, // * UNIX timestamp of last checkpoint block | 1527089288
+				0,       // * total number of transactions between genesis and last checkpoint | 5282
 							//   (the tx=... number in the SetBestChain debug.log lines)
 				720         // * estimated number of transactions per day after checkpoint
 		};
