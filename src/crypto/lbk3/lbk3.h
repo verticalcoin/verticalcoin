@@ -59,11 +59,11 @@ inline uint256 Lbk3_hash(const T1 pbegin, const T1 pend)
     sph_bmw256_close(&ctx_bmw, static_cast<void*>(&hash[0]));
 
     sph_blake256_init(&ctx_blake);
-    sph_blake256 (&ctx_blake, static_cast<const void*>(&hash[0]), 32);
+    sph_blake256 (&ctx_blake, static_cast<const void*>(&hash[0]), 64);
     sph_blake256_close(&ctx_blake, static_cast<void*>(&hash[1]));
 
     sph_keccak256_init(&ctx_keccak);
-    sph_keccak256 (&ctx_keccak, static_cast<const void*>(&hash[1]), 32);
+    sph_keccak256 (&ctx_keccak, static_cast<const void*>(&hash[1]), 64);
     sph_keccak256_close(&ctx_keccak, static_cast<void*>(&hash[2]));
 
 
