@@ -13,7 +13,7 @@
 
 // HF constants
 
-static const int HF_LBK3_HEIGHT 					= 200; // TODO: Set official fork after testing (OFF: 999999)
+static const int HF_LBK3_HEIGHT 					= 1; // TODO: Set official fork after testing (OFF: 999999)
 static const int HF_VNODE_HEIGHT 					= 999999; // TODO: Set official fork after testing (OFF: 999999) | [No default text available]
 static const int HF_VNODE_PAYMENT_START   			= 999999; // TODO: Set back to official after testing (OFF: 999999) | After ~1 day we start with Masternodes
 static const int HF_VNODE_PAYMENT_ENFORCE 			= 999999; // TODO: Set back to official after testing (OFF: 999999) |  then blocks will go invalid without vnode payment.

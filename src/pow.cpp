@@ -24,6 +24,8 @@
 // (Corrected Typo in LogPrinf 2018)
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
 {
+   LogPrintf("Inform user of difficulty retarget run... Remove after testing MSG:05...\n");
+
    const int T = params.LWMAPowTargetSpacing;
    const int N = params.LWMAAveragingWindow;
    const int k = (N + 1) / 2 * 0.998 * T;
