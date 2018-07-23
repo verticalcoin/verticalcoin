@@ -1060,7 +1060,7 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                     if (pindexPrev->nHeight+1 > LBK3_HEIGHT) {
                         // Debug pring
                         LogPrintf("Lbk3 hash integration... Remove after testing MSG:02...\n");
-                        Lbk3_hash(BEGIN(pblock->nVersion), END(thash)); // TODO: Test
+                        Lbk3_hash(BEGIN(pblock->nVersion), END(nNonce)); // TODO: Test
                     }
                     else {
                         // Debug pring

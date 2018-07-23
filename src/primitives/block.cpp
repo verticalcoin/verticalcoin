@@ -77,7 +77,7 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
         if (nHeight > HF_LBK3_HEIGHT) {
             // Debug pring
             LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
-            Lbk3_hash(BEGIN(nVersion), END(powHash)); // TODO: Test (Try also: END(nNonce))
+            Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
         }
         else {
             // Debug pring
