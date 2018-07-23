@@ -28,7 +28,6 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
    const int N = params.LWMAAveragingWindow;
    const int k = (N + 1) / 2 * 0.998 * T;
    const int height = pindexLast->nHeight + 1;
-   const int oldheight = height - 5;
    
    LogPrintf("LWMA h=%i\n", height);
    LogPrintf("LWMA T=%i\n", T);
@@ -39,22 +38,6 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
    {
       LogPrintf("LWMA Blockheight is smaller than N? pindexLast->nBits:%x\n", pindexLast->nBits);
       return pindexLast->nBits;
-   }
-
-   if (height == LBK3_HEIGHT)
-   {
-      // Debug pring
-      LogPrintf("LWMA Notice message... Remove after testing MSG:05...\n");
-      arith_uint256 reset;
-      const CBlockIndex* reset_block;
-      // Loop back to starting blocks
-      for (int i = height - oldheight; i < height; i++) {
-         reset_block = pindexLast->GetAncestor(i);
-      }
-      reset.SetCompact(reset_block->nBits);
-      // Debug pring
-      LogPrintf("LWMA Triggered difficulty reset for initial Lbk3 integration... MSG:06\n");
-      return reset.GetCompact();
    }
 
    assert(height > N);
