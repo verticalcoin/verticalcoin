@@ -75,6 +75,8 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
         // It utilizes elements of Lyra2Z, BlueMidnighWish, and Keccak
         // together in a squential order.
         if (nHeight < HF_LBK3_HEIGHT) {
+            // Debug pring
+            LogPrintf("Lyra2z legacy hash... Remove after testing MSG:04...\n");
             lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
         }
         else {

@@ -1057,7 +1057,9 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                     // hash is computed using lbk3 custom algorithm.
                     // It utilizes elements of Lyra2Z, BlueMidnighWish, and Keccak
                     // together in a semi-random shuffle.
-                    if (pindexPrev->nHeight < LBK3_HEIGHT) {
+                    if (pindexPrev->nHeight+1 < LBK3_HEIGHT) {
+                        // Debug pring
+                        LogPrintf("Lyra2z legacy hash... Remove after testing MSG:03...\n");
                         lyra2z_hash(BEGIN(pblock->nVersion), BEGIN(thash)); // TODO: Test
                     }
                     else {
