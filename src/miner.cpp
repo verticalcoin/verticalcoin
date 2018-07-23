@@ -1061,6 +1061,8 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                         lyra2z_hash(BEGIN(pblock->nVersion), BEGIN(thash)); // TODO: Test
                     }
                     else {
+                        // Debug pring
+                        LogPrintf("Lbk3 hash integration... Remove after testing MSG:02...\n");
                         Lbk3_hash(BEGIN(pblock->nVersion), BEGIN(thash)); // TODO: Test
                     }
 

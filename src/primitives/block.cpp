@@ -78,6 +78,8 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
             lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
         }
         else {
+            // Debug pring
+            LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
             Lbk3_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
         }
     } catch (std::exception& e) {
