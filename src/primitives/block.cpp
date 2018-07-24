@@ -71,24 +71,21 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
     uint256 powHash;
 
     try {
-        // hash is computed using lbk3 custom algorithm.
-        // It utilizes elements of Lyra2Z, BlueMidnighWish, and Keccak
-        // together in a squential order.
-        if (nHeight > HF_LBK3_HEIGHT) {
-            // Debug pring
-            LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
-            Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
-        }
-        else {
-            // Debug pring
+            // Debug print
             LogPrintf("Lyra2z legacy hash... Remove after testing MSG:04...\n");
             lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
-        }
+        
     } catch (std::exception& e) {
         LogPrintf("excepetion: %s", e.what());
     }
 
     return powHash;
+}
+
+uint256 CBlockHeader::GetPoWHash2() const {
+            // Debug print
+            LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
+            return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
 }
 
 void CBlockHeader::InvalidateCachedPoWHash(int nHeight) const {
