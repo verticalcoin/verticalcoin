@@ -1042,7 +1042,7 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
             //
             int64_t nStart = GetTime();
             arith_uint256 hashTarget = arith_uint256().SetCompact(pblock->nBits);
-            uint256 hashTarget2 = uint256().SetCompact(pblock->nBits);
+            arith_uint256 hashTarget2 = arith_uint256().SetCompact(pblock->nBits);
             LogPrintf("hashTarget: %s\n", hashTarget.ToString());
             LogPrintf("hashTarget2: %s\n", hashTarget2.ToString());
             LogPrintf("fTestnet: %d\n", fTestNet);
@@ -1053,15 +1053,16 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
             while (true) {
                 // Check if something found
                 uint256 thash;
-                uint256 thash2;
+                arith_uint256 thash2;
 
                 if (pindexPrev->nHeight+1 > LBK3_HEIGHT) {
                 while (true) {
                     // Debug pring
                     LogPrintf("Lbk3 initial integration... Remove after testing MSG:02...\n");
-                    thash2 = pblock->GetPoWHash2();
+                    thash2 = UintToArith256(pblock->GetPoWHash2());
                     if (thash2 <= hashTarget2) {
                         // Found a solution
+                        LogPrintf("Found a solution. Hash: %s", thash2.ToString());
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
                         LogPrintf("BitcoinMiner:\n");
                         LogPrintf("proof-of-work found  \n  thash2: %s  \ntarget: %s\n", thash2.ToString(), hashTarget2.ToString());

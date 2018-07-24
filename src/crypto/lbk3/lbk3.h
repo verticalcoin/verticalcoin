@@ -2,6 +2,7 @@
 #define LBK3_HASH_H
 
 #include "uint256.h"
+#include "arith_uint256.h"
 #include "common/sph_bmw.h"
 #include "common/sph_blake.h"
 #include "common/sph_keccak.h"
