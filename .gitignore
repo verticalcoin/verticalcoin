@@ -121,3 +121,10 @@ oldschool/
 /qa/pull-tester
 /libbitcoinconsensus.pc
 /src/qt/res/RCa23436
+/Verticalcoin/.vs/Verticalcoin/v15
+/Verticalcoin/Verticalcoin.vcxproj.user
+/Verticalcoin/Verticalcoin.vcxproj.filters
+/Verticalcoin/Verticalcoin.vcxproj
+/Verticalcoin/Verticalcoin.sln
+/Verticalcoin/Debug/Verticalcoin.vcxprojAssemblyReference.cache
+/CppProperties.json
