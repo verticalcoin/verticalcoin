@@ -1047,6 +1047,7 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
             LogPrintf("hashTarget2: %s\n", hashTarget2.ToString());
             LogPrintf("fTestnet: %d\n", fTestNet);
             LogPrintf("pindexPrev->nHeight: %s\n", pindexPrev->nHeight);
+            LogPrintf("pindexPrev->nHeight+1 (nHeight): %s\n", pindexPrev->nHeight+1);
             LogPrintf("pblock: %s\n", pblock->ToString());
             LogPrintf("pblock->nVersion: %s\n", pblock->nVersion);
             LogPrintf("pblock->nTime: %s\n", pblock->nTime);
@@ -1058,13 +1059,13 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                 if (pindexPrev->nHeight+1 > LBK3_HEIGHT) {
                 while (true) {
                     // Debug pring
-                    LogPrintf("Lbk3 initial integration... Remove after testing MSG:02...\n");
-                    thash2 = UintToArith256(pblock->GetPoWHash2());
+                    //LogPrintf("Lbk3 initial integration... Remove after testing MSG:02...\n");
+                    thash2 = UintToArith256(pblock->GetLbk3Hash());
                     if (thash2 <= hashTarget2) {
                         // Found a solution
                         LogPrintf("Found a solution. Hash: %s", thash2.ToString());
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
-                        LogPrintf("BitcoinMiner:\n");
+                        LogPrintf("Lbk3Miner:\n");
                         LogPrintf("proof-of-work found  \n  thash2: %s  \ntarget: %s\n", thash2.ToString(), hashTarget2.ToString());
                         ProcessBlockFound(pblock, chainparams);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
@@ -1075,6 +1076,8 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                             throw boost::thread_interrupted();
                         break;
                     }
+                    // Debug pring
+                    LogPrintf("Lbk3 initial integration... Remove after testing MSG:08...\n");
                     pblock->nNonce += 1;
                     if ((pblock->nNonce & 0xFF) == 0)
                         break;
@@ -1096,7 +1099,8 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                         ProcessBlockFound(pblock, chainparams);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         coinbaseScript->KeepScript();
-                        // In regression test mode, stop mining after a block is found.
+                        // In regression test mode, stop mining after a block is found. This
+                        // allows developers to controllably generate a block on demand.
                         if (chainparams.MineBlocksOnDemand())
                             throw boost::thread_interrupted();
                         break;

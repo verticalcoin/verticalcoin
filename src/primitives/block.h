@@ -96,9 +96,9 @@ public:
 
     uint256 GetPoWHash(int nHeight, bool forceCalc = false) const;
 
-    uint256 GetPoWHash2() const;
-
     uint256 GetHash() const;
+
+    uint256 GetLbk3Hash() const;
 
     int64_t GetBlockTime() const
     {

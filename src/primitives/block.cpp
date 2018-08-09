@@ -51,6 +51,12 @@ uint256 CBlockHeader::GetHash() const {
     return SerializeHash(*this);
 }
 
+uint256 CBlockHeader::GetLbk3Hash() const {
+            // Debug print
+            //LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
+            return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
+}
+
 uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
 {
     //int64_t start = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -68,6 +74,19 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
             return mapPoWHash[nHeight];
         }
     }*/
+
+    // Debug print
+    LogPrintf("GetLbk3Hash nHeight integration... Remove after testing MSG:07... Current nHeight is: %s...\n", nHeight);
+
+    // Lbk3 GetPowHash
+    if (nHeight > HF_LBK3_HEIGHT) {
+        // Debug print
+        LogPrintf("Lbk3 hash integration... Remove after testing MSG:06...\n");
+        return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
+        //return GetLbk3Hash();
+    }
+
+    // Lyra2z GetPoWHash
     uint256 powHash;
 
     try {
@@ -80,12 +99,6 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
     }
 
     return powHash;
-}
-
-uint256 CBlockHeader::GetPoWHash2() const {
-            // Debug print
-            LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
-            return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
 }
 
 void CBlockHeader::InvalidateCachedPoWHash(int nHeight) const {
