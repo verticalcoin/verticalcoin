@@ -1076,8 +1076,8 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                             throw boost::thread_interrupted();
                         break;
                     }
-                    // Debug pring
-                    LogPrintf("Lbk3 initial integration... Remove after testing MSG:08...\n");
+                    // Debug print
+                    //LogPrintf("Lbk3 initial integration... Remove after testing MSG:08...\n");
                     pblock->nNonce += 1;
                     if ((pblock->nNonce & 0xFF) == 0)
                         break;
@@ -1086,7 +1086,7 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                 else {
                 while (true) {
                     // Compute hash,
-                        // Debug pring
+                        // Debug print
                         LogPrintf("Lyra2z legacy hash... Remove after testing MSG:03...\n");
                         lyra2z_hash(BEGIN(pblock->nVersion), BEGIN(thash)); // TODO: Test
 
