@@ -85,20 +85,21 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
         return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
         //return GetLbk3Hash();
     }
+    else {
+        // Lyra2z GetPoWHash
+        uint256 powHash;
 
-    // Lyra2z GetPoWHash
-    uint256 powHash;
-
-    try {
-            // Debug print
-            LogPrintf("Lyra2z legacy hash... Remove after testing MSG:04...\n");
-            lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
+        try {
+                // Debug print
+                LogPrintf("Lyra2z legacy hash... Remove after testing MSG:04...\n");
+                lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
         
-    } catch (std::exception& e) {
-        LogPrintf("excepetion: %s", e.what());
-    }
+        } catch (std::exception& e) {
+            LogPrintf("excepetion: %s", e.what());
+        }
 
-    return powHash;
+        return powHash;
+    }
 }
 
 void CBlockHeader::InvalidateCachedPoWHash(int nHeight) const {
