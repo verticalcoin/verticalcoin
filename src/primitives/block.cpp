@@ -82,8 +82,8 @@ uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
     if (nHeight > HF_LBK3_HEIGHT) {
         // Debug print
         LogPrintf("Lbk3 hash integration... Remove after testing MSG:06...\n");
-        return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
-        //return GetLbk3Hash();
+
+        return GetLbk3Hash();
     }
     else {
         // Lyra2z GetPoWHash
