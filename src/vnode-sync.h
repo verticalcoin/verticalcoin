@@ -20,7 +20,7 @@ static const int VNODE_SYNC_FINISHED        = 999;
 
 static const int VNODE_SYNC_TICK_SECONDS    = 6;
 static const int VNODE_SYNC_TIMEOUT_SECONDS = 30; // our blocks are 2.5 minutes so 30 seconds should be fine
-static const int VNODE_SYNC_ENOUGH_PEERS    = 999; // TODO: Set back to official fork after testing (OFF: 999) | [No default text available]
+static const int VNODE_SYNC_ENOUGH_PEERS    = 0; // TODO: Set back to official fork after testing (OFF: 0) | [Default: 3]
 
 extern CVnodeSync vnodeSync;
 
