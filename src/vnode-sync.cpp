@@ -259,8 +259,6 @@ void CVnodeSync::ProcessTick() {
                 //LogPrintf("CVnodeSync::ProcessTick -- WARNING: not enough data, restarting sync\n");
                 //Reset(); TODO: Re-enable for mainnet after testing
                 LogPrintf("CVnodeSync::ProcessTick -- WARNING: temporarily overlooking MNs on network\n");
-             //   ReleaseNodeVector(vNodesCopy); // TODO: Disable for mainnet after testing
-            //    return;
             } //else {
                 std::vector < CNode * > vNodesCopy = CopyNodeVector();
                 ReleaseNodeVector(vNodesCopy);
