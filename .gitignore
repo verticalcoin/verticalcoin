@@ -121,3 +121,6 @@ oldschool/
 /qa/pull-tester
 /libbitcoinconsensus.pc
 /src/qt/res/RCa23436
+.vscode/tasks.json
+.vscode/settings.json
+.vscode/c_cpp_properties.json
