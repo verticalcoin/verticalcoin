@@ -128,3 +128,6 @@ oldschool/
 /Verticalcoin/Verticalcoin.sln
 /Verticalcoin/Debug/Verticalcoin.vcxprojAssemblyReference.cache
 /CppProperties.json
+.vscode/tasks.json
+.vscode/settings.json
+.vscode/c_cpp_properties.json
