@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your Verticalcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tohle jsou tvé Zcoinové adresy pro posílání plateb. Před odesláním mincí si vždy zkontroluj částku a cílovou adresu.</translation>
+        <translation>Tohle jsou tvé Verticalcoinové adresy pro posílání plateb. Před odesláním mincí si vždy zkontroluj částku a cílovou adresu.</translation>
     </message>
     <message>
         <source>These are your Verticalcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Tohle jsou tvé Zcoinové adresy pro příjem plateb. Nezapomeň si pro každou transakci vždy vygenerovat novou adresu.</translation>
+        <translation>Tohle jsou tvé Verticalcoinové adresy pro příjem plateb. Nezapomeň si pro každou transakci vždy vygenerovat novou adresu.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -323,7 +323,7 @@
     </message>
     <message>
         <source>Send coins to a Verticalcoin address</source>
-        <translation>Pošli mince na Zcoinovou adresu</translation>
+        <translation>Pošli mince na Verticalcoinovou adresu</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -375,11 +375,11 @@
     </message>
     <message>
         <source>Sign messages with your Verticalcoin addresses to prove you own them</source>
-        <translation>Podepiš zprávy svými Zcoinovými adresami, čímž prokážeš, že jsi jejich vlastníkem</translation>
+        <translation>Podepiš zprávy svými Verticalcoinovými adresami, čímž prokážeš, že jsi jejich vlastníkem</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Verticalcoin addresses</source>
-        <translation>Ověř zprávy, aby ses ujistil, že byly podepsány danými Zcoinovými adresami</translation>
+        <translation>Ověř zprávy, aby ses ujistil, že byly podepsány danými Verticalcoinovými adresami</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -419,7 +419,7 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Verticalcoin network</source>
-        <translation><numerusform>%n aktivní spojení do Zcoinové sítě</numerusform><numerusform>%n aktivní spojení do Zcoinové sítě</numerusform><numerusform>%n aktivních spojení do Zcoinové sítě</numerusform></translation>
+        <translation><numerusform>%n aktivní spojení do Verticalcoinové sítě</numerusform><numerusform>%n aktivní spojení do Verticalcoinové sítě</numerusform><numerusform>%n aktivních spojení do Verticalcoinové sítě</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -487,7 +487,7 @@
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Verticalcoin command-line options</source>
-        <translation>Seznam argumentů Zcoinu pro příkazovou řádku získáš v nápovědě %1</translation>
+        <translation>Seznam argumentů Verticalcoinu pro příkazovou řádku získáš v nápovědě %1</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -743,7 +743,7 @@
     </message>
     <message>
         <source>The entered address "%1" is not a valid Verticalcoin address.</source>
-        <translation>Zadaná adresa „%1“ není platná Zcoinová adresa.</translation>
+        <translation>Zadaná adresa „%1“ není platná Verticalcoinová adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1006,7 +1006,7 @@
     </message>
     <message>
         <source>Connect to the Verticalcoin network through a SOCKS5 proxy.</source>
-        <translation>Připojí se do Zcoinové sítě přes SOCKS5 proxy.</translation>
+        <translation>Připojí se do Verticalcoinové sítě přes SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1046,7 +1046,7 @@
     </message>
     <message>
         <source>Connect to the Verticalcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Připojí se do Zcoinové sítě přes SOCKS5 proxy vyhrazenou pro skryté služby v Tor síti.</translation>
+        <translation>Připojí se do Verticalcoinové sítě přes SOCKS5 proxy vyhrazenou pro skryté služby v Tor síti.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
@@ -1145,7 +1145,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Verticalcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Zobrazené informace nemusí být aktuální. Tvá peněženka se automaticky sesynchronizuje s Zcoinovou sítí, jakmile se s ní spojí. Zatím ale ještě není synchronizace dokončena.</translation>
+        <translation>Zobrazené informace nemusí být aktuální. Tvá peněženka se automaticky sesynchronizuje s Verticalcoinovou sítí, jakmile se s ní spojí. Zatím ale ještě není synchronizace dokončena.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1236,7 +1236,7 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Verticalcoin address or malformed URI parameters.</source>
-        <translation>Nepodařilo se analyzovat URI! Důvodem může být neplatná Zcoinová adresa nebo poškozené parametry URI.</translation>
+        <translation>Nepodařilo se analyzovat URI! Důvodem může být neplatná Verticalcoinová adresa nebo poškozené parametry URI.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1326,7 +1326,7 @@
     </message>
     <message>
         <source>Enter a Verticalcoin address (e.g. %1)</source>
-        <translation>Zadej Zcoinovou adresu (např. %1)</translation>
+        <translation>Zadej Verticalcoinovou adresu (např. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1691,7 +1691,7 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Verticalcoin network.</source>
-        <translation>Volitelná zpráva, která se připojí k platebnímu požadavku a která se zobrazí, když se požadavek otevře. Poznámka: tahle zpráva se neposílá s platbou po Zcoinové síti.</translation>
+        <translation>Volitelná zpráva, která se připojí k platebnímu požadavku a která se zobrazí, když se požadavek otevře. Poznámka: tahle zpráva se neposílá s platbou po Verticalcoinové síti.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2080,7 +2080,7 @@
     </message>
     <message>
         <source>Warning: Invalid Verticalcoin address</source>
-        <translation>Upozornění: Neplatná Zcoinová adresa</translation>
+        <translation>Upozornění: Neplatná Verticalcoinová adresa</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2115,7 +2115,7 @@
     </message>
     <message>
         <source>The Verticalcoin address to send the payment to</source>
-        <translation>Zcoinová adresa příjemce</translation>
+        <translation>Verticalcoinová adresa příjemce</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2159,7 +2159,7 @@
     </message>
     <message>
         <source>A message that was attached to the verticalcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Verticalcoin network.</source>
-        <translation>Zpráva, která byla připojena k verticalcoin: URI a která se ti pro přehled uloží k transakci. Poznámka: Tahle zpráva se neposílá s platbou po Zcoinové síti.</translation>
+        <translation>Zpráva, která byla připojena k verticalcoin: URI a která se ti pro přehled uloží k transakci. Poznámka: Tahle zpráva se neposílá s platbou po Verticalcoinové síti.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2208,7 +2208,7 @@
     </message>
     <message>
         <source>The Verticalcoin address to sign the message with</source>
-        <translation>Zcoinová adresa, kterou se zpráva podepíše</translation>
+        <translation>Verticalcoinová adresa, kterou se zpráva podepíše</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2240,7 +2240,7 @@
     </message>
     <message>
         <source>Sign the message to prove you own this Verticalcoin address</source>
-        <translation>Podepiš zprávu, čímž prokážeš, že jsi vlastníkem této Zcoinové adresy</translation>
+        <translation>Podepiš zprávu, čímž prokážeš, že jsi vlastníkem této Verticalcoinové adresy</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2264,11 +2264,11 @@
     </message>
     <message>
         <source>The Verticalcoin address the message was signed with</source>
-        <translation>Zcoinová adresa, kterou je zpráva podepsána</translation>
+        <translation>Verticalcoinová adresa, kterou je zpráva podepsána</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Verticalcoin address</source>
-        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou Zcoinovou adresou</translation>
+        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou Verticalcoinovou adresou</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

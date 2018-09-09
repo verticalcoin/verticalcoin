@@ -97,7 +97,7 @@ public:
                                   QString::fromStdString(strName),
                                   QString::fromStdString(address.ToString())));
             }
-            //[ZCOINGITHUBENTRY] add load pubcoin
+            // add load pubcoin
             std::list<CZerocoinEntry> listPubcoin;
             CWalletDB(wallet->strWalletFile).ListPubCoin(listPubcoin);
             BOOST_FOREACH(const CZerocoinEntry& item, listPubcoin)
@@ -166,7 +166,7 @@ public:
             break;
         }
     }
-    //[ZCOINGITHUBENTRY] updateEntry
+    // updateEntry
     void updateEntry(const QString &pubCoin, const QString &isUsed, int status)
     {
         // Find address / label in model

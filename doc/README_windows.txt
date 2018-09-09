@@ -1,4 +1,4 @@
-Verticalcoin Core 0.13.2.x
+Verticalcoin Core 1.4.0.0
 =====================
 
 Intro

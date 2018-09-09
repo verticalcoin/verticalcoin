@@ -1,5 +1,3 @@
-Features and Specs
-==================================
 
 Specs
 ----------------------
@@ -11,6 +9,7 @@ Specs
 - Blocksize: 2 MB 
 - Coin Maturity: 50
 - Maximum Supply: 35 million 
+
 
 Linux Build Instructions and Notes
 ==================================

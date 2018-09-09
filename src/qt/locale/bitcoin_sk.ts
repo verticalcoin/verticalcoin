@@ -335,7 +335,7 @@
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Verticalcoin command-line options</source>
-        <translation>Ukáž %1 zoznam možných nastavení Zcoinu pomocou príkazového riadku</translation>
+        <translation>Ukáž %1 zoznam možných nastavení Verticalcoinu pomocou príkazového riadku</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -782,7 +782,7 @@
     </message>
     <message>
         <source>Connect to the Verticalcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Pripojiť k Zcoinovej sieti cez separované SOCKS5 proxy pre skrytú službu Tor.</translation>
+        <translation>Pripojiť k Verticalcoinovej sieti cez separované SOCKS5 proxy pre skrytú službu Tor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>

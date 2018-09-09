@@ -128,7 +128,6 @@ int64_t CTransaction::GetMinFee(unsigned int nBlockSize, bool fAllowFree, enum G
             nMinFee = 0;
     }
 
-    // ZCoin
     // To limit dust spam, add nBaseFee for each output less than DUST_SOFT_LIMIT
     for (unsigned int i = 0; i < vout.size(); i++)
         if (vout[i].nValue < DUST_SOFT_LIMIT) {
@@ -195,12 +194,12 @@ double CTransaction::ComputePriority(double dPriorityInputs, unsigned int nTxSiz
 
 bool CTransaction::IsCoinBase() const
 {
-    return (vin.size() == 1 && vin[0].prevout.IsNull() && (vin[0].scriptSig[0] != OP_ZEROCOINSPEND) );
+    return (vin.size() == 1 && vin[0].prevout.IsNull() && (vin[0].scriptSig.size() == 0 || vin[0].scriptSig[0] != OP_ZEROCOINSPEND) );
 }
 
 bool CTransaction::IsZerocoinSpend() const
 {
-    return (vin.size() == 1 && vin[0].prevout.IsNull() && (vin[0].scriptSig[0] == OP_ZEROCOINSPEND) && (vout.size() == 1) );
+    return (vin.size() == 1 && vin[0].prevout.IsNull() && vin[0].scriptSig.size() > 0 && (vin[0].scriptSig[0] == OP_ZEROCOINSPEND) && (vout.size() == 1) );
 }
 
 bool CTransaction::IsZerocoinMint(const CTransaction& tx) const

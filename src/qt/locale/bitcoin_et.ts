@@ -287,7 +287,7 @@
     </message>
     <message>
         <source>Send coins to a Verticalcoin address</source>
-        <translation>Saada münte Zcoini aadressile</translation>
+        <translation>Saada münte Verticalcoini aadressile</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -339,11 +339,11 @@
     </message>
     <message>
         <source>Sign messages with your Verticalcoin addresses to prove you own them</source>
-        <translation>Omandi tõestamiseks allkirjasta sõnumid oma Zcoini aadressiga</translation>
+        <translation>Omandi tõestamiseks allkirjasta sõnumid oma Verticalcoini aadressiga</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Verticalcoin addresses</source>
-        <translation>Kinnita sõnumid kindlustamaks et need allkirjastati määratud Zcoini aadressiga</translation>
+        <translation>Kinnita sõnumid kindlustamaks et need allkirjastati määratud Verticalcoini aadressiga</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -375,7 +375,7 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Verticalcoin network</source>
-        <translation><numerusform>%n aktiivne ühendus Zcoini võrku</numerusform><numerusform>%n aktiivset ühendust Zcoini võrku</numerusform></translation>
+        <translation><numerusform>%n aktiivne ühendus Verticalcoini võrku</numerusform><numerusform>%n aktiivset ühendust Verticalcoini võrku</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -826,7 +826,7 @@
     </message>
     <message>
         <source>Automatically open the Verticalcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Zcoini kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
+        <translation>Verticalcoini kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1488,7 +1488,7 @@
     </message>
     <message>
         <source>Sign the message to prove you own this Verticalcoin address</source>
-        <translation>Allkirjasta sõnum Zcoini aadressi sulle kuulumise tõestamiseks</translation>
+        <translation>Allkirjasta sõnum Verticalcoini aadressi sulle kuulumise tõestamiseks</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1512,7 +1512,7 @@
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Verticalcoin address</source>
-        <translation>Kinnita sõnum tõestamaks selle allkirjastatust määratud Zcoini aadressiga.</translation>
+        <translation>Kinnita sõnum tõestamaks selle allkirjastatust määratud Verticalcoini aadressiga.</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1801,7 +1801,7 @@
     </message>
     <message>
         <source>Verticalcoin Core</source>
-        <translation>Zcoini tuumik</translation>
+        <translation>Verticalcoini tuumik</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

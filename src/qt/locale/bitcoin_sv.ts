@@ -1488,7 +1488,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Verticalcoin network.</source>
-        <translation>Ett frivilligt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. NB: Meddelandet kommer inte att sändas med betalningen över Zcoinnätverket.</translation>
+        <translation>Ett frivilligt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. NB: Meddelandet kommer inte att sändas med betalningen över Verticalcoinnätverket.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1764,7 +1764,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The Verticalcoin address to send the payment to</source>
-        <translation>Zcoinadress att sända betalning till</translation>
+        <translation>Verticalcoinadress att sända betalning till</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1808,7 +1808,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>A message that was attached to the verticalcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Verticalcoin network.</source>
-        <translation>Ett meddelande som bifogades verticalcoin-URI, vilket lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över Zcoinnätverket.</translation>
+        <translation>Ett meddelande som bifogades verticalcoin-URI, vilket lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över Verticalcoinnätverket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -1849,7 +1849,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The Verticalcoin address to sign the message with</source>
-        <translation>Zcoinadress att signera meddelandet med</translation>
+        <translation>Verticalcoinadress att signera meddelandet med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1905,7 +1905,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The Verticalcoin address the message was signed with</source>
-        <translation>Zcoinadressen som meddelandet signerades med</translation>
+        <translation>Verticalcoinadressen som meddelandet signerades med</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Verticalcoin address</source>

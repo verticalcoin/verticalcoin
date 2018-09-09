@@ -2074,7 +2074,7 @@ Zwróć uwagę, że poprawnie zweryfikowana wiadomość potwierdza to, że nadaw
     </message>
     <message>
         <source>Verticalcoin Core</source>
-        <translation>Rdzeń Zcoina</translation>
+        <translation>Rdzeń Verticalcoina</translation>
     </message>
     <message>
         <source>The %s developers</source>
