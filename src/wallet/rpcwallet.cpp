@@ -21,7 +21,7 @@
 #include "walletdb.h"
 #include "zerocoin.h"
 
-#include <znode-payments.h>
+#include <vnode-payments.h>
 
 #include <stdint.h>
 
@@ -1405,7 +1405,7 @@ void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDe
                     ExtractDestination(payee, payeeDest);
                     CBitcoinAddress payeeAddr(payeeDest);
                     if(addr.ToString() == payeeAddr.ToString()){
-                        entry.push_back(Pair("category", "znode"));
+                        entry.push_back(Pair("category", "vnode"));
                     }
                     else if (wtx.GetDepthInMainChain() < 1)
                         entry.push_back(Pair("category", "orphan"));
