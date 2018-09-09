@@ -98,6 +98,8 @@ public:
 
     uint256 GetHash() const;
 
+    uint256 GetLbk3Hash() const;
+
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;

@@ -28,8 +28,9 @@
 #include "wallet/wallet.h"
 #include "definition.h"
 #include "crypto/scrypt.h"
-#include "crypto/Lyra2Z/Lyra2Z.h"
-#include "crypto/Lyra2Z/Lyra2.h"
+#include "crypto/lbk3/Lyra2Z.h"
+#include "crypto/lbk3/lbk3.h"
+#include "crypto/lbk3/common/Lyra2.h"
 #include "vnode-payments.h"
 #include "vnode-sync.h"
 #include <algorithm>
@@ -1041,30 +1042,65 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
             //
             int64_t nStart = GetTime();
             arith_uint256 hashTarget = arith_uint256().SetCompact(pblock->nBits);
+            arith_uint256 hashTarget2 = arith_uint256().SetCompact(pblock->nBits);
             LogPrintf("hashTarget: %s\n", hashTarget.ToString());
+            LogPrintf("hashTarget2: %s\n", hashTarget2.ToString());
             LogPrintf("fTestnet: %d\n", fTestNet);
             LogPrintf("pindexPrev->nHeight: %s\n", pindexPrev->nHeight);
+            LogPrintf("pindexPrev->nHeight+1 (nHeight): %s\n", pindexPrev->nHeight+1);
             LogPrintf("pblock: %s\n", pblock->ToString());
             LogPrintf("pblock->nVersion: %s\n", pblock->nVersion);
             LogPrintf("pblock->nTime: %s\n", pblock->nTime);
             while (true) {
                 // Check if something found
                 uint256 thash;
+                arith_uint256 thash2;
 
+                if (pindexPrev->nHeight+1 > LBK3_HEIGHT) {
                 while (true) {
-                    // Compute hash.
-                    lyra2z_hash(BEGIN(pblock->nVersion), BEGIN(thash));
+                    // Debug pring
+                    //LogPrintf("Lbk3 initial integration... Remove after testing MSG:02...\n");
+                    thash2 = UintToArith256(pblock->GetLbk3Hash());
+                    if (thash2 <= hashTarget2) {
+                        // Found a solution
+                        LogPrintf("Found a solution. Hash: %s", thash2.ToString());
+                        SetThreadPriority(THREAD_PRIORITY_NORMAL);
+                        LogPrintf("Lbk3Miner:\n");
+                        LogPrintf("proof-of-work found  \n  thash2: %s  \ntarget: %s\n", thash2.ToString(), hashTarget2.ToString());
+                        ProcessBlockFound(pblock, chainparams);
+                        SetThreadPriority(THREAD_PRIORITY_LOWEST);
+                        coinbaseScript->KeepScript();
+                        // In regression test mode, stop mining after a block is found. This
+                        // allows developers to controllably generate a block on demand.
+                        if (chainparams.MineBlocksOnDemand())
+                            throw boost::thread_interrupted();
+                        break;
+                    }
+                    // Debug print
+                    //LogPrintf("Lbk3 initial integration... Remove after testing MSG:08...\n");
+                    pblock->nNonce += 1;
+                    if ((pblock->nNonce & 0xFF) == 0)
+                        break;
+                }
+            }
+                else {
+                while (true) {
+                    // Compute hash,
+                        // Debug print
+                        LogPrintf("Lyra2z legacy hash... Remove after testing MSG:03...\n");
+                        lyra2z_hash(BEGIN(pblock->nVersion), BEGIN(thash)); // TODO: Test
 
                     if (UintToArith256(thash) <= hashTarget) {
                         // Found a solution
                         LogPrintf("Found a solution. Hash: %s", UintToArith256(thash).ToString());
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
                         LogPrintf("VerticalcoinMiner:\n");
-                        LogPrintf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", UintToArith256(thash).ToString(), hashTarget.ToString());
+                        LogPrintf("proof-of-work found  \n  thash1: %s  \ntarget: %s\n", UintToArith256(thash).ToString(), hashTarget.ToString());
                         ProcessBlockFound(pblock, chainparams);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         coinbaseScript->KeepScript();
-                        // In regression test mode, stop mining after a block is found.
+                        // In regression test mode, stop mining after a block is found. This
+                        // allows developers to controllably generate a block on demand.
                         if (chainparams.MineBlocksOnDemand())
                             throw boost::thread_interrupted();
                         break;
@@ -1073,6 +1109,7 @@ void static VerticalcoinMiner(const CChainParams &chainparams) {
                     if ((pblock->nNonce & 0xFF) == 0)
                         break;
                 }
+            }
                 // Check for stop or if block needs to be rebuilt
                 boost::this_thread::interruption_point();
                 // Regtest mode doesn't require peers
