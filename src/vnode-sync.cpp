@@ -36,7 +36,7 @@ bool CVnodeSync::CheckNodeHeight(CNode *pnode, bool fDisconnectStuckNodes) {
         return false;
     } else if (pCurrentBlockIndex->nHeight < stats.nSyncHeight - 1) {
         // This peer announced more headers than we have blocks currently
-        LogPrintf("CVnodeSync::CheckNodeHeight -- skipping peer, who announced more headers than we have blocks currently, nHeight=%d, nSyncHeight=%d, peer=%d\n",
+        LogPrintf("vnode", "CVnodeSync::CheckNodeHeight -- skipping peer, who announced more headers than we have blocks currently, nHeight=%d, nSyncHeight=%d, peer=%d\n",
                   pCurrentBlockIndex->nHeight, stats.nSyncHeight, pnode->id);
         return false;
     }
