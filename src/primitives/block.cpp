@@ -52,52 +52,26 @@ uint256 CBlockHeader::GetHash() const {
 }
 
 uint256 CBlockHeader::GetLbk3Hash() const {
-            // Debug print
-            //LogPrintf("Lbk3 hash integration... Remove after testing MSG:01...\n");
-            return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
+            return Lbk3_hash(BEGIN(nVersion), END(nNonce)); 
 }
 
 uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
-{
+{ 
     //int64_t start = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-
-   /* bool fTestNet = (Params().NetworkIDString() == CBaseChainParams::TESTNET);
-    if (!fTestNet) {
-        if (nHeight < PRECOMPUTED_HASHES) {
-            if (!mapPoWHash.count(1)) {
-                std::cout << "Start Build Map" << std::endl;
-                buildMapPoWHash();
-            }
-        }
-        if (!forceCalc && mapPoWHash.count(nHeight)) {
-            std::cout << "GetPowHash nHeight=" << nHeight << ", hash= " << mapPoWHash[nHeight].ToString() << std::endl;
-            return mapPoWHash[nHeight];
-        }
-    }*/
-
-    // Debug print
-    LogPrintf("GetLbk3Hash nHeight integration... Remove after testing MSG:07... Current nHeight is: %s...\n", nHeight);
-
-    // Lbk3 GetPowHash
-    if (nHeight > HF_LBK3_HEIGHT) {
-        // Debug print
-        LogPrintf("Lbk3 hash integration... Remove after testing MSG:06...\n");
-        return Lbk3_hash(BEGIN(nVersion), END(nNonce)); // TODO: Test
-        //return GetLbk3Hash();
+    bool fTestNet = (Params().NetworkIDString() == CBaseChainParams::TESTNET); 
+    if ((!fTestNet && nHeight >= HF_LBK3_HEIGHT) || (fTestNet && nHeight >= HF_LBK3_HEIGHT_TESTNET)) {
+        // Lbk3 GetPoWHash
+        return Lbk3_hash(BEGIN(nVersion), END(nNonce)); 
     }
     else {
         // Lyra2z GetPoWHash
         uint256 powHash;
-
         try {
-                // Debug print
-                LogPrintf("Lyra2z legacy hash... Remove after testing MSG:04...\n");
-                lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); // TODO: Test
+                lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); 
         
         } catch (std::exception& e) {
-            LogPrintf("excepetion: %s", e.what());
+                LogPrintf("excepetion: %s", e.what());
         }
-
         return powHash;
     }
 }

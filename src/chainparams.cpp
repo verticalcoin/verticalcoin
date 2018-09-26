@@ -200,7 +200,7 @@ public:
 		consensus.nMaxNFactor = 30;
 		consensus.nChainStartTime = 1528024071;
 		consensus.BIP34Height = 227931;
-		consensus.BIP34Hash = uint256S("0x651e620850036a996fbdaf733cc359348a1762c116e2cfd40f207772330b35e8");
+		consensus.BIP34Hash = uint256S("0x8a3a7e205b671277774282e5e48baf10d520531dab56be6697ddc02f100457d1");
 		consensus.powLimit = uint256S("07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
 		// Mining diffuclty LWMA Algo
@@ -245,9 +245,9 @@ public:
 		* nTime: 1516133785
 		* nNonce: 0
 		*/
-		pchMessageStart[0] = 0x22;
+		pchMessageStart[0] = 0x21;
 		pchMessageStart[1] = 0xa1;
-		pchMessageStart[2] = 0x43;
+		pchMessageStart[2] = 0x41;
 		pchMessageStart[3] = 0x10;
 
 		std::vector<unsigned char> extraNonce(4);
@@ -256,17 +256,15 @@ public:
 		extraNonce[2] = 0x82;
 		extraNonce[3] = 0x11;
 
-		genesis = CreateGenesisBlock(1528024071 /*06/03/2018 @ 11:07am (UTC)*/, 3787965, 0x1e0ffff0, 2, 100 * COIN, extraNonce);
-
+		genesis = CreateGenesisBlock(1537907609 /*09/25/2018 @ 8:33pm (UTC)*/, 4308957, 0x1e0ffff0, 2, 100 * COIN, extraNonce);
 		consensus.hashGenesisBlock = genesis.GetHash();
 
-		assert(consensus.hashGenesisBlock == uint256S("0x651e620850036a996fbdaf733cc359348a1762c116e2cfd40f207772330b35e8"));
+		assert(consensus.hashGenesisBlock == uint256S("0x8a3a7e205b671277774282e5e48baf10d520531dab56be6697ddc02f100457d1"));
 		assert(genesis.hashMerkleRoot == uint256S("0x7d0fc957391bd85855b4a515aa5d7a0ca94f8fd724de651bf19586bc6061295e"));
 
 		// nodes with support for servicebits filtering should be at the top
 		vFixedSeeds.clear();
 		vSeeds.clear();
-
 
 		base58Prefixes[PUBKEY_ADDRESS] = std::vector < unsigned char >(1, 28);
 		base58Prefixes[SCRIPT_ADDRESS] = std::vector < unsigned char >(1, 178);
@@ -284,8 +282,8 @@ public:
 
 		checkpointData = (CCheckpointData) {
 		      boost::assign::map_list_of
-		          (0, uint256S("0x651e620850036a996fbdaf733cc359348a1762c116e2cfd40f207772330b35e8")),
-				  1528024071,
+		          (0, uint256S("0x8a3a7e205b671277774282e5e48baf10d520531dab56be6697ddc02f100457d1")),
+				  1537907609,
 		      0,
 		      0
 		};
