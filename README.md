@@ -4,7 +4,7 @@ Features and Specs
 Specs
 ----------------------
 - LWMA difficulty algorithm https://github.com/zawy12/difficulty-algorithms/issues/3
-- Lyra2Z pow algorithm
+- Lbk3 POW algorithm - we fork on Block 100 000
 - vNodes 
 - Tor integration
 - Blocktime: 2 minutes 
