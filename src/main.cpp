@@ -7190,8 +7190,8 @@ bool ProcessMessages(CNode *pfrom) {
         // Scan for message start
         if (memcmp(msg.hdr.pchMessageStart, chainparams.MessageStart(), MESSAGE_START_SIZE) != 0) {
             LogPrintf("PROCESSMESSAGE: INVALID MESSAGESTART\n");
-            //LogPrintf("msg.hdr.pchMessageStart:     %c %c %c %c \n", msg.hdr.pchMessageStart[0], msg.hdr.pchMessageStart[1], msg.hdr.pchMessageStart[2], msg.hdr.pchMessageStart[3]);
-            //LogPrintf("chainparams.MessageStart():  %c %c %c %c \n", chainparams.MessageStart()[0], chainparams.MessageStart()[1], chainparams.MessageStart()[2], chainparams.MessageStart());
+            LogPrintf("msg.hdr.pchMessageStart:     %c %c %c %c \n", msg.hdr.pchMessageStart[0], msg.hdr.pchMessageStart[1], msg.hdr.pchMessageStart[2], msg.hdr.pchMessageStart[3]);
+            LogPrintf("chainparams.MessageStart():  %c %c %c %c \n", chainparams.MessageStart()[0], chainparams.MessageStart()[1], chainparams.MessageStart()[2], chainparams.MessageStart());
             fOk = false;
             break;
         }

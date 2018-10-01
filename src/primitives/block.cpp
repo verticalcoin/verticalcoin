@@ -13,8 +13,9 @@
 #include "crypto/common.h"
 #include "chainparams.h"
 #include "crypto/scrypt.h"
-#include "crypto/Lyra2Z/Lyra2Z.h"
-#include "crypto/Lyra2Z/Lyra2.h"
+#include "crypto/lbk3/Lyra2Z.h"
+#include "crypto/lbk3/lbk3.h"
+#include "crypto/lbk3/common/Lyra2.h"
 #include "util.h"
 #include <iostream>
 #include <chrono>
@@ -50,32 +51,29 @@ uint256 CBlockHeader::GetHash() const {
     return SerializeHash(*this);
 }
 
+uint256 CBlockHeader::GetLbk3Hash() const {
+            return Lbk3_hash(BEGIN(nVersion), END(nNonce)); 
+}
+
 uint256 CBlockHeader::GetPoWHash(int nHeight, bool forceCalc) const
-{
+{ 
     //int64_t start = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-
-   /* bool fTestNet = (Params().NetworkIDString() == CBaseChainParams::TESTNET);
-    if (!fTestNet) {
-        if (nHeight < PRECOMPUTED_HASHES) {
-            if (!mapPoWHash.count(1)) {
-                std::cout << "Start Build Map" << std::endl;
-                buildMapPoWHash();
-            }
-        }
-        if (!forceCalc && mapPoWHash.count(nHeight)) {
-            std::cout << "GetPowHash nHeight=" << nHeight << ", hash= " << mapPoWHash[nHeight].ToString() << std::endl;
-            return mapPoWHash[nHeight];
-        }
-    }*/
-    uint256 powHash;
-
-    try {
-        lyra2z_hash(BEGIN(nVersion), BEGIN(powHash));
-    } catch (std::exception& e) {
-        LogPrintf("excepetion: %s", e.what());
+    bool fTestNet = (Params().NetworkIDString() == CBaseChainParams::TESTNET); 
+    if ((!fTestNet && nHeight >= HF_LBK3_HEIGHT) || (fTestNet && nHeight >= HF_LBK3_HEIGHT_TESTNET)) {
+        // Lbk3 GetPoWHash
+        return Lbk3_hash(BEGIN(nVersion), END(nNonce)); 
     }
-
-    return powHash;
+    else {
+        // Lyra2z GetPoWHash
+        uint256 powHash;
+        try {
+                lyra2z_hash(BEGIN(nVersion), BEGIN(powHash)); 
+        
+        } catch (std::exception& e) {
+                LogPrintf("excepetion: %s", e.what());
+        }
+        return powHash;
+    }
 }
 
 void CBlockHeader::InvalidateCachedPoWHash(int nHeight) const {
