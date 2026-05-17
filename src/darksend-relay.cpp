@@ -1,5 +1,6 @@
 #include "darksend.h"
 #include "darksend-relay.h"
+#include "random.h"
 
 
 CDarkSendRelay::CDarkSendRelay()
@@ -84,17 +85,21 @@ bool CDarkSendRelay::VerifyMessage(std::string strSharedKey)
 void CDarkSendRelay::Relay()
 {
     int nCount = std::min(mnodeman.CountEnabled(MIN_PRIVATESEND_PEER_PROTO_VERSION), 20);
-    int nRank1 = (rand() % nCount)+1; 
-    int nRank2 = (rand() % nCount)+1; 
 
-    //keep picking another second number till we get one that doesn't match
-    while(nRank1 == nRank2) nRank2 = (rand() % nCount)+1;
+    if (nCount == 0) return;
 
-    //printf("rank 1 - rank2 %d %d \n", nRank1, nRank2);
-
-    //relay this message through 2 separate nodes for redundancy
+    int nRank1 = GetRandInt(nCount) + 1;
     RelayThroughNode(nRank1);
-    RelayThroughNode(nRank2);
+
+    if (nCount > 1) {
+        int nRank2 = GetRandInt(nCount) + 1;
+
+        //keep picking another second number till we get one that doesn't match
+        while(nRank1 == nRank2) nRank2 = GetRandInt(nCount) + 1;
+
+        //relay this message through 2 separate nodes for redundancy
+        RelayThroughNode(nRank2);
+    }
 }
 
 void CDarkSendRelay::RelayThroughNode(int nRank)
