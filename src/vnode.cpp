@@ -413,7 +413,7 @@ void CVnode::UpdateLastPaid(const CBlockIndex *pindex, int nMaxBlocksToScanBack)
 
             CAmount nVnodePayment = GetVnodePayment(BlockReading->nHeight, block.vtx[0].GetValueOut());
 
-            BOOST_FOREACH(CTxOut txout, block.vtx[0].vout)
+            for (CTxOut txout : block.vtx[0].vout)
             if (mnpayee == txout.scriptPubKey && nVnodePayment == txout.nValue) {
                 nBlockLastPaid = BlockReading->nHeight;
                 nTimeLastPaid = BlockReading->nTime;

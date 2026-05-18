@@ -104,7 +104,7 @@ void VnodeList::StartAlias(std::string strAlias)
     std::string strStatusHtml;
     strStatusHtml += "<center>Alias: " + strAlias;
 
-    BOOST_FOREACH(CVnodeConfig::CVnodeEntry mne, vnodeConfig.getEntries()) {
+    for (CVnodeConfig::CVnodeEntry mne : vnodeConfig.getEntries()) {
         if(mne.getAlias() == strAlias) {
             std::string strError;
             CVnodeBroadcast mnb;
@@ -137,7 +137,7 @@ void VnodeList::StartAll(std::string strCommand)
     int nCountFailed = 0;
     std::string strFailedHtml;
 
-    BOOST_FOREACH(CVnodeConfig::CVnodeEntry mne, vnodeConfig.getEntries()) {
+    for (CVnodeConfig::CVnodeEntry mne : vnodeConfig.getEntries()) {
         std::string strError;
         CVnodeBroadcast mnb;
 
@@ -233,7 +233,7 @@ void VnodeList::updateMyNodeList(bool fForce)
     nTimeMyListUpdated = GetTime();
 
     ui->tableWidgetVnodes->setSortingEnabled(false);
-    BOOST_FOREACH(CVnodeConfig::CVnodeEntry mne, vnodeConfig.getEntries()) {
+    for (CVnodeConfig::CVnodeEntry mne : vnodeConfig.getEntries()) {
         int32_t nOutputIndex = 0;
         if(!ParseInt32(mne.getOutputIndex(), &nOutputIndex)) {
             continue;
@@ -277,7 +277,7 @@ void VnodeList::updateNodeList()
     std::vector<CVnode> vVnodes = mnodeman.GetFullVnodeVector();
     int offsetFromUtc = GetOffsetFromUtc();
 
-    BOOST_FOREACH(CVnode & mn, vVnodes)
+    for (CVnode & mn : vVnodes)
     {
 //        CVnode mn = mnpair.second;
         // populate list

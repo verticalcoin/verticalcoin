@@ -54,26 +54,26 @@ struct Params {
     uint32_t nRuleChangeActivationThreshold;
     uint32_t nMinerConfirmationWindow;
     BIP9Deployment vDeployments[MAX_VERSION_BITS_DEPLOYMENTS];
-    
+
     /** Proof of work parameters */
     uint256 powLimit;
     bool fPowAllowMinDifficultyBlocks;
     int64_t nChainStartTime;
     unsigned char nMinNFactor;
     unsigned char nMaxNFactor;
-    
+
     int nInstantSendKeepLock; // in blocks
     int nVnodeMinimumConfirmations;
     int nVnodePaymentsStartBlock;
 
     uint256 nMinimumChainWork;
-    
-    // Params for Zawy's LWMA difficulty adjustment algorithm. 
+
+    // Params for Zawy's LWMA difficulty adjustment algorithm.
     int64_t LWMAStartingBlock;
 
-    int64_t LWMAAveragingWindow;  
+    int64_t LWMAAveragingWindow;
     int64_t PowTargetTimespan;
-    int64_t LWMAPowTargetSpacing; 
+    int64_t LWMAPowTargetSpacing;
 };
 } // namespace Consensus
 

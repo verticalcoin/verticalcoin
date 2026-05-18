@@ -94,7 +94,7 @@ bool CVnodeSync::IsBlockchainSynced(bool fBlockAccepted) {
     if (vNodesCopy.size() >= VNODE_SYNC_ENOUGH_PEERS) {
         // Check to see how many of our peers are (almost) at the same height as we are
         int nNodesAtSameHeight = 0;
-        BOOST_FOREACH(CNode * pnode, vNodesCopy)
+        for (CNode * pnode : vNodesCopy)
         {
             // Make sure this peer is presumably at the same height
             if (!CheckNodeHeight(pnode)) {
@@ -225,7 +225,7 @@ void CVnodeSync::ClearFulfilledRequests() {
     TRY_LOCK(cs_vNodes, lockRecv);
     if (!lockRecv) return;
 
-    BOOST_FOREACH(CNode * pnode, vNodes)
+    for (CNode * pnode : vNodes)
     {
         netfulfilledman.RemoveFulfilledRequest(pnode->addr, "spork-sync");
         netfulfilledman.RemoveFulfilledRequest(pnode->addr, "vnode-list-sync");
@@ -286,7 +286,7 @@ void CVnodeSync::ProcessTick() {
 
     std::vector < CNode * > vNodesCopy = CopyNodeVector();
 
-    BOOST_FOREACH(CNode * pnode, vNodesCopy)
+    for (CNode * pnode : vNodesCopy)
     {
         // Don't try to sync any data from outbound "vnode" connections -
         // they are temporary and should be considered unreliable for a sync process.
