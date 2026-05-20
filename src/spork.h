@@ -111,10 +111,10 @@ public:
 
     bool IsSporkActive(int nSporkID);
     int64_t GetSporkValue(int nSporkID);
-    int GetSporkIDByName(std::string strName);
+    int GetSporkIDByName(const std::string& strName);
     std::string GetSporkNameByID(int nSporkID);
 
-    bool SetPrivKey(std::string strPrivKey);
+    bool SetPrivKey(const std::string& strPrivKey);
 };
 
 extern CSporkManager sporkManager;
