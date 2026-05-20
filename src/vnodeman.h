@@ -284,7 +284,7 @@ public:
 
     vnode_info_t GetVnodeInfo(const CPubKey& pubKeyVnode);
 
-    char* GetNotQualifyReason(CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount);
+    std::string GetNotQualifyReason(CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount);
 
     /// Find an entry in the vnode list that is next to be paid
     CVnode* GetNextVnodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount);

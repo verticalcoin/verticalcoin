@@ -1,4 +1,4 @@
-## 2024-05-17 - Insecure Randomness and Divide by Zero in Peer Selection
-**Vulnerability:** `CDarkSendRelay::Relay()` used the insecure `rand()` function combined with `rand() % nCount` without checking if `nCount` was 0, leading to a potential divide-by-zero vulnerability. Additionally, if `nCount == 1`, an infinite loop would occur because it required two unique peers.
-**Learning:** Hardcoded uses of `rand()` in C++ projects for critical things like node selection can lead to non-uniform distribution and predictable patterns. It can also easily introduce math-related crashes (modulo by zero) and infinite loops in peer negotiation logic.
-**Prevention:** Always use secure randomness like `GetRandInt()` instead of `rand()`, and ensure proper boundary checks are present for modulo operations or loop invariants dependent on counts.
+## 2024-05-20 - Memory Leak and Buffer Overflow in GetNotQualifyReason
+**Vulnerability:** A memory leak was present due to `CVnodeMan::GetNotQualifyReason` dynamically allocating character buffers (`new char[256]`) without proper freeing in the call site in `src/rpc/rpcvnode.cpp`. Additionally, using `sprintf` and hardcoded buffer sizes (`256`) risks a buffer overflow if the formatted string length exceeds the buffer length. This could potentially cause a Denial of Service.
+**Learning:** Returning `char*` that transfers ownership requires explicit `delete[]` at all call sites, which is error-prone. Legacy C-style formatting (`sprintf`) on fixed-size buffers introduces buffer overflow risks.
+**Prevention:** Use memory-safe, modern C++ constructs: prefer `std::string` as the return type over `char*` arrays and use safe format wrappers like `strprintf` to mitigate both memory leaks and buffer overflows.

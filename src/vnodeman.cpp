@@ -534,46 +534,36 @@ bool CVnodeMan::Has(const CTxIn& vin)
     return (pMN != NULL);
 }
 
-char* CVnodeMan::GetNotQualifyReason(CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount)
+std::string CVnodeMan::GetNotQualifyReason(CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount)
 {
     if (!mn.IsValidForPayment()) {
-        char* reasonStr = new char[256];
-        sprintf(reasonStr, "false: 'not valid for payment'");
-        return reasonStr;
+        return "false: 'not valid for payment'";
     }
     // //check protocol version
     if (mn.nProtocolVersion < mnpayments.GetMinVnodePaymentsProto()) {
         // LogPrintf("Invalid nProtocolVersion!\n");
         // LogPrintf("mn.nProtocolVersion=%s!\n", mn.nProtocolVersion);
         // LogPrintf("mnpayments.GetMinVnodePaymentsProto=%s!\n", mnpayments.GetMinVnodePaymentsProto());
-        char* reasonStr = new char[256];
-        sprintf(reasonStr, "false: 'Invalid nProtocolVersion', nProtocolVersion=%d", mn.nProtocolVersion);
-        return reasonStr;
+        return strprintf("false: 'Invalid nProtocolVersion', nProtocolVersion=%d", mn.nProtocolVersion);
     }
     //it's in the list (up to 8 entries ahead of current block to allow propagation) -- so let's skip it
     if (mnpayments.IsScheduled(mn, nBlockHeight)) {
         // LogPrintf("mnpayments.IsScheduled!\n");
-        char* reasonStr = new char[256];
-        sprintf(reasonStr, "false: 'is scheduled'");
-        return reasonStr;
+        return "false: 'is scheduled'";
     }
     //it's too new, wait for a cycle
     if (fFilterSigTime && mn.sigTime + (nMnCount * 2.6 * 60) > GetAdjustedTime()) {
         // LogPrintf("it's too new, wait for a cycle!\n");
-        char* reasonStr = new char[256];
-        sprintf(reasonStr, "false: 'too new', sigTime=%s, will be qualifed after=%s",
-                DateTimeStrFormat("%Y-%m-%d %H:%M UTC", mn.sigTime).c_str(), DateTimeStrFormat("%Y-%m-%d %H:%M UTC", mn.sigTime + (nMnCount * 2.6 * 60)).c_str());
-        return reasonStr;
+        return strprintf("false: 'too new', sigTime=%s, will be qualifed after=%s",
+                DateTimeStrFormat("%Y-%m-%d %H:%M UTC", mn.sigTime), DateTimeStrFormat("%Y-%m-%d %H:%M UTC", mn.sigTime + (nMnCount * 2.6 * 60)));
     }
     //make sure it has at least as many confirmations as there are vnodes
     if (mn.GetCollateralAge() < nMnCount) {
         // LogPrintf("mn.GetCollateralAge()=%s!\n", mn.GetCollateralAge());
         // LogPrintf("nMnCount=%s!\n", nMnCount);
-        char* reasonStr = new char[256];
-        sprintf(reasonStr, "false: 'collateralAge < znCount', collateralAge=%d, znCount=%d", mn.GetCollateralAge(), nMnCount);
-        return reasonStr;
+        return strprintf("false: 'collateralAge < znCount', collateralAge=%d, znCount=%d", mn.GetCollateralAge(), nMnCount);
     }
-    return NULL;
+    return "";
 }
 
 //
@@ -641,11 +631,10 @@ CVnode* CVnodeMan::GetNextVnodeInQueueForPayment(int nBlockHeight, bool fFilterS
                      mn.vin.prevout.ToStringShort(), CBitcoinAddress(mn.pubKeyCollateralAddress.GetID()).ToString(), mn.GetCollateralAge(), nMnCount);
             continue;
         }*/
-        char* reasonStr = GetNotQualifyReason(mn, nBlockHeight, fFilterSigTime, nMnCount);
-        if (reasonStr != NULL) {
+        std::string reasonStr = GetNotQualifyReason(mn, nBlockHeight, fFilterSigTime, nMnCount);
+        if (!reasonStr.empty()) {
             LogPrint("vnodeman", "Vnode, %s, addr(%s), qualify %s\n",
                      mn.vin.prevout.ToStringShort(), CBitcoinAddress(mn.pubKeyCollateralAddress.GetID()).ToString(), reasonStr);
-            delete [] reasonStr;
             continue;
         }
         vecVnodeLastPaid.push_back(std::make_pair(mn.GetLastPaidBlock(), &mn));
