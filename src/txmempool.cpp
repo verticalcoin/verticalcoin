@@ -969,24 +969,22 @@ std::vector <CTxMemPool::indexed_transaction_set::const_iterator> CTxMemPool::Ge
 
 void CTxMemPool::queryHashes(vector <uint256> &vtxid) {
     LOCK(cs);
-    auto iters = GetSortedDepthAndScore();
-
+    // ⚡ Bolt: Removed unnecessary O(N log N) sorting, iterating mapTx is O(N)
     vtxid.clear();
     vtxid.reserve(mapTx.size());
 
-    for (auto it : iters) {
-        vtxid.push_back(it->GetTx().GetHash());
+    for (const auto& it : mapTx) {
+        vtxid.push_back(it.GetTx().GetHash());
     }
 }
 
 std::vector <TxMempoolInfo> CTxMemPool::infoAll() const {
     LOCK(cs);
-    auto iters = GetSortedDepthAndScore();
-
+    // ⚡ Bolt: Removed unnecessary O(N log N) sorting, iterating mapTx is O(N)
     std::vector <TxMempoolInfo> ret;
     ret.reserve(mapTx.size());
-    for (auto it : iters) {
-        ret.push_back(TxMempoolInfo{it->GetSharedTx(), it->GetTime(), CFeeRate(it->GetFee(), it->GetTxSize())});
+    for (const auto& it : mapTx) {
+        ret.push_back(TxMempoolInfo{it.GetSharedTx(), it.GetTime(), CFeeRate(it.GetFee(), it.GetTxSize())});
     }
 
     return ret;
