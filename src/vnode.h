@@ -296,8 +296,8 @@ public:
 
     int GetCollateralAge();
 
-    int GetLastPaidTime() { return nTimeLastPaid; }
-    int GetLastPaidBlock() { return nBlockLastPaid; }
+    int GetLastPaidTime() const { return nTimeLastPaid; }
+    int GetLastPaidBlock() const { return nBlockLastPaid; }
     void UpdateLastPaid(const CBlockIndex *pindex, int nMaxBlocksToScanBack);
 
     // KEEP TRACK OF EACH GOVERNANCE ITEM INCASE THIS NODE GOES OFFLINE, SO WE CAN RECALC THEIR STATUS

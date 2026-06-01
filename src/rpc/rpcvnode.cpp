@@ -488,8 +488,8 @@ UniValue vnodelist(const UniValue &params, bool fHelp) {
             obj.push_back(Pair(strOutpoint, s.first));
         }
     } else {
-        std::vector <CVnode> vVnodes = mnodeman.GetFullVnodeVector();
-        BOOST_FOREACH(CVnode & mn, vVnodes)
+        const std::vector<CVnode>& vVnodes = mnodeman.GetFullVnodeVector();
+        BOOST_FOREACH(const CVnode& mn, vVnodes)
         {
             std::string strOutpoint = mn.vin.prevout.ToStringShort();
             if (strMode == "activeseconds") {
