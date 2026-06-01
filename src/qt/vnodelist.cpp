@@ -274,10 +274,10 @@ void VnodeList::updateNodeList()
     ui->tableWidgetVnodes->clearContents();
     ui->tableWidgetVnodes->setRowCount(0);
 //    std::map<COutPoint, CVnode> mapVnodes = mnodeman.GetFullVnodeMap();
-    std::vector<CVnode> vVnodes = mnodeman.GetFullVnodeVector();
+    const std::vector<CVnode>& vVnodes = mnodeman.GetFullVnodeVector();
     int offsetFromUtc = GetOffsetFromUtc();
 
-    BOOST_FOREACH(CVnode & mn, vVnodes)
+    BOOST_FOREACH(const CVnode & mn, vVnodes)
     {
 //        CVnode mn = mnpair.second;
         // populate list

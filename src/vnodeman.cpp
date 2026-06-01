@@ -534,7 +534,7 @@ bool CVnodeMan::Has(const CTxIn& vin)
     return (pMN != NULL);
 }
 
-std::string CVnodeMan::GetNotQualifyReason(CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount)
+std::string CVnodeMan::GetNotQualifyReason(const CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount)
 {
     if (!mn.IsValidForPayment()) {
         return "false: 'not valid for payment'";

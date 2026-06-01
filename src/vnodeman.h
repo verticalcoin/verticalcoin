@@ -284,7 +284,7 @@ public:
 
     vnode_info_t GetVnodeInfo(const CPubKey& pubKeyVnode);
 
-    std::string GetNotQualifyReason(CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount);
+    std::string GetNotQualifyReason(const CVnode& mn, int nBlockHeight, bool fFilterSigTime, int nMnCount);
 
     /// Find an entry in the vnode list that is next to be paid
     CVnode* GetNextVnodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount);
@@ -294,7 +294,8 @@ public:
     /// Find a random entry
     CVnode* FindRandomNotInVec(const std::vector<CTxIn> &vecToExclude, int nProtocolVersion = -1);
 
-    std::vector<CVnode> GetFullVnodeVector() { return vVnodes; }
+    // BOLT: Return by const reference to avoid deep copies of the vnode vector
+    const std::vector<CVnode>& GetFullVnodeVector() const { return vVnodes; }
 
     std::vector<std::pair<int, CVnode> > GetVnodeRanks(int nBlockHeight = -1, int nMinProtocol=0);
     int GetVnodeRank(const CTxIn &vin, int nBlockHeight, int nMinProtocol=0, bool fOnlyActive=true);
