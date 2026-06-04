@@ -5702,8 +5702,8 @@ void static ProcessGetData(CNode *pfrom, const Consensus::Params &consensusParam
                     LOCK(cs_mapVnodeBlocks);
                     if (mi != mapBlockIndex.end() && mnpayments.mapVnodeBlocks.count(mi->second->nHeight)) {
                         BOOST_FOREACH(CVnodePayee& payee, mnpayments.mapVnodeBlocks[mi->second->nHeight].vecPayees) {
-                            std::vector<uint256> vecVoteHashes = payee.GetVoteHashes();
-                            BOOST_FOREACH(uint256& hash, vecVoteHashes) {
+                            const std::vector<uint256>& vecVoteHashes = payee.GetVoteHashes();
+                            BOOST_FOREACH(const uint256& hash, vecVoteHashes) {
                                 if(mnpayments.HasVerifiedPaymentVote(hash)) {
                                     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
                                     ss.reserve(1000);
