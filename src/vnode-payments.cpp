@@ -741,8 +741,8 @@ void CVnodePayments::Sync(CNode* pnode)
     for (int h = pCurrentBlockIndex->nHeight; h < pCurrentBlockIndex->nHeight + 20; h++) {
         if (mapVnodeBlocks.count(h)) {
             BOOST_FOREACH (CVnodePayee& payee, mapVnodeBlocks[h].vecPayees) {
-                std::vector<uint256> vecVoteHashes = payee.GetVoteHashes();
-                BOOST_FOREACH (uint256& hash, vecVoteHashes) {
+                const std::vector<uint256>& vecVoteHashes = payee.GetVoteHashes();
+                BOOST_FOREACH (const uint256& hash, vecVoteHashes) {
                     if (!HasVerifiedPaymentVote(hash))
                         continue;
                     pnode->PushInventory(CInv(MSG_VNODE_PAYMENT_VOTE, hash));
