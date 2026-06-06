@@ -8,23 +8,27 @@
 
 CNetFulfilledRequestManager netfulfilledman;
 
-void CNetFulfilledRequestManager::AddFulfilledRequest(CAddress addr, std::string strRequest)
+void CNetFulfilledRequestManager::AddFulfilledRequest(const CAddress& addr, const std::string& strRequest)
 {
     LOCK(cs_mapFulfilledRequests);
     mapFulfilledRequests[addr][strRequest] = GetTime() + Params().FulfilledRequestExpireTime();
 }
 
-bool CNetFulfilledRequestManager::HasFulfilledRequest(CAddress addr, std::string strRequest)
+bool CNetFulfilledRequestManager::HasFulfilledRequest(const CAddress& addr, const std::string& strRequest)
 {
     LOCK(cs_mapFulfilledRequests);
     fulfilledreqmap_t::iterator it = mapFulfilledRequests.find(addr);
 
-    return  it != mapFulfilledRequests.end() &&
-            it->second.find(strRequest) != it->second.end() &&
-            it->second[strRequest] > GetTime();
+    if (it != mapFulfilledRequests.end()) {
+        fulfilledreqmapentry_t::iterator it_entry = it->second.find(strRequest);
+        if (it_entry != it->second.end()) {
+            return it_entry->second > GetTime();
+        }
+    }
+    return false;
 }
 
-void CNetFulfilledRequestManager::RemoveFulfilledRequest(CAddress addr, std::string strRequest)
+void CNetFulfilledRequestManager::RemoveFulfilledRequest(const CAddress& addr, const std::string& strRequest)
 {
     LOCK(cs_mapFulfilledRequests);
     fulfilledreqmap_t::iterator it = mapFulfilledRequests.find(addr);
