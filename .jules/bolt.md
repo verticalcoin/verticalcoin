@@ -1,0 +1,3 @@
+## 2024-06-13 - std::find string optimization over value copying BOOST_FOREACH
+**Learning:** Replaced a manual BOOST_FOREACH loop that passed string by value `BOOST_FOREACH(const std::string msg, allMessages)` with `std::find(allMessages.begin(), allMessages.end(), strCommand)`. This avoids string allocations on the critical network packet receive path (`ProcessMessage`) where `getAllNetMessageTypes` holds ~30 strings, reducing redundant copies significantly.
+**Action:** Always prefer algorithm functions like `std::find` over manual loops, especially when the manual loop makes unintended value copies of objects like `std::string`.
