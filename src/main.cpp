@@ -7127,14 +7127,8 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
     } else {
 //        LogPrintf("Main.cpp ProcessMessage() strCommand=%s\n", strCommand);
         // Ignore unknown commands for extensibility
-        bool found = false;
         const std::vector <std::string> &allMessages = getAllNetMessageTypes();
-        BOOST_FOREACH(const std::string msg, allMessages) {
-            if (msg == strCommand) {
-                found = true;
-                break;
-            }
-        }
+        bool found = std::find(allMessages.begin(), allMessages.end(), strCommand) != allMessages.end();
 
         if (found) {
             //probably one the extensions
