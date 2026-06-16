@@ -9,7 +9,7 @@
 
 CVnodeConfig vnodeConfig;
 
-void CVnodeConfig::add(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex) {
+void CVnodeConfig::add(const std::string& alias, const std::string& ip, const std::string& privKey, const std::string& txHash, const std::string& outputIndex) {
     CVnodeEntry cme(alias, ip, privKey, txHash, outputIndex);
     entries.push_back(cme);
 }
