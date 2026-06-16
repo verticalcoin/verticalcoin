@@ -248,7 +248,7 @@ UniValue vnode(const UniValue &params, bool fHelp) {
         UniValue statusObj(UniValue::VOBJ);
         statusObj.push_back(Pair("alias", strAlias));
 
-        BOOST_FOREACH(CVnodeConfig::CVnodeEntry mne, vnodeConfig.getEntries()) {
+        for (CVnodeConfig::CVnodeEntry mne : vnodeConfig.getEntries()) {
             if (mne.getAlias() == strAlias) {
                 fFound = true;
                 std::string strError;
@@ -297,7 +297,7 @@ UniValue vnode(const UniValue &params, bool fHelp) {
 
         UniValue resultsObj(UniValue::VOBJ);
 
-        BOOST_FOREACH(CVnodeConfig::CVnodeEntry mne, vnodeConfig.getEntries()) {
+        for (CVnodeConfig::CVnodeEntry mne : vnodeConfig.getEntries()) {
             std::string strError;
 
             CTxIn vin = CTxIn(uint256S(mne.getTxHash()), uint32_t(atoi(mne.getOutputIndex().c_str())));
@@ -346,7 +346,7 @@ UniValue vnode(const UniValue &params, bool fHelp) {
     if (strCommand == "list-conf") {
         UniValue resultObj(UniValue::VOBJ);
 
-        BOOST_FOREACH(CVnodeConfig::CVnodeEntry mne, vnodeConfig.getEntries()) {
+        for (CVnodeConfig::CVnodeEntry mne : vnodeConfig.getEntries()) {
             CTxIn vin = CTxIn(uint256S(mne.getTxHash()), uint32_t(atoi(mne.getOutputIndex().c_str())));
             CVnode *pmn = mnodeman.Find(vin);
 
@@ -371,7 +371,7 @@ UniValue vnode(const UniValue &params, bool fHelp) {
         pwalletMain->AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);
 
         UniValue obj(UniValue::VOBJ);
-        BOOST_FOREACH(COutput & out, vPossibleCoins)
+        for (COutput & out : vPossibleCoins)
         {
             obj.push_back(Pair(out.tx->GetHash().ToString(), strprintf("%d", out.i)));
         }
@@ -481,7 +481,7 @@ UniValue vnodelist(const UniValue &params, bool fHelp) {
     UniValue obj(UniValue::VOBJ);
     if (strMode == "rank") {
         std::vector <std::pair<int, CVnode>> vVnodeRanks = mnodeman.GetVnodeRanks();
-        BOOST_FOREACH(PAIRTYPE(int, CVnode) & s, vVnodeRanks)
+        for (PAIRTYPE(int, CVnode) & s : vVnodeRanks)
         {
             std::string strOutpoint = s.second.vin.prevout.ToStringShort();
             if (strFilter != "" && strOutpoint.find(strFilter) == std::string::npos) continue;
@@ -489,7 +489,7 @@ UniValue vnodelist(const UniValue &params, bool fHelp) {
         }
     } else {
         std::vector <CVnode> vVnodes = mnodeman.GetFullVnodeVector();
-        BOOST_FOREACH(CVnode & mn, vVnodes)
+        for (CVnode & mn : vVnodes)
         {
             std::string strOutpoint = mn.vin.prevout.ToStringShort();
             if (strMode == "activeseconds") {
@@ -621,8 +621,8 @@ UniValue vnodebroadcast(const UniValue &params, bool fHelp) {
 
         statusObj.push_back(Pair("alias", strAlias));
 
-        BOOST_FOREACH(CVnodeConfig::CVnodeEntry
-        mne, vnodeConfig.getEntries()) {
+        for (CVnodeConfig::CVnodeEntry
+        mne : vnodeConfig.getEntries()) {
             if (mne.getAlias() == strAlias) {
                 fFound = true;
                 std::string strError;
@@ -672,8 +672,8 @@ UniValue vnodebroadcast(const UniValue &params, bool fHelp) {
         UniValue resultsObj(UniValue::VOBJ);
         std::vector <CVnodeBroadcast> vecMnb;
 
-        BOOST_FOREACH(CVnodeConfig::CVnodeEntry
-        mne, vnodeConfig.getEntries()) {
+        for (CVnodeConfig::CVnodeEntry
+        mne : vnodeConfig.getEntries()) {
             std::string strError;
             CVnodeBroadcast mnb;
 
@@ -721,7 +721,7 @@ UniValue vnodebroadcast(const UniValue &params, bool fHelp) {
         int nDos = 0;
         UniValue returnObj(UniValue::VOBJ);
 
-        BOOST_FOREACH(CVnodeBroadcast & mnb, vecMnb)
+        for (CVnodeBroadcast & mnb : vecMnb)
         {
             UniValue resultObj(UniValue::VOBJ);
 
@@ -778,7 +778,7 @@ UniValue vnodebroadcast(const UniValue &params, bool fHelp) {
         UniValue returnObj(UniValue::VOBJ);
 
         // verify all signatures first, bailout if any of them broken
-        BOOST_FOREACH(CVnodeBroadcast & mnb, vecMnb)
+        for (CVnodeBroadcast & mnb : vecMnb)
         {
             UniValue resultObj(UniValue::VOBJ);
 

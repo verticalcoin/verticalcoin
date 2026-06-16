@@ -66,7 +66,7 @@ public:
 	CMainParams() {
 		strNetworkID = "main";
 
-		consensus.nSubsidyHalvingInterval = 0; // Verticalcoin - Deactivated 
+		consensus.nSubsidyHalvingInterval = 0; // Verticalcoin - Deactivated
 		consensus.nMajorityEnforceBlockUpgrade = 750;
 		consensus.nMajorityRejectBlockOutdated = 950;
 		consensus.nMajorityWindow = 1000;
@@ -141,7 +141,7 @@ public:
 		assert(consensus.hashGenesisBlock == uint256S("0x76444d50ee38b41f0d468d94dc73851d00f9d840f46d78069c092e3128d50920"));
 		assert(genesis.hashMerkleRoot == uint256S("0x723c399bcb2e73ab0d33175127fcd3e999312f425b02b8b738053879948e345a"));
 
-		// DNSSeed 01 - ipv4 / ipv6 
+		// DNSSeed 01 - ipv4 / ipv6
 		vSeeds.push_back(CDNSSeedData("vrtseed.ovh", "seed1.vertical.ovh", false));
 		vFixedSeeds.clear();
 
@@ -309,7 +309,7 @@ class CRegTestParams : public CChainParams {
 public:
 	CRegTestParams() {
 		strNetworkID = "regtest";
-		consensus.nSubsidyHalvingInterval = 0; // Verticalcoin - Deactivated 
+		consensus.nSubsidyHalvingInterval = 0; // Verticalcoin - Deactivated
 		consensus.nMajorityEnforceBlockUpgrade = 750;
 		consensus.nMajorityRejectBlockOutdated = 950;
 		consensus.nMajorityWindow = 1000;
@@ -377,7 +377,7 @@ public:
 		fMineBlocksOnDemand = true;
 		fTestnetToBeDeprecatedFieldRPC = false;
 
-		
+
 		checkpointData = (CCheckpointData) {
 		boost::assign::map_list_of
 		(0, uint256S("0xc8b54ac02ca2910966dddc9834f30bff8ffac705fb2e12cf96864a09f8f1c536")),
@@ -385,7 +385,7 @@ public:
 		0,
 		0
 		};
-		
+
 
 		base58Prefixes[PUBKEY_ADDRESS] = std::vector < unsigned char >(1, 65);
 		base58Prefixes[SCRIPT_ADDRESS] = std::vector < unsigned char >(1, 178);
@@ -438,4 +438,3 @@ void SelectParams(const std::string &network) {
 void UpdateRegtestBIP9Parameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout) {
 	regTestParams.UpdateBIP9Parameters(d, nStartTime, nTimeout);
 }
-

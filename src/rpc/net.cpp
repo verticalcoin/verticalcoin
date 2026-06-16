@@ -17,7 +17,6 @@
 #include "utilstrencodings.h"
 #include "version.h"
 
-#include <boost/foreach.hpp>
 
 #include <univalue.h>
 
@@ -57,7 +56,7 @@ UniValue ping(const UniValue& params, bool fHelp)
     // Request that each node send a ping during next message processing pass
     LOCK2(cs_main, cs_vNodes);
 
-    BOOST_FOREACH(CNode* pNode, vNodes) {
+    for (CNode* pNode : vNodes) {
         pNode->fPingQueued = true;
     }
 
@@ -70,7 +69,7 @@ static void CopyNodeStats(std::vector<CNodeStats>& vstats)
 
     LOCK(cs_vNodes);
     vstats.reserve(vNodes.size());
-    BOOST_FOREACH(CNode* pnode, vNodes) {
+    for (CNode* pnode : vNodes) {
         CNodeStats stats;
         pnode->copyStats(stats);
         vstats.push_back(stats);
@@ -134,7 +133,7 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
 
     UniValue ret(UniValue::VARR);
 
-    BOOST_FOREACH(const CNodeStats& stats, vstats) {
+    for (const CNodeStats& stats : vstats) {
         UniValue obj(UniValue::VOBJ);
         CNodeStateStats statestats;
         bool fStateStats = GetNodeStateStats(stats.nodeid, statestats);
@@ -168,7 +167,7 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
             obj.push_back(Pair("synced_headers", statestats.nSyncHeight));
             obj.push_back(Pair("synced_blocks", statestats.nCommonHeight));
             UniValue heights(UniValue::VARR);
-            BOOST_FOREACH(int height, statestats.vHeightInFlight) {
+            for (int height : statestats.vHeightInFlight) {
                 heights.push_back(height);
             }
             obj.push_back(Pair("inflight", heights));
@@ -176,14 +175,14 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
         obj.push_back(Pair("whitelisted", stats.fWhitelisted));
 
         UniValue sendPerMsgCmd(UniValue::VOBJ);
-        BOOST_FOREACH(const mapMsgCmdSize::value_type &i, stats.mapSendBytesPerMsgCmd) {
+        for (const mapMsgCmdSize::value_type &i : stats.mapSendBytesPerMsgCmd) {
             if (i.second > 0)
                 sendPerMsgCmd.push_back(Pair(i.first, i.second));
         }
         obj.push_back(Pair("bytessent_per_msg", sendPerMsgCmd));
 
         UniValue recvPerMsgCmd(UniValue::VOBJ);
-        BOOST_FOREACH(const mapMsgCmdSize::value_type &i, stats.mapRecvBytesPerMsgCmd) {
+        for (const mapMsgCmdSize::value_type &i : stats.mapRecvBytesPerMsgCmd) {
             if (i.second > 0)
                 recvPerMsgCmd.push_back(Pair(i.first, i.second));
         }
@@ -452,7 +451,7 @@ UniValue getnetworkinfo(const UniValue& params, bool fHelp)
     UniValue localAddresses(UniValue::VARR);
     {
         LOCK(cs_mapLocalHost);
-        BOOST_FOREACH(const PAIRTYPE(CNetAddr, LocalServiceInfo) &item, mapLocalHost)
+        for (const PAIRTYPE(CNetAddr, LocalServiceInfo) &item : mapLocalHost)
         {
             UniValue rec(UniValue::VOBJ);
             rec.push_back(Pair("address", item.first.ToString()));

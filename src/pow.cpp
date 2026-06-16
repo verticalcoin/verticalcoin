@@ -24,12 +24,12 @@
 // (Corrected Typo in LogPrinf 2018)
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
 {
-   
+
    const int T = params.LWMAPowTargetSpacing;
    const int N = params.LWMAAveragingWindow;
    const int k = (N + 1) / 2 * 0.998 * T;
    const int height = pindexLast->nHeight + 1;
-   
+
    if (height < N + 1)
    {
         LogPrintf("LWMA Blockheight is smaller than N? pindexLast->nBits:%x\n", pindexLast->nBits);
@@ -45,10 +45,10 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
       const CBlockIndex* block = pindexLast->GetAncestor(i);
       const CBlockIndex* block_Prev = block->GetAncestor(i - 1);
       int64_t solvetime = block->GetBlockTime() - block_Prev->GetBlockTime();
-      
+
       j++;
-      t += solvetime * j;  
-      
+      t += solvetime * j;
+
       // divide sum_target  here to avoid potential overflow.
       arith_uint256 target;
       target.SetCompact(block->nBits);
@@ -56,18 +56,18 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
    }
 
    // Keep t reasonable in case strange solvetimes occurred.
-   if (t < N * k / 3) 
-   { 
+   if (t < N * k / 3)
+   {
       LogPrintf("LWMA Keep t reasonable in case strange solvetimes occurred.\n");
-      t = N * k / 3; 
+      t = N * k / 3;
    }
 
    const arith_uint256 pow_limit = UintToArith256(params.powLimit);
    arith_uint256 next_target = t * sum_target;
 
-   if (next_target > pow_limit) 
-   { 
-      next_target = pow_limit; 
+   if (next_target > pow_limit)
+   {
+      next_target = pow_limit;
       LogPrintf("LWMA next_target > pow_limit:%h\n", next_target.GetCompact());
    }
 
@@ -75,12 +75,12 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const 
 }
 
 unsigned int GetNextWorkRequired(const CBlockIndex *pindexLast, const CBlockHeader *pblock, const Consensus::Params &params) {
-   
+
    // Zawy's LWMA.
    unsigned int next_target = LwmaCalculateNextWorkRequired(pindexLast, params);
-   
+
    LogPrintf("LWMA Blockheight: %u \t\tTimestamp:%i \t\tcurrent nBit: %x next_target: %x \n",pindexLast->nHeight, pindexLast->GetBlockTime(), pindexLast->nBits, next_target);
-   
+
    return next_target;
 }
 

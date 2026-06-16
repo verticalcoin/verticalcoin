@@ -169,7 +169,7 @@ void CVnodeMan::Check()
 
 //    LogPrint("vnode", "CVnodeMan::Check -- nLastWatchdogVoteTime=%d, IsWatchdogActive()=%d\n", nLastWatchdogVoteTime, IsWatchdogActive());
 
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
         mn.Check();
     }
 }
@@ -383,7 +383,7 @@ int CVnodeMan::CountVnodes(int nProtocolVersion)
     int nCount = 0;
     nProtocolVersion = nProtocolVersion == -1 ? mnpayments.GetMinVnodePaymentsProto() : nProtocolVersion;
 
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
         if(mn.nProtocolVersion < nProtocolVersion) continue;
         nCount++;
     }
@@ -397,7 +397,7 @@ int CVnodeMan::CountEnabled(int nProtocolVersion)
     int nCount = 0;
     nProtocolVersion = nProtocolVersion == -1 ? mnpayments.GetMinVnodePaymentsProto() : nProtocolVersion;
 
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
         if(mn.nProtocolVersion < nProtocolVersion || !mn.IsEnabled()) continue;
         nCount++;
     }
@@ -411,7 +411,7 @@ int CVnodeMan::CountByIP(int nNetworkType)
     LOCK(cs);
     int nNodeCount = 0;
 
-    BOOST_FOREACH(CVnode& mn, vVnodes)
+    for (CVnode& mn : vVnodes)
         if ((nNetworkType == NET_IPV4 && mn.addr.IsIPv4()) ||
             (nNetworkType == NET_TOR  && mn.addr.IsTor())  ||
             (nNetworkType == NET_IPV6 && mn.addr.IsIPv6())) {
@@ -447,7 +447,7 @@ CVnode* CVnodeMan::Find(const CScript &payee)
 {
     LOCK(cs);
 
-    BOOST_FOREACH(CVnode& mn, vVnodes)
+    for (CVnode& mn : vVnodes)
     {
         if(GetScriptForDestination(mn.pubKeyCollateralAddress.GetID()) == payee)
             return &mn;
@@ -459,7 +459,7 @@ CVnode* CVnodeMan::Find(const CTxIn &vin)
 {
     LOCK(cs);
 
-    BOOST_FOREACH(CVnode& mn, vVnodes)
+    for (CVnode& mn : vVnodes)
     {
         if(mn.vin.prevout == vin.prevout)
             return &mn;
@@ -471,7 +471,7 @@ CVnode* CVnodeMan::Find(const CPubKey &pubKeyVnode)
 {
     LOCK(cs);
 
-    BOOST_FOREACH(CVnode& mn, vVnodes)
+    for (CVnode& mn : vVnodes)
     {
         if(mn.pubKeyVnode == pubKeyVnode)
             return &mn;
@@ -591,7 +591,7 @@ CVnode* CVnodeMan::GetNextVnodeInQueueForPayment(int nBlockHeight, bool fFilterS
     */
     int nMnCount = CountEnabled();
     int index = 0;
-    BOOST_FOREACH(CVnode &mn, vVnodes)
+    for (CVnode &mn : vVnodes)
     {
         index += 1;
         // LogPrintf("index=%s, mn=%s\n", index, mn.ToString());
@@ -662,7 +662,7 @@ CVnode* CVnodeMan::GetNextVnodeInQueueForPayment(int nBlockHeight, bool fFilterS
     int nTenthNetwork = nMnCount/10;
     int nCountTenth = 0;
     arith_uint256 nHighest = 0;
-    BOOST_FOREACH (PAIRTYPE(int, CVnode*)& s, vecVnodeLastPaid){
+    for (PAIRTYPE(int, CVnode*)& s : vecVnodeLastPaid){
         arith_uint256 nScore = s.second->CalculateScore(blockHash);
         if(nScore > nHighest){
             nHighest = nScore;
@@ -688,7 +688,7 @@ CVnode* CVnodeMan::FindRandomNotInVec(const std::vector<CTxIn> &vecToExclude, in
 
     // fill a vector of pointers
     std::vector<CVnode*> vpVnodesShuffled;
-    BOOST_FOREACH(CVnode &mn, vVnodes) {
+    for (CVnode &mn : vVnodes) {
         vpVnodesShuffled.push_back(&mn);
     }
 
@@ -698,10 +698,10 @@ CVnode* CVnodeMan::FindRandomNotInVec(const std::vector<CTxIn> &vecToExclude, in
     bool fExclude;
 
     // loop through
-    BOOST_FOREACH(CVnode* pmn, vpVnodesShuffled) {
+    for (CVnode* pmn : vpVnodesShuffled) {
         if(pmn->nProtocolVersion < nProtocolVersion || !pmn->IsEnabled()) continue;
         fExclude = false;
-        BOOST_FOREACH(const CTxIn &txinToExclude, vecToExclude) {
+        for (const CTxIn &txinToExclude : vecToExclude) {
             if(pmn->vin.prevout == txinToExclude.prevout) {
                 fExclude = true;
                 break;
@@ -728,7 +728,7 @@ int CVnodeMan::GetVnodeRank(const CTxIn& vin, int nBlockHeight, int nMinProtocol
     LOCK(cs);
 
     // scan for winner
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
         if(mn.nProtocolVersion < nMinProtocol) continue;
         if(fOnlyActive) {
             if(!mn.IsEnabled()) continue;
@@ -744,7 +744,7 @@ int CVnodeMan::GetVnodeRank(const CTxIn& vin, int nBlockHeight, int nMinProtocol
     sort(vecVnodeScores.rbegin(), vecVnodeScores.rend(), CompareScoreMN());
 
     int nRank = 0;
-    BOOST_FOREACH (PAIRTYPE(int64_t, CVnode*)& scorePair, vecVnodeScores) {
+    for (PAIRTYPE(int64_t, CVnode*)& scorePair : vecVnodeScores) {
         nRank++;
         if(scorePair.second->vin.prevout == vin.prevout) return nRank;
     }
@@ -764,7 +764,7 @@ std::vector<std::pair<int, CVnode> > CVnodeMan::GetVnodeRanks(int nBlockHeight, 
     LOCK(cs);
 
     // scan for winner
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
 
         if(mn.nProtocolVersion < nMinProtocol || !mn.IsEnabled()) continue;
 
@@ -776,7 +776,7 @@ std::vector<std::pair<int, CVnode> > CVnodeMan::GetVnodeRanks(int nBlockHeight, 
     sort(vecVnodeScores.rbegin(), vecVnodeScores.rend(), CompareScoreMN());
 
     int nRank = 0;
-    BOOST_FOREACH (PAIRTYPE(int64_t, CVnode*)& s, vecVnodeScores) {
+    for (PAIRTYPE(int64_t, CVnode*)& s : vecVnodeScores) {
         nRank++;
         vecVnodeRanks.push_back(std::make_pair(nRank, *s.second));
     }
@@ -797,7 +797,7 @@ CVnode* CVnodeMan::GetVnodeByRank(int nRank, int nBlockHeight, int nMinProtocol,
     }
 
     // Fill scores
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
 
         if(mn.nProtocolVersion < nMinProtocol) continue;
         if(fOnlyActive && !mn.IsEnabled()) continue;
@@ -810,7 +810,7 @@ CVnode* CVnodeMan::GetVnodeByRank(int nRank, int nBlockHeight, int nMinProtocol,
     sort(vecVnodeScores.rbegin(), vecVnodeScores.rend(), CompareScoreMN());
 
     int rank = 0;
-    BOOST_FOREACH (PAIRTYPE(int64_t, CVnode*)& s, vecVnodeScores){
+    for (PAIRTYPE(int64_t, CVnode*)& s : vecVnodeScores){
         rank++;
         if(rank == nRank) {
             return s.second;
@@ -826,7 +826,7 @@ void CVnodeMan::ProcessVnodeConnections()
     if(Params().NetworkIDString() == CBaseChainParams::REGTEST) return;
 
     LOCK(cs_vNodes);
-    BOOST_FOREACH(CNode* pnode, vNodes) {
+    for (CNode* pnode : vNodes) {
         if(pnode->fVnode) {
             if(darkSendPool.pSubmittedToVnode != NULL && pnode->addr == darkSendPool.pSubmittedToVnode->addr) continue;
             // LogPrintf("Closing Vnode connection: peer=%d, addr=%s\n", pnode->id, pnode->addr.ToString());
@@ -964,7 +964,7 @@ void CVnodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStrea
 
         int nInvCount = 0;
 
-        BOOST_FOREACH(CVnode& mn, vVnodes) {
+        for (CVnode& mn : vVnodes) {
             if (vin != CTxIn() && vin != mn.vin) continue; // asked for specific vin but we are not there yet
             if (mn.addr.IsRFC1918() || mn.addr.IsLocal()) continue; // do not send local network vnode
             if (mn.IsUpdateRequired()) continue; // do not send outdated vnodes
@@ -1059,7 +1059,7 @@ void CVnodeMan::DoFullVerificationStep()
     if(nOffset >= (int)vecVnodeRanks.size()) return;
 
     std::vector<CVnode*> vSortedByAddr;
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
         vSortedByAddr.push_back(&mn);
     }
 
@@ -1110,13 +1110,13 @@ void CVnodeMan::CheckSameAddr()
         CVnode* pprevVnode = NULL;
         CVnode* pverifiedVnode = NULL;
 
-        BOOST_FOREACH(CVnode& mn, vVnodes) {
+        for (CVnode& mn : vVnodes) {
             vSortedByAddr.push_back(&mn);
         }
 
         sort(vSortedByAddr.begin(), vSortedByAddr.end(), CompareByAddr());
 
-        BOOST_FOREACH(CVnode* pmn, vSortedByAddr) {
+        for (CVnode* pmn : vSortedByAddr) {
             // check only (pre)enabled vnodes
             if(!pmn->IsEnabled() && !pmn->IsPreEnabled()) continue;
             // initial step
@@ -1144,7 +1144,7 @@ void CVnodeMan::CheckSameAddr()
     }
 
     // ban duplicates
-    BOOST_FOREACH(CVnode* pmn, vBan) {
+    for (CVnode* pmn : vBan) {
         LogPrintf("CVnodeMan::CheckSameAddr -- increasing PoSe ban score for vnode %s\n", pmn->vin.prevout.ToStringShort());
         pmn->IncreasePoSeBanScore();
     }
@@ -1313,7 +1313,7 @@ void CVnodeMan::ProcessVerifyReply(CNode* pnode, CVnodeVerification& mnv)
         LogPrintf("CVnodeMan::ProcessVerifyReply -- verified real vnode %s for addr %s\n",
                     prealVnode->vin.prevout.ToStringShort(), pnode->addr.ToString());
         // increase ban score for everyone else
-        BOOST_FOREACH(CVnode* pmn, vpVnodesToBan) {
+        for (CVnode* pmn : vpVnodesToBan) {
             pmn->IncreasePoSeBanScore();
             LogPrint("vnode", "CVnodeMan::ProcessVerifyBroadcast -- increased PoSe ban score for %s addr %s, new score %d\n",
                         prealVnode->vin.prevout.ToStringShort(), pnode->addr.ToString(), pmn->nPoSeBanScore);
@@ -1414,7 +1414,7 @@ void CVnodeMan::ProcessVerifyBroadcast(CNode* pnode, const CVnodeVerification& m
 
         // increase ban score for everyone else with the same addr
         int nCount = 0;
-        BOOST_FOREACH(CVnode& mn, vVnodes) {
+        for (CVnode& mn : vVnodes) {
             if(mn.addr != mnv.addr || mn.vin.prevout == mnv.vin1.prevout) continue;
             mn.IncreasePoSeBanScore();
             nCount++;
@@ -1577,7 +1577,7 @@ void CVnodeMan::UpdateLastPaid()
     LogPrint("mnpayments", "CVnodeMan::UpdateLastPaid -- nHeight=%d, nMaxBlocksToScanBack=%d, IsFirstRun=%s\n",
                              pCurrentBlockIndex->nHeight, nMaxBlocksToScanBack, IsFirstRun ? "true" : "false");
 
-    BOOST_FOREACH(CVnode& mn, vVnodes) {
+    for (CVnode& mn : vVnodes) {
         mn.UpdateLastPaid(pCurrentBlockIndex, nMaxBlocksToScanBack);
     }
 

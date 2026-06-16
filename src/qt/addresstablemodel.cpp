@@ -10,7 +10,6 @@
 #include "base58.h"
 #include "wallet/wallet.h"
 
-#include <boost/foreach.hpp>
 
 #include <QFont>
 #include <QDebug>
@@ -86,7 +85,7 @@ public:
         cachedAddressTable.clear();
         {
             LOCK(wallet->cs_wallet);
-            BOOST_FOREACH(const PAIRTYPE(CTxDestination, CAddressBookData)& item, wallet->mapAddressBook)
+            for (const PAIRTYPE(CTxDestination, CAddressBookData)& item : wallet->mapAddressBook)
             {
                 const CBitcoinAddress& address = item.first;
                 bool fMine = IsMine(*wallet, address.Get());
@@ -100,7 +99,7 @@ public:
             //[ZCOINGITHUBENTRY] add load pubcoin
             std::list<CZerocoinEntry> listPubcoin;
             CWalletDB(wallet->strWalletFile).ListPubCoin(listPubcoin);
-            BOOST_FOREACH(const CZerocoinEntry& item, listPubcoin)
+            for (const CZerocoinEntry& item : listPubcoin)
             {
                 if(item.randomness != 0 && item.serialNumber != 0){
                     const std::string& pubCoin = item.value.GetHex();

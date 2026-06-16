@@ -1774,7 +1774,7 @@ void
 tor_tls_assert_renegotiation_unblocked(tor_tls_t *tls)
 {
 #if defined(SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION) && \
-  SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION != 0
+  0 != 0
   long options = SSL_get_options(tls->ssl);
   tor_assert(0 != (options & SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION));
 #else
