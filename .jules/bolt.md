@@ -1,0 +1,3 @@
+## 2024-06-20 - Unintended String Copies in Network Hot Paths
+**Learning:** Legacy constructs like `BOOST_FOREACH` with `const std::string msg` (instead of `const std::string& msg`) cause hidden heap allocations for every element iterated. In high-throughput paths like network packet processing (`ProcessMessage`), this creates significant memory overhead and CPU cycles wasted on copying string objects.
+**Action:** Always inspect loop variable declarations in performance-critical areas. Use standard library algorithms like `std::find` or ensure range-based loops use `const auto&` to prevent accidental deep copies of complex types.
