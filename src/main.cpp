@@ -7127,14 +7127,11 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
     } else {
 //        LogPrintf("Main.cpp ProcessMessage() strCommand=%s\n", strCommand);
         // Ignore unknown commands for extensibility
-        bool found = false;
         const std::vector <std::string> &allMessages = getAllNetMessageTypes();
-        BOOST_FOREACH(const std::string msg, allMessages) {
-            if (msg == strCommand) {
-                found = true;
-                break;
-            }
-        }
+        // ⚡ Bolt: Replace BOOST_FOREACH loop that copied std::string by value with std::find.
+        // Impact: Eliminates ~20+ hidden heap allocations (std::string copy constructor)
+        // per unrecognized network packet, reducing latency and memory pressure on the net thread.
+        bool found = std::find(allMessages.begin(), allMessages.end(), strCommand) != allMessages.end();
 
         if (found) {
             //probably one the extensions
