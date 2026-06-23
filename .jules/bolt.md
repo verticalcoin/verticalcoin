@@ -1,0 +1,3 @@
+## 2024-12-04 - Legacy BOOST_FOREACH Deep Copying Overhead
+**Learning:** Found a critical codebase-specific performance anti-pattern where legacy macro `BOOST_FOREACH(PAIRTYPE(K, V) item, map)` silently performs O(N) deep copying of map elements, causing massive unintended memory allocations and GC overhead when iterating over large structs like `CWalletTx` in `mapWallet`.
+**Action:** Always refactor `BOOST_FOREACH` iterations over maps/collections containing large objects into modern C++ range-based `for (const auto& item : collection)` loops to use zero-cost const references instead of deep copies.
