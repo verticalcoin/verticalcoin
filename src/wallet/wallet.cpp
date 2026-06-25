@@ -4315,9 +4315,9 @@ std::map <CTxDestination, CAmount> CWallet::GetAddressBalances() {
 
     {
         LOCK(cs_wallet);
-        BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+        for (const auto& walletEntry : mapWallet)
         {
-            CWalletTx *pcoin = &walletEntry.second;
+            const CWalletTx *pcoin = &walletEntry.second;
 
             if (!CheckFinalTx(*pcoin) || !pcoin->IsTrusted())
                 continue;
