@@ -4315,7 +4315,8 @@ std::map <CTxDestination, CAmount> CWallet::GetAddressBalances() {
 
     {
         LOCK(cs_wallet);
-        BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+        // Optimize: use range-based for loop with reference to prevent deep copy of CWalletTx
+        for (auto& walletEntry : mapWallet)
         {
             CWalletTx *pcoin = &walletEntry.second;
 
@@ -4353,7 +4354,8 @@ set <set<CTxDestination>> CWallet::GetAddressGroupings() {
     set <set<CTxDestination>> groupings;
     set <CTxDestination> grouping;
 
-    BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+    // Optimize: use range-based for loop with reference to prevent deep copy of CWalletTx
+    for (auto& walletEntry : mapWallet)
     {
         CWalletTx *pcoin = &walletEntry.second;
 
