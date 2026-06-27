@@ -1,4 +1,4 @@
-## 2024-05-20 - Memory Leak and Buffer Overflow in GetNotQualifyReason
-**Vulnerability:** A memory leak was present due to `CVnodeMan::GetNotQualifyReason` dynamically allocating character buffers (`new char[256]`) without proper freeing in the call site in `src/rpc/rpcvnode.cpp`. Additionally, using `sprintf` and hardcoded buffer sizes (`256`) risks a buffer overflow if the formatted string length exceeds the buffer length. This could potentially cause a Denial of Service.
-**Learning:** Returning `char*` that transfers ownership requires explicit `delete[]` at all call sites, which is error-prone. Legacy C-style formatting (`sprintf`) on fixed-size buffers introduces buffer overflow risks.
-**Prevention:** Use memory-safe, modern C++ constructs: prefer `std::string` as the return type over `char*` arrays and use safe format wrappers like `strprintf` to mitigate both memory leaks and buffer overflows.
+## 2024-05-18 - Insecure Randomness in SOCKS5 Proxy Credentials
+**Vulnerability:** SOCKS5 proxy credentials were built using `insecure_rand()` which uses a weak PRNG (George Marsaglia's MWC).
+**Learning:** `insecure_rand()` should never be used for security context like network credentials, because it lacks cryptographic strength. It makes proxy authentication streams predictable, breaking stream isolation meant to provide network-level privacy and allowing attackers to correlate and de-anonymize transactions.
+**Prevention:** Always use cryptographically secure random number generators (`GetRandHash()`, `GetRand()`) for generating secure tokens, salts, or credentials in any network or consensus protocol code.
