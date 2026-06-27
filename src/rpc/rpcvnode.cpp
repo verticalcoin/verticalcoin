@@ -481,7 +481,7 @@ UniValue vnodelist(const UniValue &params, bool fHelp) {
     UniValue obj(UniValue::VOBJ);
     if (strMode == "rank") {
         std::vector <std::pair<int, CVnode>> vVnodeRanks = mnodeman.GetVnodeRanks();
-        BOOST_FOREACH(PAIRTYPE(int, CVnode) & s, vVnodeRanks)
+        for (auto& s : vVnodeRanks)
         {
             std::string strOutpoint = s.second.vin.prevout.ToStringShort();
             if (strFilter != "" && strOutpoint.find(strFilter) == std::string::npos) continue;
