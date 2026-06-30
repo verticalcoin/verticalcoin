@@ -537,8 +537,10 @@ static bool ConnectThroughProxy(const proxyType &proxy, const std::string& strDe
     // do socks negotiation
     if (proxy.randomize_credentials) {
         ProxyCredentials random_auth;
-        random_auth.username = strprintf("%i", insecure_rand());
-        random_auth.password = strprintf("%i", insecure_rand());
+        // Use a CSPRNG for generating SOCKS5 credentials to ensure secure circuit isolation.
+        // insecure_rand() must not be used for this as it's predictable.
+        random_auth.username = GetRandHash().ToString();
+        random_auth.password = GetRandHash().ToString();
         if (!Socks5(strDest, (unsigned short)port, &random_auth, hSocket))
             return false;
     } else {
