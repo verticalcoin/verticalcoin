@@ -4315,9 +4315,9 @@ std::map <CTxDestination, CAmount> CWallet::GetAddressBalances() {
 
     {
         LOCK(cs_wallet);
-        BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+        for (const auto& walletEntry : mapWallet)
         {
-            CWalletTx *pcoin = &walletEntry.second;
+            const CWalletTx *pcoin = &walletEntry.second;
 
             if (!CheckFinalTx(*pcoin) || !pcoin->IsTrusted())
                 continue;
@@ -4353,14 +4353,14 @@ set <set<CTxDestination>> CWallet::GetAddressGroupings() {
     set <set<CTxDestination>> groupings;
     set <CTxDestination> grouping;
 
-    BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+    for (const auto& walletEntry : mapWallet)
     {
-        CWalletTx *pcoin = &walletEntry.second;
+        const CWalletTx *pcoin = &walletEntry.second;
 
         if (pcoin->vin.size() > 0) {
             bool any_mine = false;
             // group all input addresses with each other
-            BOOST_FOREACH(CTxIn txin, pcoin->vin)
+            for (const auto& txin : pcoin->vin)
             {
                 CTxDestination address;
                 if (!IsMine(txin)) /* If this input isn't mine, ignore it */
@@ -4373,7 +4373,7 @@ set <set<CTxDestination>> CWallet::GetAddressGroupings() {
 
             // group change with input addresses
             if (any_mine) {
-                BOOST_FOREACH(CTxOut txout, pcoin->vout)
+                for (const auto& txout : pcoin->vout)
                 if (IsChange(txout)) {
                     CTxDestination txoutAddr;
                     if (!ExtractDestination(txout.scriptPubKey, txoutAddr))
@@ -4388,32 +4388,33 @@ set <set<CTxDestination>> CWallet::GetAddressGroupings() {
         }
 
         // group lone addrs by themselves
-        for (unsigned int i = 0; i < pcoin->vout.size(); i++)
-            if (IsMine(pcoin->vout[i])) {
+        for (const auto& txout : pcoin->vout) {
+            if (IsMine(txout)) {
                 CTxDestination address;
-                if (!ExtractDestination(pcoin->vout[i].scriptPubKey, address))
+                if (!ExtractDestination(txout.scriptPubKey, address))
                     continue;
                 grouping.insert(address);
                 groupings.insert(grouping);
                 grouping.clear();
             }
+        }
     }
 
     set < set < CTxDestination > * > uniqueGroupings; // a set of pointers to groups of addresses
     map < CTxDestination, set < CTxDestination > * > setmap;  // map addresses to the unique group containing it
-    BOOST_FOREACH(set < CTxDestination > grouping, groupings)
+    for (const auto& grouping : groupings)
     {
         // make a set of all the groups hit by this new group
         set < set < CTxDestination > * > hits;
         map < CTxDestination, set < CTxDestination > * > ::iterator
         it;
-        BOOST_FOREACH(CTxDestination address, grouping)
+        for (const auto& address : grouping)
         if ((it = setmap.find(address)) != setmap.end())
             hits.insert((*it).second);
 
         // merge all hit groups into a new single group and delete old groups
         set <CTxDestination> *merged = new set<CTxDestination>(grouping);
-        BOOST_FOREACH(set < CTxDestination > *hit, hits)
+        for (set < CTxDestination > *hit : hits)
         {
             merged->insert(hit->begin(), hit->end());
             uniqueGroupings.erase(hit);
@@ -4422,12 +4423,12 @@ set <set<CTxDestination>> CWallet::GetAddressGroupings() {
         uniqueGroupings.insert(merged);
 
         // update setmap
-        BOOST_FOREACH(CTxDestination element, *merged)
+        for (const auto& element : *merged)
         setmap[element] = merged;
     }
 
     set <set<CTxDestination>> ret;
-    BOOST_FOREACH(set < CTxDestination > *uniqueGrouping, uniqueGroupings)
+    for (set < CTxDestination > *uniqueGrouping : uniqueGroupings)
     {
         ret.insert(*uniqueGrouping);
         delete uniqueGrouping;
