@@ -1,0 +1,3 @@
+## 2024-05-24 - Legacy BOOST_FOREACH Deep Copies
+**Learning:** `BOOST_FOREACH(PAIRTYPE(K, V) item, map)` silently makes deep copies of map elements. In performance-critical areas like `vnodeman.cpp` where large collections are iterated (e.g., iterating through all masternodes), this redundant heap allocation creates significant CPU overhead and memory churn.
+**Action:** Replace `BOOST_FOREACH` iterations that use `PAIRTYPE` with C++11 range-based for loops (e.g., `for (const auto& item : map)`) to eliminate redundant heap allocations and improve performance, as they take elements by const reference instead of copying them.
