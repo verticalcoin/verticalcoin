@@ -4315,9 +4315,10 @@ std::map <CTxDestination, CAmount> CWallet::GetAddressBalances() {
 
     {
         LOCK(cs_wallet);
-        BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+        // PERFORMANCE: Use const reference to avoid deep copy of CWalletTx
+        for (const auto& walletEntry : mapWallet)
         {
-            CWalletTx *pcoin = &walletEntry.second;
+            const CWalletTx *pcoin = &walletEntry.second;
 
             if (!CheckFinalTx(*pcoin) || !pcoin->IsTrusted())
                 continue;
@@ -4353,9 +4354,10 @@ set <set<CTxDestination>> CWallet::GetAddressGroupings() {
     set <set<CTxDestination>> groupings;
     set <CTxDestination> grouping;
 
-    BOOST_FOREACH(PAIRTYPE(uint256, CWalletTx) walletEntry, mapWallet)
+    // PERFORMANCE: Use const reference to avoid deep copy of CWalletTx
+    for (const auto& walletEntry : mapWallet)
     {
-        CWalletTx *pcoin = &walletEntry.second;
+        const CWalletTx *pcoin = &walletEntry.second;
 
         if (pcoin->vin.size() > 0) {
             bool any_mine = false;
